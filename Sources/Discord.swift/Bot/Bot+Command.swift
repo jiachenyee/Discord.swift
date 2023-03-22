@@ -9,14 +9,14 @@ import Foundation
 
 public extension Bot {
     @discardableResult
-    func createCommand(_ command: Command) async throws -> Data {
+    func createCommand(_ command: Command) async throws -> Command {
         if let guildId = command.guildId {
-            return try await sendRequest(
+            return try await sendRequest(Command.self,
                                          endpoint: "applications/\(applicationId)/guilds/\(guildId)/commands",
                                          method: .post,
                                          data: command)
         } else {
-            return try await sendRequest(
+            return try await sendRequest(Command.self,
                                          endpoint: "applications/\(applicationId)/commands",
                                          method: .post,
                                          data: command)

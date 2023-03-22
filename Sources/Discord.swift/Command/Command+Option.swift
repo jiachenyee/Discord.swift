@@ -182,7 +182,7 @@ public extension Command {
                                    nameLocalizations: [DiscordLocale : String]? = nil,
                                    description: String,
                                    descriptionLocalizations: [DiscordLocale : String]? = nil,
-                                   types channelTypes: [ChannelType],
+                                   types channelTypes: [ChannelType]? = nil,
                                    required: Bool = false) -> Self {
             Self(type: .channel,
                  name: name,
