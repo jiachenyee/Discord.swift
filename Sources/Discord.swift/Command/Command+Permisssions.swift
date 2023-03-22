@@ -12,11 +12,11 @@ public extension Command {
         /// ID of the command or the application ID
         public var id: PermissionID
         /// ID of the application the command belongs to
-        public var applicationId: String
+        public var applicationId: Snowflake
         /// ID of the guild
-        public var guildId: String
+        public var guildId: Snowflake
         /// Permissions for the command in the guild, max of 100
-        public var permissions: String
+        public var permissions: [Permission]
         
         enum CodingKeys: String, CodingKey {
             case id = "id"
@@ -26,9 +26,9 @@ public extension Command {
         }
         
         public init(id: PermissionID,
-             applicationId: String,
-             guildId: String,
-             permissions: String) {
+                    applicationId: Snowflake,
+                    guildId: Snowflake,
+                    permissions: [Permission]) {
             self.id = id
             self.applicationId = applicationId
             self.guildId = guildId
@@ -70,7 +70,7 @@ public extension Command {
         }
     }
     
-    struct Permission {
+    struct Permission: Codable {
         /// ID of the role, user, or channel. It can also be a permission constant
         public var id: String
         /// application command permission type

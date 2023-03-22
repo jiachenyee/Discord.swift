@@ -62,6 +62,25 @@ public extension Bot {
         }
     }
     
+    internal func sendRequest<D: Decodable>(_ type: D.Type,
+                                            endpoint: String,
+                                            method: HTTPMethod) async throws -> D {
+        
+        let data = try await sendRequest(endpoint: endpoint, method: method)
+        
+        if let decodedValue = try? JSONDecoder().decode(D.self, from: data) {
+            return decodedValue
+        }
+        
+        let errorValue = try JSONSerialization.jsonObject(with: data) as? [String: Any]
+        
+        if let errorValue {
+            throw DiscordError.apiError(value: errorValue)
+        } else {
+            throw DiscordError.unknownError
+        }
+    }
+    
     enum DiscordError: Error {
         case apiError(value: [String: Any])
         case unknownError

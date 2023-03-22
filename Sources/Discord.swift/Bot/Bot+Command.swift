@@ -34,8 +34,9 @@ public extension Bot {
         }
     }
     
-    func getCommandPermissions(guildId: Snowflake, commandId: Snowflake) async throws -> Data {
-        try await sendRequest(endpoint: "/applications/\(applicationId)/guilds/\(guildId)/commands/\(commandId)/permissions",
+    func getCommandPermissions(guildId: Snowflake, commandId: Snowflake) async throws -> Permissions {
+        try await sendRequest(Permissions.self,
+                              endpoint: "/applications/\(applicationId)/guilds/\(guildId)/commands/\(commandId)/permissions",
                               method: .get)
     }
     
