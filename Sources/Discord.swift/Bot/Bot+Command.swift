@@ -34,6 +34,11 @@ public extension Bot {
         }
     }
     
+    func getCommandPermissions(guildId: Snowflake, commandId: Snowflake) async throws -> Data {
+        try await sendRequest(endpoint: "/applications/\(applicationId)/guilds/\(guildId)/commands/\(commandId)/permissions",
+                              method: .get)
+    }
+    
     enum CommandType {
         case application
         case guild(Snowflake)
