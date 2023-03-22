@@ -23,7 +23,7 @@ public struct Command: Codable {
     
     public var options: [Option]?
     
-    public var defaultMemberPermissions: String?
+    public var defaultMemberPermissions: Permissions?
     public var dmPermission: Bool?
     public var nsfw = false
     public var version: String?
@@ -35,7 +35,7 @@ public struct Command: Codable {
                 descriptionLocalizations: [DiscordLocale: String]? = nil,
                 guildId: Snowflake? = nil,
                 options: [Option]? = nil,
-                defaultMemberPermissions: String? = nil,
+                defaultMemberPermissions: Permissions? = nil,
                 dmPermission: Bool? = nil,
                 nsfw: Bool = false) {
         self.type = type
@@ -78,7 +78,7 @@ public struct Command: Codable {
                                  description: String,
                                  descriptionLocalizations: [DiscordLocale: String]? = nil,
                                  options: [Option]? = nil,
-                                 defaultMemberPermissions: String? = nil,
+                                 defaultMemberPermissions: Permissions? = nil,
                                  dmPermission: Bool? = nil,
                                  nsfw: Bool = false) -> Self {
         Self(type: .chatInput,
@@ -99,7 +99,7 @@ public struct Command: Codable {
                             descriptionLocalizations: [DiscordLocale: String]? = nil,
                             guildId: Snowflake? = nil,
                             options: [Option]? = nil,
-                            defaultMemberPermissions: String? = nil,
+                            defaultMemberPermissions: Permissions? = nil,
                             dmPermission: Bool? = nil,
                             nsfw: Bool = false) -> Self {
         Self(type: .user,
@@ -120,7 +120,7 @@ public struct Command: Codable {
                                descriptionLocalizations: [DiscordLocale: String]? = nil,
                                guildId: Snowflake? = nil,
                                options: [Option]? = nil,
-                               defaultMemberPermissions: String? = nil,
+                               defaultMemberPermissions: Permissions? = nil,
                                dmPermission: Bool? = nil,
                                nsfw: Bool = false) -> Self {
         Self(type: .message,
