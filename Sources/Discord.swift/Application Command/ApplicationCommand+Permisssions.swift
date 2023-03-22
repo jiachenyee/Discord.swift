@@ -8,38 +8,55 @@
 import Foundation
 
 public extension ApplicationCommand {
-    struct Permissions {
+    struct Permissions: Codable {
         /// ID of the command or the application ID
         var id: PermissionID
         /// ID of the application the command belongs to
-        var application_id: String
+        var applicationId: String
         /// ID of the guild
-        var guild_id: String
+        var guildId: String
         /// Permissions for the command in the guild, max of 100
         var permissions: String
+        
+        enum CodingKeys: String, CodingKey {
+            case id = "id"
+            case applicationId = "application_id"
+            case guildId = "guild_id"
+            case permissions = "permissions"
+        }
+        
+        public init(id: PermissionID,
+             applicationId: String,
+             guildId: String,
+             permissions: String) {
+            self.id = id
+            self.applicationId = applicationId
+            self.guildId = guildId
+            self.permissions = permissions
+        }
     }
     
     struct PermissionID: Codable, ExpressibleByStringLiteral {
-        var rawValue: String
+        var rawValue: Snowflake
         
         public init(stringLiteral value: String) {
-            rawValue = value
+            rawValue = .init(stringLiteral: value)
         }
         
         init(_ value: Int) {
-            rawValue = String(value)
+            rawValue = .init(integerLiteral: value)
         }
         
         init(_ value: String) {
-            rawValue = value
+            rawValue = .init(stringLiteral: value)
         }
         
-        public static func everyone(guildId: String) -> PermissionID {
-            return Self(guildId)
+        public static func everyone(guildId: Snowflake) -> PermissionID {
+            return Self(guildId.intValue)
         }
         
-        public static func allChannels(guildId: String) -> PermissionID {
-            return PermissionID(Int(guildId)! - 1)
+        public static func allChannels(guildId: Snowflake) -> PermissionID {
+            return PermissionID(guildId.intValue - 1)
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -49,7 +66,7 @@ public extension ApplicationCommand {
         
         public init(from decoder: Decoder) throws {
             let container = try decoder.singleValueContainer()
-            self.rawValue = try container.decode(String.self)
+            self.rawValue = try container.decode(Snowflake.self)
         }
     }
     
@@ -60,6 +77,12 @@ public extension ApplicationCommand {
         var type: PermissionType
         /// true to allow, false, to disallow
         var permission: Bool
+        
+        public init(id: String, type: PermissionType, permission: Bool) {
+            self.id = id
+            self.type = type
+            self.permission = permission
+        }
     }
     
     enum PermissionType: Int, Codable {

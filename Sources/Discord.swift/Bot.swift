@@ -31,7 +31,8 @@ public class Bot {
                                     parameters: data,
                                     encoder: .json,
                                     headers: [
-                                        .authorization("Bot \(token)")
+                                        .authorization("Bot \(token)"),
+                                        .userAgent("DiscordBot (https://github.com/jiachenyee/Discord.swift, 0)")
                                     ])
         
         let value = try await request.serializingData().value
