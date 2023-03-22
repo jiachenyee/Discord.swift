@@ -7,7 +7,7 @@
 
 import Foundation
 
-public extension ApplicationCommand {
+public extension Command {
     struct OptionChoice: Codable {
         public var name: String
         public var nameLocalizations: [DiscordLocale: String]?

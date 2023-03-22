@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct ApplicationCommand: Codable {
+public struct Command: Codable {
     public var id: Snowflake?
     public var type: CommandType
     

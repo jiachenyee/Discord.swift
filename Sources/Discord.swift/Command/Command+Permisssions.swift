@@ -7,7 +7,7 @@
 
 import Foundation
 
-public extension ApplicationCommand {
+public extension Command {
     struct Permissions: Codable {
         /// ID of the command or the application ID
         public var id: PermissionID

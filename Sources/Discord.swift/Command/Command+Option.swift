@@ -7,7 +7,7 @@
 
 import Foundation
 
-public extension ApplicationCommand {
+public extension Command {
     struct Option: Codable {
         
         public var type: OptionType

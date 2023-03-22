@@ -7,7 +7,7 @@
 
 import Foundation
 
-public extension ApplicationCommand {
+public extension Command {
     struct Value: Codable {
         public var stringValue: String?
         public var doubleValue: Double?
