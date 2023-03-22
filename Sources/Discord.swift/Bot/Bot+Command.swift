@@ -41,13 +41,6 @@ public extension Bot {
                               method: .get)
     }
     
-    func editCommandPermissions(forCommand commandId: Snowflake,
-                                in guildId: Snowflake, permissions: [Command.Permission]) async throws -> Data {
-        try await sendRequest(endpoint: "/applications/\(applicationId)/guilds/\(guildId)/commands/\(commandId)/permissions",
-                              method: .put,
-                              data: Command.NewPermissions(permissions: permissions))
-    }
-    
     enum CommandType {
         case application
         case guild(Snowflake)

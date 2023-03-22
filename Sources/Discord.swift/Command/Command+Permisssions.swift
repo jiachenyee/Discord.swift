@@ -36,10 +36,6 @@ public extension Command {
         }
     }
     
-    internal struct NewPermissions: Codable {
-        var permissions: [Permission]
-    }
-    
     struct PermissionID: Codable, ExpressibleByStringLiteral {
         public var rawValue: Snowflake
         
@@ -76,13 +72,13 @@ public extension Command {
     
     struct Permission: Codable {
         /// ID of the role, user, or channel. It can also be a permission constant
-        public var id: String
+        public var id: PermissionID
         /// application command permission type
         public var type: PermissionType
         /// true to allow, false, to disallow
         public var permission: Bool
         
-        public init(id: String, type: PermissionType, permission: Bool) {
+        public init(id: PermissionID, type: PermissionType, permission: Bool) {
             self.id = id
             self.type = type
             self.permission = permission

@@ -79,5 +79,167 @@ public extension Command {
             case maxLength = "max_length"
             case autocomplete = "autocomplete"
         }
+        
+        static func subCommand(name: String,
+                               nameLocalizations: [DiscordLocale : String]? = nil,
+                               description: String,
+                               descriptionLocalizations: [DiscordLocale : String]? = nil,
+                               required: Bool,
+                               options: [Option]? = nil) -> Self {
+            Self(type: .subCommand,
+                 name: name,
+                 nameLocalizations: nameLocalizations,
+                 description: description,
+                 descriptionLocalizations: descriptionLocalizations,
+                 required: required,
+                 options: options)
+        }
+        static func subCommandGroup(name: String,
+                                    nameLocalizations: [DiscordLocale : String]? = nil,
+                                    description: String,
+                                    descriptionLocalizations: [DiscordLocale : String]? = nil,
+                                    required: Bool,
+                                    options: [Option]? = nil) -> Self {
+            Self(type: .subCommand,
+                 name: name,
+                 nameLocalizations: nameLocalizations,
+                 description: description,
+                 descriptionLocalizations: descriptionLocalizations,
+                 required: required,
+                 options: options)
+        }
+        static func string(name: String,
+                           nameLocalizations: [DiscordLocale : String]? = nil,
+                           description: String,
+                           descriptionLocalizations: [DiscordLocale : String]? = nil,
+                           required: Bool,
+                           choices: [OptionChoice]? = nil,
+                           minLength: Int? = nil,
+                           maxLength: Int? = nil,
+                           autocomplete: Bool? = nil) -> Self {
+            Self(type: .string,
+                 name: name,
+                 nameLocalizations: nameLocalizations,
+                 description: description,
+                 descriptionLocalizations: descriptionLocalizations,
+                 required: required,
+                 choices: choices,
+                 minLength: minLength,
+                 maxLength: maxLength,
+                 autocomplete: autocomplete)
+        }
+        static func integer(name: String,
+                            nameLocalizations: [DiscordLocale : String]? = nil,
+                            description: String,
+                            descriptionLocalizations: [DiscordLocale : String]? = nil,
+                            required: Bool,
+                            choices: [OptionChoice]? = nil,
+                            minValue: Double? = nil,
+                            maxValue: Double? = nil,
+                            autocomplete: Bool? = nil) -> Self {
+            Self(type: .integer,
+                 name: name,
+                 nameLocalizations: nameLocalizations,
+                 description: description,
+                 descriptionLocalizations: descriptionLocalizations,
+                 required: required,
+                 choices: choices,
+                 minValue: minValue,
+                 maxValue: maxValue,
+                 autocomplete: autocomplete)
+        }
+        static func boolean(name: String,
+                            nameLocalizations: [DiscordLocale : String]? = nil,
+                            description: String,
+                            descriptionLocalizations: [DiscordLocale : String]? = nil,
+                            required: Bool) -> Self {
+            Self(type: .boolean,
+                 name: name,
+                 nameLocalizations: nameLocalizations,
+                 description: description,
+                 descriptionLocalizations: descriptionLocalizations,
+                 required: required)
+        }
+        static func user(name: String,
+                         nameLocalizations: [DiscordLocale : String]? = nil,
+                         description: String,
+                         descriptionLocalizations: [DiscordLocale : String]? = nil,
+                         required: Bool) -> Self {
+            Self(type: .user,
+                 name: name,
+                 nameLocalizations: nameLocalizations,
+                 description: description,
+                 descriptionLocalizations: descriptionLocalizations,
+                 required: required)
+        }
+        static func channel(name: String,
+                            nameLocalizations: [DiscordLocale : String]? = nil,
+                            description: String,
+                            descriptionLocalizations: [DiscordLocale : String]? = nil,
+                            required: Bool) -> Self {
+            Self(type: .channel,
+                 name: name,
+                 nameLocalizations: nameLocalizations,
+                 description: description,
+                 descriptionLocalizations: descriptionLocalizations,
+                 required: required)
+        }
+        static func role(name: String,
+                         nameLocalizations: [DiscordLocale : String]? = nil,
+                         description: String,
+                         descriptionLocalizations: [DiscordLocale : String]? = nil,
+                         required: Bool) -> Self {
+            Self(type: .role,
+                 name: name,
+                 nameLocalizations: nameLocalizations,
+                 description: description,
+                 descriptionLocalizations: descriptionLocalizations,
+                 required: required)
+        }
+        static func mentionable(name: String,
+                                nameLocalizations: [DiscordLocale : String]? = nil,
+                                description: String,
+                                descriptionLocalizations: [DiscordLocale : String]? = nil,
+                                required: Bool) -> Self {
+            Self(type: .mentionable,
+                 name: name,
+                 nameLocalizations: nameLocalizations,
+                 description: description,
+                 descriptionLocalizations: descriptionLocalizations,
+                 required: required)
+        }
+        static func number(name: String,
+                           nameLocalizations: [DiscordLocale : String]? = nil,
+                           description: String,
+                           descriptionLocalizations: [DiscordLocale : String]? = nil,
+                           required: Bool,
+                           choices: [OptionChoice]? = nil,
+                           minValue: Double? = nil,
+                           maxValue: Double? = nil,
+                           autocomplete: Bool? = nil) -> Self {
+            Self(type: .number,
+                 name: name,
+                 nameLocalizations: nameLocalizations,
+                 description: description,
+                 descriptionLocalizations: descriptionLocalizations,
+                 required: required,
+                 choices: choices,
+                 minValue: minValue,
+                 maxValue: maxValue,
+                 autocomplete: autocomplete)
+        }
+        static func attachment(name: String,
+                               nameLocalizations: [DiscordLocale : String]? = nil,
+                               description: String,
+                               descriptionLocalizations: [DiscordLocale : String]? = nil,
+                               required: Bool) -> Self {
+            Self(type: .attachment,
+                 name: name,
+                 nameLocalizations: nameLocalizations,
+                 description: description,
+                 descriptionLocalizations: descriptionLocalizations,
+                 required: required)
+        }
+        
     }
 }
