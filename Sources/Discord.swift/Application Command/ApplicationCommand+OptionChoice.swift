@@ -9,10 +9,10 @@ import Foundation
 
 public extension ApplicationCommand {
     struct OptionChoice: Codable {
-        var name: String
-        var nameLocalizations: [DiscordLocale: String]?
+        public var name: String
+        public var nameLocalizations: [DiscordLocale: String]?
         
-        var value: Value
+        public var value: Value
         
         enum CodingKeys: String, CodingKey {
             case name

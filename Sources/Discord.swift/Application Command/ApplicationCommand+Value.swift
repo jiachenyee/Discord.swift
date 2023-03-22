@@ -9,9 +9,9 @@ import Foundation
 
 public extension ApplicationCommand {
     struct Value: Codable {
-        var stringValue: String?
-        var doubleValue: Double?
-        var intValue: Int?
+        public var stringValue: String?
+        public var doubleValue: Double?
+        public var intValue: Int?
         
         public static func string(_ value: String) -> Self {
             Self(value)

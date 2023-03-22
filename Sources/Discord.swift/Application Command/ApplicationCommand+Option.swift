@@ -10,23 +10,23 @@ import Foundation
 public extension ApplicationCommand {
     struct Option: Codable {
         
-        var type: OptionType
+        public var type: OptionType
         
-        var name: String
-        var nameLocalizations: [DiscordLocale: String]?
+        public var name: String
+        public var nameLocalizations: [DiscordLocale: String]?
         
-        var description: String
-        var descriptionLocalizations: [DiscordLocale: String]?
+        public var description: String
+        public var descriptionLocalizations: [DiscordLocale: String]?
         
-        var required: Bool = false
-        var choices: [OptionChoice]?
-        var options: [Option]?
-        var channelTypes: [ChannelType]?
-        var minValue: Double?
-        var maxValue: Double?
-        var minLength: Int?
-        var maxLength: Int?
-        var autocomplete: Bool?
+        public var required: Bool = false
+        public var choices: [OptionChoice]?
+        public var options: [Option]?
+        public var channelTypes: [ChannelType]?
+        public var minValue: Double?
+        public var maxValue: Double?
+        public var minLength: Int?
+        public var maxLength: Int?
+        public var autocomplete: Bool?
         
         public init(type: OptionType, name: String,
                     nameLocalizations: [DiscordLocale : String]? = nil,

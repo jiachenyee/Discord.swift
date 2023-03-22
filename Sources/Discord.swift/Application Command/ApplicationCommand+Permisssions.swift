@@ -10,13 +10,13 @@ import Foundation
 public extension ApplicationCommand {
     struct Permissions: Codable {
         /// ID of the command or the application ID
-        var id: PermissionID
+        public var id: PermissionID
         /// ID of the application the command belongs to
-        var applicationId: String
+        public var applicationId: String
         /// ID of the guild
-        var guildId: String
+        public var guildId: String
         /// Permissions for the command in the guild, max of 100
-        var permissions: String
+        public var permissions: String
         
         enum CodingKeys: String, CodingKey {
             case id = "id"
@@ -37,7 +37,7 @@ public extension ApplicationCommand {
     }
     
     struct PermissionID: Codable, ExpressibleByStringLiteral {
-        var rawValue: Snowflake
+        public var rawValue: Snowflake
         
         public init(stringLiteral value: String) {
             rawValue = .init(stringLiteral: value)
@@ -72,11 +72,11 @@ public extension ApplicationCommand {
     
     struct Permission {
         /// ID of the role, user, or channel. It can also be a permission constant
-        var id: String
+        public var id: String
         /// application command permission type
-        var type: PermissionType
+        public var type: PermissionType
         /// true to allow, false, to disallow
-        var permission: Bool
+        public var permission: Bool
         
         public init(id: String, type: PermissionType, permission: Bool) {
             self.id = id

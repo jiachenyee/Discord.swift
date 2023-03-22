@@ -8,25 +8,25 @@
 import Foundation
 
 public struct ApplicationCommand: Codable {
-    var id: Snowflake?
-    var type: CommandType
+    public var id: Snowflake?
+    public var type: CommandType
     
-    var applicationId: Snowflake??
+    public var applicationId: Snowflake??
     
-    var guildId: Snowflake?
+    public var guildId: Snowflake?
     
-    var name: String
-    var nameLocalizations: [DiscordLocale: String]?
+    public var name: String
+    public var nameLocalizations: [DiscordLocale: String]?
     
-    var description: String
-    var descriptionLocalizations: [DiscordLocale: String]?
+    public var description: String
+    public var descriptionLocalizations: [DiscordLocale: String]?
     
-    var options: [Option]?
+    public var options: [Option]?
     
-    var defaultMemberPermissions: String?
-    var dmPermission: Bool?
-    var nsfw = false
-    var version: String?
+    public var defaultMemberPermissions: String?
+    public var dmPermission: Bool?
+    public var nsfw = false
+    public var version: String?
     
     public init(type: CommandType = .chatInput,
                 name: String,
