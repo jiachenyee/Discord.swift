@@ -34,7 +34,7 @@ public extension Command {
                     required: Bool, choices: [OptionChoice]? = nil, options: [Option]? = nil,
                     channelTypes: [ChannelType]? = nil, minValue: Double? = nil, maxValue: Double? = nil, minLength: Int? = nil, maxLength: Int? = nil, autocomplete: Bool? = nil) {
             self.type = type
-            self.name = name
+            self.name = name.lowercased()
             self.nameLocalizations = nameLocalizations
             self.description = description
             self.descriptionLocalizations = descriptionLocalizations
@@ -84,7 +84,7 @@ public extension Command {
                                       nameLocalizations: [DiscordLocale : String]? = nil,
                                       description: String,
                                       descriptionLocalizations: [DiscordLocale : String]? = nil,
-                                      required: Bool,
+                                      required: Bool = false,
                                       options: [Option]? = nil) -> Self {
             Self(type: .subCommand,
                  name: name,
@@ -99,7 +99,7 @@ public extension Command {
                                            nameLocalizations: [DiscordLocale : String]? = nil,
                                            description: String,
                                            descriptionLocalizations: [DiscordLocale : String]? = nil,
-                                           required: Bool,
+                                           required: Bool = false,
                                            options: [Option]? = nil) -> Self {
             Self(type: .subCommand,
                  name: name,
@@ -114,7 +114,7 @@ public extension Command {
                                   nameLocalizations: [DiscordLocale : String]? = nil,
                                   description: String,
                                   descriptionLocalizations: [DiscordLocale : String]? = nil,
-                                  required: Bool,
+                                  required: Bool = false,
                                   choices: [OptionChoice]? = nil,
                                   minLength: Int? = nil,
                                   maxLength: Int? = nil,
@@ -135,7 +135,7 @@ public extension Command {
                                    nameLocalizations: [DiscordLocale : String]? = nil,
                                    description: String,
                                    descriptionLocalizations: [DiscordLocale : String]? = nil,
-                                   required: Bool,
+                                   required: Bool = false,
                                    choices: [OptionChoice]? = nil,
                                    minValue: Double? = nil,
                                    maxValue: Double? = nil,
@@ -156,7 +156,7 @@ public extension Command {
                                    nameLocalizations: [DiscordLocale : String]? = nil,
                                    description: String,
                                    descriptionLocalizations: [DiscordLocale : String]? = nil,
-                                   required: Bool) -> Self {
+                                   required: Bool = false) -> Self {
             Self(type: .boolean,
                  name: name,
                  nameLocalizations: nameLocalizations,
@@ -169,7 +169,7 @@ public extension Command {
                                 nameLocalizations: [DiscordLocale : String]? = nil,
                                 description: String,
                                 descriptionLocalizations: [DiscordLocale : String]? = nil,
-                                required: Bool) -> Self {
+                                required: Bool = false) -> Self {
             Self(type: .user,
                  name: name,
                  nameLocalizations: nameLocalizations,
@@ -182,20 +182,22 @@ public extension Command {
                                    nameLocalizations: [DiscordLocale : String]? = nil,
                                    description: String,
                                    descriptionLocalizations: [DiscordLocale : String]? = nil,
-                                   required: Bool) -> Self {
+                                   types channelTypes: [ChannelType],
+                                   required: Bool = false) -> Self {
             Self(type: .channel,
                  name: name,
                  nameLocalizations: nameLocalizations,
                  description: description,
                  descriptionLocalizations: descriptionLocalizations,
-                 required: required)
+                 required: required,
+                 channelTypes: channelTypes)
         }
         
         public static func role(name: String,
                                 nameLocalizations: [DiscordLocale : String]? = nil,
                                 description: String,
                                 descriptionLocalizations: [DiscordLocale : String]? = nil,
-                                required: Bool) -> Self {
+                                required: Bool = false) -> Self {
             Self(type: .role,
                  name: name,
                  nameLocalizations: nameLocalizations,
@@ -208,7 +210,7 @@ public extension Command {
                                        nameLocalizations: [DiscordLocale : String]? = nil,
                                        description: String,
                                        descriptionLocalizations: [DiscordLocale : String]? = nil,
-                                       required: Bool) -> Self {
+                                       required: Bool = false) -> Self {
             Self(type: .mentionable,
                  name: name,
                  nameLocalizations: nameLocalizations,
@@ -221,7 +223,7 @@ public extension Command {
                                   nameLocalizations: [DiscordLocale : String]? = nil,
                                   description: String,
                                   descriptionLocalizations: [DiscordLocale : String]? = nil,
-                                  required: Bool,
+                                  required: Bool = false,
                                   choices: [OptionChoice]? = nil,
                                   minValue: Double? = nil,
                                   maxValue: Double? = nil,
@@ -242,7 +244,7 @@ public extension Command {
                                       nameLocalizations: [DiscordLocale : String]? = nil,
                                       description: String,
                                       descriptionLocalizations: [DiscordLocale : String]? = nil,
-                                      required: Bool) -> Self {
+                                      required: Bool = false) -> Self {
             Self(type: .attachment,
                  name: name,
                  nameLocalizations: nameLocalizations,

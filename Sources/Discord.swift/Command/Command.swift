@@ -40,7 +40,7 @@ public struct Command: Codable {
                 nsfw: Bool = false) {
         self.type = type
         self.guildId = guildId
-        self.name = name
+        self.name = name.lowercased()
         self.nameLocalizations = nameLocalizations
         self.description = description
         self.descriptionLocalizations = descriptionLocalizations
