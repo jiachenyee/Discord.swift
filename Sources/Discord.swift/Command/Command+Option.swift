@@ -80,7 +80,7 @@ public extension Command {
             case autocomplete = "autocomplete"
         }
         
-        static func subCommand(name: String,
+        public static func subCommand(name: String,
                                nameLocalizations: [DiscordLocale : String]? = nil,
                                description: String,
                                descriptionLocalizations: [DiscordLocale : String]? = nil,
@@ -94,7 +94,8 @@ public extension Command {
                  required: required,
                  options: options)
         }
-        static func subCommandGroup(name: String,
+        
+        public static func subCommandGroup(name: String,
                                     nameLocalizations: [DiscordLocale : String]? = nil,
                                     description: String,
                                     descriptionLocalizations: [DiscordLocale : String]? = nil,
@@ -108,7 +109,8 @@ public extension Command {
                  required: required,
                  options: options)
         }
-        static func string(name: String,
+        
+        public static func string(name: String,
                            nameLocalizations: [DiscordLocale : String]? = nil,
                            description: String,
                            descriptionLocalizations: [DiscordLocale : String]? = nil,
@@ -128,7 +130,8 @@ public extension Command {
                  maxLength: maxLength,
                  autocomplete: autocomplete)
         }
-        static func integer(name: String,
+        
+        public static func integer(name: String,
                             nameLocalizations: [DiscordLocale : String]? = nil,
                             description: String,
                             descriptionLocalizations: [DiscordLocale : String]? = nil,
@@ -148,7 +151,8 @@ public extension Command {
                  maxValue: maxValue,
                  autocomplete: autocomplete)
         }
-        static func boolean(name: String,
+        
+        public static func boolean(name: String,
                             nameLocalizations: [DiscordLocale : String]? = nil,
                             description: String,
                             descriptionLocalizations: [DiscordLocale : String]? = nil,
@@ -160,7 +164,8 @@ public extension Command {
                  descriptionLocalizations: descriptionLocalizations,
                  required: required)
         }
-        static func user(name: String,
+        
+        public static func user(name: String,
                          nameLocalizations: [DiscordLocale : String]? = nil,
                          description: String,
                          descriptionLocalizations: [DiscordLocale : String]? = nil,
@@ -172,7 +177,8 @@ public extension Command {
                  descriptionLocalizations: descriptionLocalizations,
                  required: required)
         }
-        static func channel(name: String,
+        
+        public static func channel(name: String,
                             nameLocalizations: [DiscordLocale : String]? = nil,
                             description: String,
                             descriptionLocalizations: [DiscordLocale : String]? = nil,
@@ -184,7 +190,8 @@ public extension Command {
                  descriptionLocalizations: descriptionLocalizations,
                  required: required)
         }
-        static func role(name: String,
+        
+        public static func role(name: String,
                          nameLocalizations: [DiscordLocale : String]? = nil,
                          description: String,
                          descriptionLocalizations: [DiscordLocale : String]? = nil,
@@ -196,7 +203,8 @@ public extension Command {
                  descriptionLocalizations: descriptionLocalizations,
                  required: required)
         }
-        static func mentionable(name: String,
+        
+        public static func mentionable(name: String,
                                 nameLocalizations: [DiscordLocale : String]? = nil,
                                 description: String,
                                 descriptionLocalizations: [DiscordLocale : String]? = nil,
@@ -208,7 +216,8 @@ public extension Command {
                  descriptionLocalizations: descriptionLocalizations,
                  required: required)
         }
-        static func number(name: String,
+        
+        public static func number(name: String,
                            nameLocalizations: [DiscordLocale : String]? = nil,
                            description: String,
                            descriptionLocalizations: [DiscordLocale : String]? = nil,
@@ -228,7 +237,8 @@ public extension Command {
                  maxValue: maxValue,
                  autocomplete: autocomplete)
         }
-        static func attachment(name: String,
+        
+        public static func attachment(name: String,
                                nameLocalizations: [DiscordLocale : String]? = nil,
                                description: String,
                                descriptionLocalizations: [DiscordLocale : String]? = nil,
@@ -240,6 +250,5 @@ public extension Command {
                  descriptionLocalizations: descriptionLocalizations,
                  required: required)
         }
-        
     }
 }
