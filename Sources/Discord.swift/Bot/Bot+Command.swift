@@ -34,10 +34,18 @@ public extension Bot {
         }
     }
     
-    func getCommandPermissions(guildId: Snowflake, commandId: Snowflake) async throws -> Command.Permissions {
+    func getCommandPermissions(forCommand commandId: Snowflake,
+                               in guildId: Snowflake) async throws -> Command.Permissions {
         try await sendRequest(Command.Permissions.self,
                               endpoint: "/applications/\(applicationId)/guilds/\(guildId)/commands/\(commandId)/permissions",
                               method: .get)
+    }
+    
+    func editCommandPermissions(forCommand commandId: Snowflake,
+                                in guildId: Snowflake, permissions: [Command.Permission]) async throws -> Data {
+        try await sendRequest(endpoint: "/applications/\(applicationId)/guilds/\(guildId)/commands/\(commandId)/permissions",
+                              method: .put,
+                              data: Command.NewPermissions(permissions: permissions))
     }
     
     enum CommandType {

@@ -36,6 +36,10 @@ public extension Command {
         }
     }
     
+    internal struct NewPermissions: Codable {
+        var permissions: [Permission]
+    }
+    
     struct PermissionID: Codable, ExpressibleByStringLiteral {
         public var rawValue: Snowflake
         
