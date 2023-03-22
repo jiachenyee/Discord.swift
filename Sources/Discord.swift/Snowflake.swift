@@ -8,6 +8,7 @@
 import Foundation
 
 public struct Snowflake: ExpressibleByStringLiteral, ExpressibleByIntegerLiteral, CustomStringConvertible, Codable {
+    
     public var description: String {
         stringValue
     }
