@@ -32,6 +32,26 @@ public class Bot {
         }
     }
     
+    @discardableResult
+    public func deleteApplicationCommand(_ commandId: Snowflake) async throws -> Data {
+        try await sendRequest(endpoint: "applications/\(applicationId)/commands/\(commandId.stringValue)",
+                              method: .delete)
+    }
+    
+    public func sendRequest(endpoint: String,
+                            method: HTTPMethod) async throws -> Data {
+        let request = AF.request("https://discord.com/api/v10/\(endpoint)",
+                                 method: method,
+                                 headers: [
+                                    .authorization("Bot \(token)"),
+                                    .userAgent("DiscordBot (https://github.com/jiachenyee/Discord.swift, 0)")
+                                 ])
+        
+        let value = try await request.serializingData().value
+        
+        return value
+    }
+    
     public func sendRequest<T: Encodable>(endpoint: String,
                                           method: HTTPMethod,
                                           data: T) async throws -> Data {
