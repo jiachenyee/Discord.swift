@@ -18,7 +18,7 @@ public extension Command {
         public var description: String
         public var descriptionLocalizations: [DiscordLocale: String]?
         
-        public var required: Bool = false
+        public var required: Bool? = false
         public var choices: [OptionChoice]?
         public var options: [Option]?
         public var channelTypes: [ChannelType]?
