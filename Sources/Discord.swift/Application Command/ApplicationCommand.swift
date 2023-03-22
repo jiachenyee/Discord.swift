@@ -8,7 +8,7 @@
 import Foundation
 
 public struct ApplicationCommand: Codable {
-    var id: String
+    var id: String?
     var type: CommandType
     
     var applicationId: String?
@@ -21,20 +21,24 @@ public struct ApplicationCommand: Codable {
     var description: String
     var descriptionLocalizations: [DiscordLocale: String]?
     
-    var options: [Option]
+    var options: [Option]?
     
     var defaultMemberPermissions: String?
     var dmPermission: Bool?
     var nsfw = false
-    var version: String
+    var version: String?
     
-    public init(id: String, type: CommandType,
-                applicationId: String? = nil, guildId: String? = nil,
-                name: String, nameLocalizations: [DiscordLocale : String]? = nil,
-                description: String, descriptionLocalizations: [DiscordLocale : String]? = nil,
-                options: [Option], defaultMemberPermissions: String? = nil, dmPermission: Bool? = nil,
-                nsfw: Bool = false, version: String) {
-        self.id = id
+    public init(type: CommandType,
+                applicationId: String? = nil,
+                guildId: String? = nil,
+                name: String,
+                nameLocalizations: [DiscordLocale: String]? = nil,
+                description: String,
+                descriptionLocalizations: [DiscordLocale: String]? = nil,
+                options: [Option]? = nil,
+                defaultMemberPermissions: String? = nil,
+                dmPermission: Bool? = nil,
+                nsfw: Bool = false) {
         self.type = type
         self.applicationId = applicationId
         self.guildId = guildId
@@ -46,7 +50,6 @@ public struct ApplicationCommand: Codable {
         self.defaultMemberPermissions = defaultMemberPermissions
         self.dmPermission = dmPermission
         self.nsfw = nsfw
-        self.version = version
     }
     
     public enum CommandType: Int, Codable {
