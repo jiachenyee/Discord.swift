@@ -49,18 +49,18 @@ public extension Command {
             self.autocomplete = autocomplete
         }
         
-        public enum OptionType: String, Codable {
-            case subCommand = "SUB_COMMAND"
-            case subCommandGroup = "SUB_COMMAND_GROUP"
-            case string = "STRING"
-            case integer = "INTEGER"
-            case boolean = "BOOLEAN"
-            case user = "USER"
-            case channel = "CHANNEL"
-            case role = "ROLE"
-            case mentionable = "MENTIONABLE"
-            case number = "NUMBER"
-            case attachment = "ATTACHMENT"
+        public enum OptionType: Int, Codable {
+            case subCommand = 1
+            case subCommandGroup = 2
+            case string = 3
+            case integer = 4
+            case boolean = 5
+            case user = 6
+            case channel = 7
+            case role = 8
+            case mentionable = 9
+            case number = 10
+            case attachment = 11
         }
         
         enum CodingKeys: String, CodingKey {
@@ -81,11 +81,11 @@ public extension Command {
         }
         
         public static func subCommand(name: String,
-                               nameLocalizations: [DiscordLocale : String]? = nil,
-                               description: String,
-                               descriptionLocalizations: [DiscordLocale : String]? = nil,
-                               required: Bool,
-                               options: [Option]? = nil) -> Self {
+                                      nameLocalizations: [DiscordLocale : String]? = nil,
+                                      description: String,
+                                      descriptionLocalizations: [DiscordLocale : String]? = nil,
+                                      required: Bool,
+                                      options: [Option]? = nil) -> Self {
             Self(type: .subCommand,
                  name: name,
                  nameLocalizations: nameLocalizations,
@@ -96,11 +96,11 @@ public extension Command {
         }
         
         public static func subCommandGroup(name: String,
-                                    nameLocalizations: [DiscordLocale : String]? = nil,
-                                    description: String,
-                                    descriptionLocalizations: [DiscordLocale : String]? = nil,
-                                    required: Bool,
-                                    options: [Option]? = nil) -> Self {
+                                           nameLocalizations: [DiscordLocale : String]? = nil,
+                                           description: String,
+                                           descriptionLocalizations: [DiscordLocale : String]? = nil,
+                                           required: Bool,
+                                           options: [Option]? = nil) -> Self {
             Self(type: .subCommand,
                  name: name,
                  nameLocalizations: nameLocalizations,
@@ -111,14 +111,14 @@ public extension Command {
         }
         
         public static func string(name: String,
-                           nameLocalizations: [DiscordLocale : String]? = nil,
-                           description: String,
-                           descriptionLocalizations: [DiscordLocale : String]? = nil,
-                           required: Bool,
-                           choices: [OptionChoice]? = nil,
-                           minLength: Int? = nil,
-                           maxLength: Int? = nil,
-                           autocomplete: Bool? = nil) -> Self {
+                                  nameLocalizations: [DiscordLocale : String]? = nil,
+                                  description: String,
+                                  descriptionLocalizations: [DiscordLocale : String]? = nil,
+                                  required: Bool,
+                                  choices: [OptionChoice]? = nil,
+                                  minLength: Int? = nil,
+                                  maxLength: Int? = nil,
+                                  autocomplete: Bool? = nil) -> Self {
             Self(type: .string,
                  name: name,
                  nameLocalizations: nameLocalizations,
@@ -132,14 +132,14 @@ public extension Command {
         }
         
         public static func integer(name: String,
-                            nameLocalizations: [DiscordLocale : String]? = nil,
-                            description: String,
-                            descriptionLocalizations: [DiscordLocale : String]? = nil,
-                            required: Bool,
-                            choices: [OptionChoice]? = nil,
-                            minValue: Double? = nil,
-                            maxValue: Double? = nil,
-                            autocomplete: Bool? = nil) -> Self {
+                                   nameLocalizations: [DiscordLocale : String]? = nil,
+                                   description: String,
+                                   descriptionLocalizations: [DiscordLocale : String]? = nil,
+                                   required: Bool,
+                                   choices: [OptionChoice]? = nil,
+                                   minValue: Double? = nil,
+                                   maxValue: Double? = nil,
+                                   autocomplete: Bool? = nil) -> Self {
             Self(type: .integer,
                  name: name,
                  nameLocalizations: nameLocalizations,
@@ -153,10 +153,10 @@ public extension Command {
         }
         
         public static func boolean(name: String,
-                            nameLocalizations: [DiscordLocale : String]? = nil,
-                            description: String,
-                            descriptionLocalizations: [DiscordLocale : String]? = nil,
-                            required: Bool) -> Self {
+                                   nameLocalizations: [DiscordLocale : String]? = nil,
+                                   description: String,
+                                   descriptionLocalizations: [DiscordLocale : String]? = nil,
+                                   required: Bool) -> Self {
             Self(type: .boolean,
                  name: name,
                  nameLocalizations: nameLocalizations,
@@ -166,10 +166,10 @@ public extension Command {
         }
         
         public static func user(name: String,
-                         nameLocalizations: [DiscordLocale : String]? = nil,
-                         description: String,
-                         descriptionLocalizations: [DiscordLocale : String]? = nil,
-                         required: Bool) -> Self {
+                                nameLocalizations: [DiscordLocale : String]? = nil,
+                                description: String,
+                                descriptionLocalizations: [DiscordLocale : String]? = nil,
+                                required: Bool) -> Self {
             Self(type: .user,
                  name: name,
                  nameLocalizations: nameLocalizations,
@@ -179,10 +179,10 @@ public extension Command {
         }
         
         public static func channel(name: String,
-                            nameLocalizations: [DiscordLocale : String]? = nil,
-                            description: String,
-                            descriptionLocalizations: [DiscordLocale : String]? = nil,
-                            required: Bool) -> Self {
+                                   nameLocalizations: [DiscordLocale : String]? = nil,
+                                   description: String,
+                                   descriptionLocalizations: [DiscordLocale : String]? = nil,
+                                   required: Bool) -> Self {
             Self(type: .channel,
                  name: name,
                  nameLocalizations: nameLocalizations,
@@ -192,10 +192,10 @@ public extension Command {
         }
         
         public static func role(name: String,
-                         nameLocalizations: [DiscordLocale : String]? = nil,
-                         description: String,
-                         descriptionLocalizations: [DiscordLocale : String]? = nil,
-                         required: Bool) -> Self {
+                                nameLocalizations: [DiscordLocale : String]? = nil,
+                                description: String,
+                                descriptionLocalizations: [DiscordLocale : String]? = nil,
+                                required: Bool) -> Self {
             Self(type: .role,
                  name: name,
                  nameLocalizations: nameLocalizations,
@@ -205,10 +205,10 @@ public extension Command {
         }
         
         public static func mentionable(name: String,
-                                nameLocalizations: [DiscordLocale : String]? = nil,
-                                description: String,
-                                descriptionLocalizations: [DiscordLocale : String]? = nil,
-                                required: Bool) -> Self {
+                                       nameLocalizations: [DiscordLocale : String]? = nil,
+                                       description: String,
+                                       descriptionLocalizations: [DiscordLocale : String]? = nil,
+                                       required: Bool) -> Self {
             Self(type: .mentionable,
                  name: name,
                  nameLocalizations: nameLocalizations,
@@ -218,14 +218,14 @@ public extension Command {
         }
         
         public static func number(name: String,
-                           nameLocalizations: [DiscordLocale : String]? = nil,
-                           description: String,
-                           descriptionLocalizations: [DiscordLocale : String]? = nil,
-                           required: Bool,
-                           choices: [OptionChoice]? = nil,
-                           minValue: Double? = nil,
-                           maxValue: Double? = nil,
-                           autocomplete: Bool? = nil) -> Self {
+                                  nameLocalizations: [DiscordLocale : String]? = nil,
+                                  description: String,
+                                  descriptionLocalizations: [DiscordLocale : String]? = nil,
+                                  required: Bool,
+                                  choices: [OptionChoice]? = nil,
+                                  minValue: Double? = nil,
+                                  maxValue: Double? = nil,
+                                  autocomplete: Bool? = nil) -> Self {
             Self(type: .number,
                  name: name,
                  nameLocalizations: nameLocalizations,
@@ -239,10 +239,10 @@ public extension Command {
         }
         
         public static func attachment(name: String,
-                               nameLocalizations: [DiscordLocale : String]? = nil,
-                               description: String,
-                               descriptionLocalizations: [DiscordLocale : String]? = nil,
-                               required: Bool) -> Self {
+                                      nameLocalizations: [DiscordLocale : String]? = nil,
+                                      description: String,
+                                      descriptionLocalizations: [DiscordLocale : String]? = nil,
+                                      required: Bool) -> Self {
             Self(type: .attachment,
                  name: name,
                  nameLocalizations: nameLocalizations,
