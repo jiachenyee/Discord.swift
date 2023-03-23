@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct Invite {
+public struct Invite: Codable {
     /// the invite code (unique ID)
     public var code: String
     
