@@ -48,7 +48,7 @@ public struct Message: Codable {
     public var embeds: [Embed]
     
     /// reactions to the message
-    public var reactions: [Reaction]
+    public var reactions: [Reaction]?
     
     /// used for validating a message was sent
     public var nonce: Nonce?
