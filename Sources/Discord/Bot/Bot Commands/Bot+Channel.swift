@@ -119,4 +119,17 @@ public extension Bot {
                               method: .post,
                               data: bulkDeleteMessages)
     }
+    
+    func editChannelPermissions(channel channelId: Snowflake,
+                                overwrite overwriteId: Snowflake,
+                                permission: ChannelPermission) async throws -> Data {
+        try await sendRequest(endpoint: "/channels/\(channelId)/permissions/\(overwriteId)",
+                              method: .put,
+                              data: permission)
+    }
+    
+    func getChannelPermissions(channel channelId: Snowflake,
+                               overwrite overwriteId: Snowflake) async throws -> Data {
+        try await sendRequest(endpoint: "/channels/\(channelId)/permissions")
+    }
 }
