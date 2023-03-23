@@ -122,14 +122,15 @@ public extension Bot {
     
     func editChannelPermissions(channel channelId: Snowflake,
                                 overwrite overwriteId: Snowflake,
-                                permission: ChannelPermission) async throws -> Data {
+                                permission: ChannelPermission) async throws {
         try await sendRequest(endpoint: "/channels/\(channelId)/permissions/\(overwriteId)",
                               method: .put,
                               data: permission)
     }
     
-    func getChannelPermissions(channel channelId: Snowflake,
-                               overwrite overwriteId: Snowflake) async throws -> Data {
-        try await sendRequest(endpoint: "/channels/\(channelId)/permissions")
+    func getChannelInvites(channel channelId: Snowflake,
+                           overwrite overwriteId: Snowflake,
+                           permission: ChannelPermission) async throws -> Data {
+        try await sendRequest(endpoint: "/channels/\(channelId)/invites")
     }
 }
