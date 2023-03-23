@@ -62,14 +62,14 @@ public extension Bot {
     }
     
     func deleteReaction(inChannel channelId: Snowflake,
-                        on messageId: Snowflake,
+                        onMessage messageId: Snowflake,
                         reaction: ReactionEmoji) async throws {
         try await sendRequest(endpoint: "/channels/\(channelId)/messages/\(messageId)/reactions/\(reaction.toURLComponent())/@me",
                               method: .delete)
     }
     
     func deleteUserReaction(inChannel channelId: Snowflake,
-                            on messageId: Snowflake,
+                            onMessage messageId: Snowflake,
                             user: Snowflake,
                             reaction: ReactionEmoji) async throws {
         try await sendRequest(endpoint: "/channels/\(channelId)/messages/\(messageId)/reactions/\(reaction.toURLComponent())/\(user)",
@@ -77,11 +77,24 @@ public extension Bot {
     }
     
     func getReactions(inChannel channelId: Snowflake,
-                      on messageId: Snowflake,
+                      onMessage messageId: Snowflake,
                       reaction: ReactionEmoji,
                       filteredBy query: ReactionFilter = .using()) async throws -> [User] {
         try await sendRequest([User].self,
                               endpoint: "/channels/\(channelId)/messages/\(messageId)/reactions/\(reaction.toURLComponent())",
                               parameters: query.toParameters())
+    }
+    
+    func deleteAllReactions(inChannel channelId: Snowflake,
+                            onMessage messageId: Snowflake) async throws {
+        try await sendRequest(endpoint: "/channels/\(channelId)/messages/\(messageId)/reactions",
+                              method: .delete)
+    }
+    
+    func deleteAllReactions(forEmoji reaction: ReactionEmoji,
+                            inChannel channelId: Snowflake,
+                            onMessage messageId: Snowflake) async throws {
+        try await sendRequest(endpoint: "/channels/\(channelId)/messages/\(messageId)/reactions/\(reaction.toURLComponent())",
+                              method: .delete)
     }
 }
