@@ -77,7 +77,7 @@ class GatewayManager {
         let identifyPayload = GatewayIdentify(identify: .init(token: bot.token,
                                                               compress: false,
                                                               presence: bot.presence,
-                                                              intents: .init(rawValue: 513)))
+                                                              intents: bot.intents))
         
         let jsonEncoder = JSONEncoder()
         guard let data = try? jsonEncoder.encode(identifyPayload) else { return }

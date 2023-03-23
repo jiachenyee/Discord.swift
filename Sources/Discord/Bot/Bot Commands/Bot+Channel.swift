@@ -25,4 +25,10 @@ public extension Bot {
         try await sendRequest(endpoint: "/channels/\(channelId)",
                               method: .delete)
     }
+    
+    func getChannelMessages(_ channelId: Snowflake,
+                            using filters: ChannelMessageFilter = .filters()) async throws {
+        try await sendRequest(endpoint: "/channels/\(channelId)/messages",
+                              parameters: filters.toParameters())
+    }
 }

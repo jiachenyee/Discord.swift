@@ -12,13 +12,15 @@ public class Bot {
     var token: String
     
     var presence: Presence
+    var intents: Intents
     
     var gatewayManager: GatewayManager!
     
-    public init(applicationId: String, token: String, presence: Presence) {
+    public init(applicationId: String, token: String, presence: Presence, intents: Intents) {
         self.applicationId = applicationId
         self.token = token
         self.presence = presence
+        self.intents = intents
     }
     
     @discardableResult

@@ -14,6 +14,13 @@ public struct Intents: OptionSet, Codable {
         self.rawValue = rawValue
     }
     
+    public static let all: Self = [
+        allGuildIntents,
+        allDirectMessageIntents,
+        allAutoModerationIntents,
+        messageContent
+    ]
+    
     public static let allGuildIntents: Self = [
         guilds, guildMembers, guildModeration, guildEmojisAndStickers,
         guildIntegrations, guildWebhooks, guildInvites, guildVoiceStates,
