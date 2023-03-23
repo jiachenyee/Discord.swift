@@ -53,4 +53,12 @@ public extension Bot {
                               endpoint: "/channels/\(channelId)/messages/\(messageId)/crosspost",
                               method: .post)
     }
+    
+    func createReaction(in channelId: Snowflake,
+                        to messageId: Snowflake,
+                        reaction: ReactionEmoji) async throws -> Message {
+        try await sendRequest(Message.self,
+                              endpoint: "/channels/\(channelId)/messages/\(messageId)/reactions/\(reaction.toURLComponent())/@me",
+                              method: .put)
+    }
 }
