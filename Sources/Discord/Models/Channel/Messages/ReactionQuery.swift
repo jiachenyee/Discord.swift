@@ -18,8 +18,8 @@ public struct ReactionFilter: Parameterable {
         self.limit = limit
     }
     
-    public static func filter(after: Snowflake? = nil,
-                              limit: Int? = nil) -> Self {
+    public static func using(after: Snowflake? = nil,
+                             limit: Int? = nil) -> Self {
         Self(after: after,
              limit: limit)
     }

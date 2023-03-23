@@ -79,7 +79,7 @@ public extension Bot {
     func getReactions(inChannel channelId: Snowflake,
                       on messageId: Snowflake,
                       reaction: ReactionEmoji,
-                      filteredBy query: ReactionFilter) async throws -> [User] {
+                      filteredBy query: ReactionFilter = .using()) async throws -> [User] {
         try await sendRequest([User].self,
                               endpoint: "/channels/\(channelId)/messages/\(messageId)/reactions/\(reaction.toURLComponent())",
                               parameters: query.toParameters())
