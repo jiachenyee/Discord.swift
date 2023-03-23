@@ -73,7 +73,7 @@ public struct Message: Codable {
     public var application_id: Snowflake?
     
     /// data showing the source of a crosspost, channel follow add, pin, or reply message
-    public var message_reference: MessageReferenceObject?
+    public var message_reference: MessageReference?
     
     /// message flags combined as a bitfield
     public var flags: MessageFlags?

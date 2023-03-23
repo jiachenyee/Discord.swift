@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct MessageReferenceObject: Codable {
+public struct MessageReference: Codable {
     /// id of the originating message
     public var messageId: Snowflake?
     

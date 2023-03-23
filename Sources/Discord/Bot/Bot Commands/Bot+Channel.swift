@@ -97,4 +97,13 @@ public extension Bot {
         try await sendRequest(endpoint: "/channels/\(channelId)/messages/\(messageId)/reactions/\(reaction.toURLComponent())",
                               method: .delete)
     }
+    
+    func editMessage(channel channelId: Snowflake,
+                     message messageId: Snowflake,
+                     editedContents: MessageEdit) async throws -> Message {
+        try await sendRequest(Message.self,
+                              endpoint: "/channels/\(channelId)/messages/\(messageId)",
+                              method: .patch,
+                              data: editedContents)
+    }
 }

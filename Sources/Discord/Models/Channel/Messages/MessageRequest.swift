@@ -25,7 +25,7 @@ public struct MessageRequest: Codable {
     var allowed_mentions: [AllowedMention]?
      
     /// Include to make your message a reply
-    var message_reference: MessageReferenceObject?
+    var message_reference: MessageReference?
      
     #warning("Incomplete implementation")
     /// Components to include with the message
@@ -45,7 +45,7 @@ public struct MessageRequest: Codable {
                 tts: Bool? = nil,
                 embeds: [Embed]? = nil,
                 allowed_mentions: [AllowedMention]? = nil,
-                message_reference: MessageReferenceObject? = nil,
+                message_reference: MessageReference? = nil,
                 attachments: [Attachment]? = nil,
                 flags: MessageFlags? = nil) {
         self.content = content
@@ -63,7 +63,7 @@ public struct MessageRequest: Codable {
                               tts: Bool? = nil,
                               embeds: [Embed]? = nil,
                               allowed_mentions: [AllowedMention]? = nil,
-                              message_reference: MessageReferenceObject? = nil,
+                              message_reference: MessageReference? = nil,
                               attachments: [Attachment]? = nil,
                               flags: MessageFlags? = nil) -> Self {
         Self(content: content,
