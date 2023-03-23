@@ -14,7 +14,7 @@ public struct DefaultReaction: Codable {
     /// the unicode character of the emoji
     var emojiName: String
     
-    enum CodingKeys: CodingKey {
+    enum CodingKeys: String, CodingKey {
         case emojiId = "emoji_id"
         case emojiName = "emoji_name"
     }
