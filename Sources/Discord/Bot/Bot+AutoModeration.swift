@@ -26,4 +26,19 @@ public extension Bot {
                               method: .post,
                               data: rule)
     }
+    
+    func updateAutoModerationRule(forGuild guildId: Snowflake,
+                                  ruleId: Snowflake,
+                                  rule: AutoModerationRuleUpdateRequest) async throws -> AutoModerationRule {
+        try await sendRequest(AutoModerationRule.self,
+                              endpoint: "/guilds/\(guildId)/auto-moderation/rules/\(ruleId)",
+                              method: .patch,
+                              data: rule)
+    }
+    
+    func deleteAutoModerationRule(forGuild guildId: Snowflake,
+                                  ruleId: Snowflake) async throws {
+        try await sendRequest(endpoint: "/guilds/\(guildId)/auto-moderation/rules/\(ruleId)",
+                              method: .delete)
+    }
 }

@@ -7,24 +7,21 @@
 
 import Foundation
 
-public struct AutoModerationRuleRequest: Codable {
+public struct AutoModerationRuleUpdateRequest: Codable {
     /// the rule name
-    public var name: String
+    public var name: String?
     
     /// the event type
-    public var eventType: AutoModerationEventType = .messageSend
-    
-    /// the trigger type
-    public var triggerType: TriggerType
+    public var eventType: AutoModerationEventType?
     
     /// the trigger metadata
     public var triggerMetadata: TriggerMetadata?
     
     /// the actions which will execute when the rule is triggered
-    public var actions: [AutoModerationAction]
+    public var actions: [AutoModerationAction]?
     
     /// whether the rule is enabled (False by default)
-    public var enabled: Bool? = false
+    public var enabled: Bool?
     
     /// the role ids that should not be affected by the rule (Maximum of 20)
     public var exemptRoles: [Snowflake]?
@@ -35,7 +32,6 @@ public struct AutoModerationRuleRequest: Codable {
     enum CodingKeys: String, CodingKey {
         case name = "name"
         case eventType = "event_type"
-        case triggerType = "trigger_type"
         case triggerMetadata = "trigger_metadata"
         case actions = "actions"
         case enabled = "enabled"
@@ -43,17 +39,16 @@ public struct AutoModerationRuleRequest: Codable {
         case exemptChannels = "exempt_channels"
     }
     
-    public init(name: String,
-                eventType: AutoModerationEventType = .messageSend,
-                trigger: AutoModerationTrigger,
-                actions: [AutoModerationAction],
+    public init(name: String? = nil,
+                eventType: AutoModerationEventType? = nil,
+                triggerMetadata: TriggerMetadata? = nil,
+                actions: [AutoModerationAction]? = nil,
                 enabled: Bool? = nil,
                 exemptRoles: [Snowflake]? = nil,
                 exemptChannels: [Snowflake]? = nil) {
         self.name = name
         self.eventType = eventType
-        self.triggerType = trigger.triggerType
-        self.triggerMetadata = trigger.triggerMetadata
+        self.triggerMetadata = triggerMetadata
         self.actions = actions
         self.enabled = enabled
         self.exemptRoles = exemptRoles
