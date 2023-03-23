@@ -1,5 +1,5 @@
 import XCTest
-@testable import Discord_swift
+@testable import Discord
 
 final class Discord_swiftTests: XCTestCase {
     func testExample() throws {
