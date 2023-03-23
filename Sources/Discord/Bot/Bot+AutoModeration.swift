@@ -22,7 +22,7 @@ public extension Bot {
     func createAutoModerationRule(forGuild guildId: Snowflake,
                                   rule: AutoModerationRuleRequest) async throws -> AutoModerationRule {
         try await sendRequest(AutoModerationRule.self,
-                              endpoint: "/guilds/\(guildId)/auto-moderation/rules/",
+                              endpoint: "/guilds/\(guildId)/auto-moderation/rules",
                               method: .post,
                               data: rule)
     }
