@@ -108,14 +108,13 @@ public extension Bot {
     }
     
     func deleteMessage(channel channelId: Snowflake,
-                       message messageId: Snowflake) async throws -> Message {
-        try await sendRequest(Message.self,
-                              endpoint: "/channels/\(channelId)/messages/\(messageId)",
+                       message messageId: Snowflake) async throws {
+        try await sendRequest(endpoint: "/channels/\(channelId)/messages/\(messageId)",
                               method: .delete)
     }
     
     func bulkDeleteMessages(channel channelId: Snowflake,
-                            bulkDelete bulkDeleteMessages: BulkDeleteMessages) async throws -> Data {
+                            bulkDelete bulkDeleteMessages: BulkDeleteMessages) async throws {
         try await sendRequest(endpoint: "/channels/\(channelId)/messages/bulk-delete",
                               method: .post,
                               data: bulkDeleteMessages)
