@@ -27,13 +27,13 @@ public extension Bot {
     }
     
     func getChannelMessages(_ channelId: Snowflake,
-                            using filters: ChannelMessageFilter = .filters()) async throws {
+                            using filters: ChannelMessageFilter = .filters()) async throws -> Data {
         try await sendRequest(endpoint: "/channels/\(channelId)/messages",
                               parameters: filters.toParameters())
     }
     
     func getChannelMessage(_ channelId: Snowflake,
-                           messageId: Snowflake) async throws {
+                           messageId: Snowflake) async throws -> Data {
         try await sendRequest(endpoint: "/channels/\(channelId)/messages/\(messageId)")
     }
 }
