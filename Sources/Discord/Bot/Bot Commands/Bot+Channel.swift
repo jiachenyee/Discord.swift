@@ -8,36 +8,21 @@
 import Foundation
 
 public extension Bot {
-    func getChannel(_ channelId: Snowflake) async throws -> Data {
-        try await sendRequest(endpoint: "/channels/\(channelId)")
+    func getChannel(_ channelId: Snowflake) async throws -> Channel {
+        try await sendRequest(Channel.self,
+                              endpoint: "/channels/\(channelId)")
     }
     
-//    func getAutoModerationRule(forGuild guildId: Snowflake,
-//                               ruleId: Snowflake) async throws -> AutoModerationRule {
-//        try await sendRequest(AutoModerationRule.self,
-//                              endpoint: "/guilds/\(guildId)/auto-moderation/rules/\(ruleId)")
-//    }
-//    
-//    func createAutoModerationRule(forGuild guildId: Snowflake,
-//                                  rule: AutoModerationRuleRequest) async throws -> AutoModerationRule {
-//        try await sendRequest(AutoModerationRule.self,
-//                              endpoint: "/guilds/\(guildId)/auto-moderation/rules",
-//                              method: .post,
-//                              data: rule)
-//    }
-//    
-//    func updateAutoModerationRule(forGuild guildId: Snowflake,
-//                                  ruleId: Snowflake,
-//                                  rule: AutoModerationRuleUpdateRequest) async throws -> AutoModerationRule {
-//        try await sendRequest(AutoModerationRule.self,
-//                              endpoint: "/guilds/\(guildId)/auto-moderation/rules/\(ruleId)",
-//                              method: .patch,
-//                              data: rule)
-//    }
-//    
-//    func deleteAutoModerationRule(forGuild guildId: Snowflake,
-//                                  ruleId: Snowflake) async throws {
-//        try await sendRequest(endpoint: "/guilds/\(guildId)/auto-moderation/rules/\(ruleId)",
-//                              method: .delete)
-//    }
+    func modifyChannel(_ channelId: Snowflake,
+                       updatedProperties: ChannelUpdateRequest) async throws -> Channel {
+        try await sendRequest(Channel.self,
+                              endpoint: "/channels/\(channelId)",
+                              method: .patch,
+                              data: updatedProperties)
+    }
+    
+    func deleteChannel(_ channelId: Snowflake) async throws {
+        try await sendRequest(endpoint: "/channels/\(channelId)",
+                              method: .delete)
+    }
 }
