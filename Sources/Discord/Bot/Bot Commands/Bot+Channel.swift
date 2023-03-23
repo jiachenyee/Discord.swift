@@ -38,4 +38,12 @@ public extension Bot {
         try await sendRequest(Message.self,
                               endpoint: "/channels/\(channelId)/messages/\(messageId)")
     }
+    
+    func createMessage(in channelId: Snowflake,
+                       message: MessageRequest) async throws -> Message {
+        try await sendRequest(Message.self,
+                              endpoint: "/channels/\(channelId)/messages",
+                              method: .post,
+                              data: message)
+    }
 }
