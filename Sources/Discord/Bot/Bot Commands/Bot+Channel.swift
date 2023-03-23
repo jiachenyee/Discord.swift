@@ -39,11 +39,18 @@ public extension Bot {
                               endpoint: "/channels/\(channelId)/messages/\(messageId)")
     }
     
-    func createMessage(in channelId: Snowflake,
-                       message: MessageRequest) async throws -> Message {
+    func sendMessage(in channelId: Snowflake,
+                     message: MessageRequest) async throws -> Message {
         try await sendRequest(Message.self,
                               endpoint: "/channels/\(channelId)/messages",
                               method: .post,
                               data: message)
+    }
+    
+    func crosspostMessage(in channelId: Snowflake,
+                          messageId: Snowflake) async throws -> Message {
+        try await sendRequest(Message.self,
+                              endpoint: "/channels/\(channelId)/messages/\(messageId)/crosspost",
+                              method: .post)
     }
 }
