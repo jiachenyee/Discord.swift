@@ -27,10 +27,23 @@ public struct ChannelInvite: Codable {
         case unique = "unique"
     }
     
-    public init(maxAge: Int, maxUses: Int, temporary: Bool, unique: Bool) {
+    public init(maxAge: Int = 86400,
+                maxUses: Int = 0,
+                temporary: Bool = false,
+                unique: Bool = false) {
         self.maxAge = maxAge
         self.maxUses = maxUses
         self.temporary = temporary
         self.unique = unique
+    }
+    
+    public static func invite(maxAge: Int = 86400,
+                              maxUses: Int = 0,
+                              temporary: Bool = false,
+                              unique: Bool = false) -> Self {
+        Self(maxAge: maxAge,
+             maxUses: maxUses,
+             temporary: temporary,
+             unique: unique)
     }
 }
