@@ -13,8 +13,8 @@ public struct AuditLog: Codable {
     public var application_commands: [Command]
     /// List of audit log entries, sorted from most to least recent
     public var audit_log_entries: [AuditLogEntry]
-    /// array of auto moderation rule objects    List of auto moderation rules referenced in the audit log
-//    public var auto_moderation_rules
+    /// List of auto moderation rules referenced in the audit log
+    public var auto_moderation_rules: [AutoModerationRule]
 //    /// array of guild scheduled event objects    List of guild scheduled events referenced in the audit log
 //    public var guild_scheduled_events
 //    /// array of partial integration objects    List of partial integration objects
