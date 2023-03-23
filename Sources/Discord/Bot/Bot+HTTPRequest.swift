@@ -25,6 +25,21 @@ public extension Bot {
     }
     
     @discardableResult
+    internal func sendRequest(endpoint: String, parameters: Parameters? = nil) async throws -> Data {
+        let request = AF.request("https://discord.com/api/v10/\(endpoint)",
+                                 method: .get,
+                                 parameters: parameters,
+                                 headers: [
+                                    .authorization("Bot \(token)"),
+                                    .userAgent("DiscordBot (https://github.com/jiachenyee/Discord.swift, 0)")
+                                 ])
+        
+        let value = try await request.serializingData().value
+        
+        return value
+    }
+    
+    @discardableResult
     internal func sendRequest<T: Encodable>(endpoint: String,
                                             method: HTTPMethod,
                                             data: T) async throws -> Data {

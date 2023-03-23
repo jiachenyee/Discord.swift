@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Alamofire
 
 public struct AuditLogFilters: Codable {
     /// Entries from a specific user ID
@@ -41,5 +42,12 @@ public struct AuditLogFilters: Codable {
         self.before = before
         self.after = after
         self.limit = limit
+    }
+    
+    func toParameters() -> Parameters {
+        guard let jsonData = try? JSONEncoder().encode(self),
+              let serializedData = try? JSONSerialization.jsonObject(with: jsonData) as? [String: Any] else { fatalError("Could not convert to JSON") }
+        
+        return serializedData
     }
 }
