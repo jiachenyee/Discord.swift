@@ -8,7 +8,7 @@
 import Foundation
 import Alamofire
 
-public struct ChannelMessageFilter: Codable {
+public struct ChannelMessageFilter: Parameterable {
     /// Get messages around this message ID
     var around: Snowflake?
     
@@ -20,13 +20,6 @@ public struct ChannelMessageFilter: Codable {
     
     /// Max number of messages to return (1-100)
     var limit: Int?
-    
-    func toParameters() -> Parameters {
-        guard let jsonData = try? JSONEncoder().encode(self),
-              let serializedData = try? JSONSerialization.jsonObject(with: jsonData) as? [String: Any] else { fatalError("Could not convert to JSON") }
-        
-        return serializedData
-    }
     
     init(around: Snowflake? = nil, before: Snowflake? = nil, after: Snowflake? = nil, limit: Int? = nil) {
         self.around = around

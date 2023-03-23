@@ -8,7 +8,7 @@
 import Foundation
 import Alamofire
 
-public struct AuditLogFilters: Codable {
+public struct AuditLogFilters: Codable, Parameterable {
     /// Entries from a specific user ID
     public var userId: Snowflake?
     
@@ -42,13 +42,6 @@ public struct AuditLogFilters: Codable {
         self.before = before
         self.after = after
         self.limit = limit
-    }
-    
-    func toParameters() -> Parameters {
-        guard let jsonData = try? JSONEncoder().encode(self),
-              let serializedData = try? JSONSerialization.jsonObject(with: jsonData) as? [String: Any] else { fatalError("Could not convert to JSON") }
-        
-        return serializedData
     }
     
     public static func using(userId: Snowflake? = nil,
