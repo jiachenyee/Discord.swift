@@ -31,4 +31,9 @@ public extension Bot {
         try await sendRequest(endpoint: "/channels/\(channelId)/messages",
                               parameters: filters.toParameters())
     }
+    
+    func getChannelMessage(_ channelId: Snowflake,
+                           messageId: Snowflake) async throws {
+        try await sendRequest(endpoint: "/channels/\(channelId)/messages/\(messageId)")
+    }
 }
