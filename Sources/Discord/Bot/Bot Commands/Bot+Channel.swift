@@ -56,9 +56,8 @@ public extension Bot {
     
     func createReaction(in channelId: Snowflake,
                         to messageId: Snowflake,
-                        reaction: ReactionEmoji) async throws -> Message {
-        try await sendRequest(Message.self,
-                              endpoint: "/channels/\(channelId)/messages/\(messageId)/reactions/\(reaction.toURLComponent())/@me",
+                        reaction: ReactionEmoji) async throws {
+        try await sendRequest(endpoint: "/channels/\(channelId)/messages/\(messageId)/reactions/\(reaction.toURLComponent())/@me",
                               method: .put)
     }
 }
