@@ -50,4 +50,16 @@ public struct AuditLogFilters: Codable {
         
         return serializedData
     }
+    
+    public static func using(userId: Snowflake? = nil,
+                             actionType: AuditLogEvent? = nil,
+                             before: Snowflake? = nil,
+                             after: Snowflake? = nil,
+                             limit: Int? = nil) -> Self {
+        .init(userId: userId,
+              actionType: actionType,
+              before: before,
+              after: after,
+              limit: limit)
+    }
 }

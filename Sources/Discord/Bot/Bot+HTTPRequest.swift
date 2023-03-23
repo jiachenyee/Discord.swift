@@ -25,7 +25,8 @@ public extension Bot {
     }
     
     @discardableResult
-    internal func sendRequest(endpoint: String, parameters: Parameters? = nil) async throws -> Data {
+    internal func sendRequest(endpoint: String,
+                              parameters: Parameters? = nil) async throws -> Data {
         let request = AF.request("https://discord.com/api/v10/\(endpoint)",
                                  method: .get,
                                  parameters: parameters,
@@ -37,6 +38,25 @@ public extension Bot {
         let value = try await request.serializingData().value
         
         return value
+    }
+    
+    @discardableResult
+    internal func sendRequest<D: Decodable>(_ type: D.Type,
+                                            endpoint: String,
+                                            parameters: Parameters? = nil) async throws -> D {
+        let data = try await sendRequest(endpoint: endpoint, parameters: parameters)
+        
+        if let decodedValue = try? JSONDecoder().decode(D.self, from: data) {
+            return decodedValue
+        }
+        
+        let errorValue = try JSONSerialization.jsonObject(with: data) as? [String: Any]
+        
+        if let errorValue {
+            throw DiscordError.apiError(value: errorValue)
+        } else {
+            throw DiscordError.unknownError
+        }
     }
     
     @discardableResult

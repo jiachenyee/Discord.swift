@@ -9,8 +9,9 @@ import Foundation
 
 public extension Bot {
     func getGuildAuditLog(forGuild guildId: Snowflake,
-                          filters: AuditLogFilters) async throws -> Data {
-        try await sendRequest(endpoint: "/guilds/\(guildId)/audit-logs",
+                          filters: AuditLogFilters) async throws -> AuditLog {
+        try await sendRequest(AuditLog.self,
+                              endpoint: "/guilds/\(guildId)/audit-logs",
                               parameters: filters.toParameters())
     }
 }
