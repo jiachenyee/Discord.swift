@@ -58,7 +58,7 @@ public enum ForumLayoutTypes: Int, Codable {
     case galleryView = 2
 }
 
-public struct Channel {
+public struct Channel: Codable {
     /// the id of this channel
     public var id: Snowflake
     /// the type of channel
@@ -131,7 +131,7 @@ public struct Channel {
     public var default_forum_layout: ForumLayoutTypes?
 }
 
-public struct Message {
+public struct Message: Codable {
     /// id of the message
     public var id: Snowflake
     
@@ -439,7 +439,7 @@ public struct ForumTag: Codable {
     var emoji_name: String?
 }
 
-public struct Embed {
+public struct Embed: Codable {
     /// title of embed
     public var title: String?
     
