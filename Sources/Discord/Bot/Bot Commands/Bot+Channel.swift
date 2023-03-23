@@ -145,4 +145,23 @@ public extension Bot {
                               endpoint: "/channels/\(channelId)/invites", method: .post,
                               data: channelInvite)
     }
+    
+    func followAnnouncementChannel(channel channelId: Snowflake,
+                                   announcementChannel: FollowChannel) async throws -> FollowedChannel {
+        try await sendRequest(FollowedChannel.self,
+                              endpoint: "/channels/\(channelId)/followers",
+                              method: .post,
+                              data: announcementChannel)
+    }
+    
+    func triggerTypingIndicator(channel channelId: Snowflake) async throws {
+        try await sendRequest(endpoint: "/channels/\(channelId)/typing",
+                              method: .post)
+    }
+    
+    func getPinnedMessages(channel channelId: Snowflake) async throws -> [Message] {
+        try await sendRequest([Message].self,
+                              endpoint: "/channels/\(channelId)/pins",
+                              method: .post)
+    }
 }

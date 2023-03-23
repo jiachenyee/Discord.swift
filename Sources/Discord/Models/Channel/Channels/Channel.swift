@@ -117,16 +117,3 @@ public struct Channel: Codable {
         case defaultForumLayout = "default_forum_layout"
     }
 }
-
-public struct FollowedChannel: Codable {
-    /// source channel id
-    var channelId: Snowflake
-    
-    /// created target webhook id
-    var webhookId: Snowflake
-    
-    enum CodingKeys: String, CodingKey {
-        case channelId = "channel_id"
-        case webhookId = "webhook_id"
-    }
-}
