@@ -54,10 +54,25 @@ public extension Bot {
                               method: .post)
     }
     
-    func createReaction(in channelId: Snowflake,
-                        to messageId: Snowflake,
-                        reaction: ReactionEmoji) async throws {
+    func addReaction(inChannel channelId: Snowflake,
+                     toMessage messageId: Snowflake,
+                     reaction: ReactionEmoji) async throws {
         try await sendRequest(endpoint: "/channels/\(channelId)/messages/\(messageId)/reactions/\(reaction.toURLComponent())/@me",
                               method: .put)
+    }
+    
+    func deleteReaction(inChannel channelId: Snowflake,
+                        on messageId: Snowflake,
+                        reaction: ReactionEmoji) async throws {
+        try await sendRequest(endpoint: "/channels/\(channelId)/messages/\(messageId)/reactions/\(reaction.toURLComponent())/@me",
+                              method: .delete)
+    }
+    
+    func deleteUserReaction(inChannel channelId: Snowflake,
+                            on messageId: Snowflake,
+                            user: Snowflake,
+                            reaction: ReactionEmoji) async throws {
+        try await sendRequest(endpoint: "/channels/\(channelId)/messages/\(messageId)/reactions/\(reaction.toURLComponent())/\(user)",
+                              method: .delete)
     }
 }
