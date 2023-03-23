@@ -46,36 +46,26 @@ public struct Invite: Codable {
     /// guild scheduled event data, only included if guild_scheduled_event_id contains a valid guild scheduled event id
 #warning("Incomplete implementation")
 //    public var guild_scheduled_event: guild scheduled event object?
+    
+    /// number of times this invite has been used
+    public var uses: Int?
+    
+    /// max number of times this invite can be used
+    public var max_uses: Int?
+    
+    /// duration (in seconds) after which the invite expires
+    public var max_age: Int?
+    
+    /// whether this invite only grants temporary membership
+    public var temporary: Bool?
+    
+    /// when this invite was created
+    public var created_at: ISO8601Timestamp?
 }
 
 public enum InviteTarget: Int, Codable {
     case stream = 1
     case embeddedApplication = 2
-}
-
-public struct InviteMetadata: Codable {
-    /// number of times this invite has been used
-    public var uses: Int
-    
-    /// max number of times this invite can be used
-    public var maxUses: Int
-    
-    /// duration (in seconds) after which the invite expires
-    public var maxAge: Int
-    
-    /// whether this invite only grants temporary membership
-    public var temporary: Bool
-    
-    /// when this invite was created
-    public var createdAt: ISO8601Timestamp
-    
-    enum CodingKeys: String, CodingKey {
-        case uses = "uses"
-        case maxUses = "max_uses"
-        case maxAge = "max_age"
-        case temporary = "temporary"
-        case createdAt = "created_at"
-    }
 }
 
 public struct InviteStageInstance: Codable {

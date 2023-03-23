@@ -128,7 +128,8 @@ public extension Bot {
                               data: permission)
     }
     
-    func getChannelInvites(channel channelId: Snowflake) async throws -> Data {
-        try await sendRequest(endpoint: "/channels/\(channelId)/invites")
+    func getChannelInvites(channel channelId: Snowflake) async throws -> [Invite] {
+        try await sendRequest([Invite].self,
+                              endpoint: "/channels/\(channelId)/invites")
     }
 }

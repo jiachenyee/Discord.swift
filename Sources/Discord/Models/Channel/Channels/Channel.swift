@@ -13,7 +13,7 @@ public struct Channel: Codable {
     /// the type of channel
     public var type: ChannelType
     /// the id of the guild (may be missing for some channel objects received over gateway guild dispatches)
-    public var guildId: Snowflake
+    public var guildId: Snowflake?
     /// sorting position of the channel
     public var position: Int?
     /// explicit permission overwrites for members and roles
