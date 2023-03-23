@@ -114,13 +114,13 @@ public struct Channel: Codable {
     /// computed permissions for the invoking user in the channel, including overwrites, only included when part of the resolved data received on a slash command interaction
     public var permissions: String?
     /// channel flags combined as a bitfield
-    public var flags: ChannelFlags
+    public var flags: ChannelFlags?
     /// number of messages ever sent in a thread, it's similar to message_count on message creation, but will not decrement the number when a message is deleted
     public var total_message_sent: Int?
     /// the set of tags that can be used in a GUILD_FORUM channel
     public var available_tags: [ForumTag]?
     /// the IDs of the set of tags that have been applied to a thread in a GUILD_FORUM channel
-    public var applied_tags: [Snowflake]
+    public var applied_tags: [Snowflake]?
     /// the emoji to show in the add reaction button on a thread in a GUILD_FORUM channel
     public var default_reaction_emoji: DefaultReaction?
     /// the initial rate_limit_per_user to set on newly created threads in a channel. this field is copied to the thread at creation time and does not live update.
