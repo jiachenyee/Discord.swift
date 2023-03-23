@@ -84,7 +84,7 @@ public struct Channel: Codable {
     /// amount of seconds a user has to wait before sending another message (0-21600); bots, as well as users with the permission manage_messages or manage_channel, are unaffected
     public var rate_limit_per_user: Int?
     /// the recipients of the DM
-    public var recipients: [User]
+    public var recipients: [User]?
     /// icon hash of the group DM
     public var icon: String?
     /// id of the creator of the group DM or thread
