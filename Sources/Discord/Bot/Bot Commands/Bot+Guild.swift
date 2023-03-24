@@ -149,4 +149,9 @@ public extension Bot {
         try await sendRequest(endpoint: "/guilds/\(guildId)/bans/\(userId)",
                               method: .delete)
     }
+    
+    func getGuildRoles(guild guildId: Snowflake) async throws -> [Role] {
+        try await sendRequest([Role].self,
+                              endpoint: "/guilds/\(guildId)/roles")
+    }
 }
