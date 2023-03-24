@@ -45,4 +45,12 @@ public extension Bot {
         try await sendRequest([Channel].self,
                               endpoint: "/guilds/\(guildId)/channels")
     }
+    
+    func createGuildChannel(guild guildId: Snowflake,
+                            channel: NewGuildChannel) async throws -> Channel {
+        try await sendRequest(Channel.self,
+                              endpoint: "/guilds/\(guildId)/channels",
+                              method: .post,
+                              data: channel)
+    }
 }
