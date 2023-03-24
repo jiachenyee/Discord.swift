@@ -8,13 +8,19 @@
 import Foundation
 
 public struct ArchivedThreads: Codable {
-    var threads: [Channel]
-    var members: [ThreadMember]
-    var hasMore: Bool
+    public var threads: [Channel]
+    public var members: [ThreadMember]
+    public var hasMore: Bool
     
     enum CodingKeys: String, CodingKey {
         case threads = "threads"
         case members = "members"
         case hasMore = "has_more"
+    }
+    
+    public init(threads: [Channel], members: [ThreadMember], hasMore: Bool) {
+        self.threads = threads
+        self.members = members
+        self.hasMore = hasMore
     }
 }
