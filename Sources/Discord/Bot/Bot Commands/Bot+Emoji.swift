@@ -8,14 +8,14 @@
 import Foundation
 
 public extension Bot {
-    func listGuildEmoji(guild guildId: Snowflake) async throws -> [Emoji] {
+    func listGuildEmojis(guild guildId: Snowflake) async throws -> [Emoji] {
         try await sendRequest([Emoji].self,
                               endpoint: "/guilds/\(guildId)/emojis")
     }
     
     func getGuildEmoji(guild guildId: Snowflake,
-                       emoji emojiId: Snowflake) async throws -> [Emoji] {
-        try await sendRequest([Emoji].self,
+                       emoji emojiId: Snowflake) async throws -> Emoji {
+        try await sendRequest(Emoji.self,
                               endpoint: "/guilds/\(guildId)/emojis/\(emojiId)")
     }
 }
