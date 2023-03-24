@@ -7,28 +7,32 @@
 
 import Foundation
 
-struct Emoji {
+public struct Emoji: Codable {
     /// emoji id
-    var id: Snowflake?
+    public var id: Snowflake?
     
     /// emoji name
-    var name: String?
+    public var name: String?
     
     #warning("incomplete implementation")
-//    var roles: array of role object ids    roles allowed to use this emoji
+//    public var roles: array of role object ids    roles allowed to use this emoji
     
     /// user that created this emoji
-    var user: User?
+    public var user: User?
     
     /// whether this emoji must be wrapped in colons
-    var require_colons: Bool?
+    public var require_colons: Bool?
     
     /// whether this emoji is managed
-    var managed: Bool?
+    public var managed: Bool?
     
     /// whether this emoji is animated
-    var animated: Bool?
+    public var animated: Bool?
     
     /// whether this emoji can be used, may be false due to loss of Server Boosts
-    var available: Bool?
+    public var available: Bool?
+    
+    public static func emoji(_ emoji: String) -> Self {
+        Self(name: emoji)
+    }
 }
