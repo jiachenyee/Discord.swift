@@ -67,8 +67,8 @@ public extension Bot {
     }
 
     func getGuildMember(guild guildId: Snowflake,
-                        member userId: Snowflake) async throws -> Data {
-        try await sendRequest(
+                        member userId: Snowflake) async throws -> GuildMember {
+        try await sendRequest(GuildMember.self,
                               endpoint: "/guilds/\(guildId)/members/\(userId)")
     }
     
