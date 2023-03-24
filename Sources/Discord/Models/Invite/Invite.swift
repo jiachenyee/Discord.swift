@@ -61,19 +61,3 @@ public struct Invite: Codable {
     /// when this invite was created
     public var created_at: ISO8601Timestamp?
 }
-
-public enum InviteTarget: Int, Codable {
-    case stream = 1
-    case embeddedApplication = 2
-}
-
-public struct InviteStageInstance: Codable {
-    ///      the members speaking in the Stage
-//    public var members: array of partial guild member objects
-    ///     the number of users in the Stage
-    public var participant_count: Int
-    ///     the number of users speaking in the Stage
-    public var speaker_count: Int
-    ///     the topic of the Stage instance (1-120 characters)
-    public var topic: String
-}

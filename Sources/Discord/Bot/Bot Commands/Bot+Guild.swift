@@ -122,4 +122,31 @@ public extension Bot {
         try await sendRequest(endpoint: "/guilds/\(guildId)/members/\(userId)",
                               method: .delete)
     }
+    
+    func getGuildBans(guild guildId: Snowflake,
+                      filtering filter: GuildBanFilter = .using()) async throws -> [Ban] {
+        try await sendRequest([Ban].self,
+                              endpoint: "/guilds/\(guildId)/bans",
+                              parameters: filter.toParameters())
+    }
+    
+    func getGuildBan(guild guildId: Snowflake,
+                     user userId: Snowflake) async throws -> Ban {
+        try await sendRequest(Ban.self,
+                              endpoint: "/guilds/\(guildId)/bans/\(userId)")
+    }
+    
+    func createGuildBan(guild guildId: Snowflake,
+                        user userId: Snowflake,
+                        preferences: GuildBanPreferences = .init()) async throws {
+        try await sendRequest(endpoint: "/guilds/\(guildId)/bans/\(userId)",
+                              method: .put,
+                              data: preferences)
+    }
+    
+    func removeGuildBan(guild guildId: Snowflake,
+                        user userId: Snowflake) async throws {
+        try await sendRequest(endpoint: "/guilds/\(guildId)/bans/\(userId)",
+                              method: .delete)
+    }
 }
