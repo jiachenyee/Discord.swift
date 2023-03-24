@@ -35,7 +35,7 @@ public struct NewForumThread: Codable {
                 autoArchiveDuration: AutoArchiveDuration,
                 rateLimitPerUser: Int? = nil,
                 message: NewForumThreadMessage,
-                appliedTags: [Snowflake]) {
+                appliedTags: [Snowflake] = []) {
         self.name = name
         self.autoArchiveDuration = autoArchiveDuration
         self.rateLimitPerUser = rateLimitPerUser
