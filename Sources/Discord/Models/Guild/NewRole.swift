@@ -40,12 +40,12 @@ public struct NewRole: Codable {
     }
     
     public init(name: String,
-                permissions: Permissions,
-                color: Int,
-                hoist: Bool,
+                permissions: Permissions = .init(rawValue: 0),
+                color: Int = 0,
+                hoist: Bool = false,
                 icon: Data? = nil,
                 unicodeEmoji: String? = nil,
-                mentionable: Bool) {
+                mentionable: Bool = false) {
         self.name = name
         self.permissions = permissions
         self.color = color
