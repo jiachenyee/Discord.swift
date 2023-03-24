@@ -14,4 +14,12 @@ public extension Bot {
                               method: .post,
                               data: guildInformation)
     }
+    
+    func getGuild(_ guildId: Snowflake, withCounts: Bool = false) async throws -> Guild {
+        try await sendRequest(Guild.self,
+                              endpoint: "/guilds/\(guildId)",
+                              parameters: [
+                                "with_counts": withCounts
+                              ])
+    }
 }
