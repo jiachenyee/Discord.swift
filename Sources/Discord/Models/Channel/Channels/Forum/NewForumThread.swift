@@ -30,4 +30,16 @@ public struct NewForumThread: Codable {
         case message = "message"
         case appliedTags = "applied_tags"
     }
+    
+    public init(name: String,
+                autoArchiveDuration: AutoArchiveDuration,
+                rateLimitPerUser: Int? = nil,
+                message: NewForumThreadMessage,
+                appliedTags: [Snowflake]) {
+        self.name = name
+        self.autoArchiveDuration = autoArchiveDuration
+        self.rateLimitPerUser = rateLimitPerUser
+        self.message = message
+        self.appliedTags = appliedTags
+    }
 }
