@@ -207,4 +207,12 @@ public extension Bot {
                               method: .post,
                               data: threadInfo)
     }
+    
+    func startForumThread(channel channelId: Snowflake,
+                          postInfo: NewForumThread) async throws -> Channel {
+        try await sendRequest(Channel.self,
+                              endpoint: "/channels/\(channelId)/threads",
+                              method: .post,
+                              data: postInfo)
+    }
 }
