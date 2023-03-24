@@ -32,7 +32,7 @@ public extension Bot {
                      modify modifyRequest: ModifyGuildRequest) async throws -> Guild {
         try await sendRequest(Guild.self,
                               endpoint: "/guilds/\(guildId)",
-                              method: .post,
+                              method: .patch,
                               data: modifyRequest)
     }
     
