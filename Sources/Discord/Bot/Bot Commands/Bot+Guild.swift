@@ -78,4 +78,11 @@ public extension Bot {
                               endpoint: "/guilds/\(guildId)/members",
                               parameters: filters.toParameters())
     }
+    
+    func searchGuildMembers(guild guildId: Snowflake,
+                            using query: GuildMemberQuery) async throws -> [GuildMember] {
+        try await sendRequest([GuildMember].self,
+                              endpoint: "/guilds/\(guildId)/members/search",
+                              parameters: query.toParameters())
+    }
 }
