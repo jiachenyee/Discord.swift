@@ -215,4 +215,42 @@ public extension Bot {
                               method: .post,
                               data: postInfo)
     }
+    
+    func joinThread(_ threadId: Snowflake) async throws {
+        try await sendRequest(endpoint: "/channels/\(threadId)/thread-members/@me",
+                              method: .put)
+    }
+    
+    func addThreadMember(_ threadId: Snowflake,
+                         user userId: Snowflake) async throws {
+        try await sendRequest(endpoint: "/channels/\(threadId)/thread-members/\(userId)",
+                              method: .put)
+    }
+    
+    func leaveThread(_ threadId: Snowflake) async throws {
+        try await sendRequest(endpoint: "/channels/\(threadId)/thread-members/@me",
+                              method: .delete)
+    }
+    
+    func removeThreadMember(_ threadId: Snowflake,
+                            user userId: Snowflake) async throws {
+        try await sendRequest(endpoint: "/channels/\(threadId)/thread-members/\(userId)",
+                              method: .delete)
+    }
+    
+    func getThreadMember(_ threadId: Snowflake,
+                         user userId: Snowflake,
+                         withGuildMember: Bool = false) async throws -> ThreadMember {
+        try await sendRequest(ThreadMember.self,
+                              endpoint: "/channels/\(threadId)/thread-members/\(userId)",
+                              parameters: ["with_member": withGuildMember])
+    }
+    
+    func listThreadMember(_ threadId: Snowflake,
+                          user userId: Snowflake,
+                          filtered filters: ThreadMemberFilters) async throws -> [ThreadMember] {
+        try await sendRequest([ThreadMember].self,
+                              endpoint: "/channels/\(threadId)/thread-members",
+                              parameters: filters.toParameters())
+    }
 }
