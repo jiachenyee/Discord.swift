@@ -18,4 +18,25 @@ public extension Bot {
         try await sendRequest(Emoji.self,
                               endpoint: "/guilds/\(guildId)/emojis/\(emojiId)")
     }
+    
+    #warning("Incomplete implementation")
+//    func createGuildEmoji(guild guildId: Snowflake) async throws -> Emoji {
+//        try await sendRequest(Emoji.self,
+//                              endpoint: "/guilds/\(guildId)/emojis/\(emojiId)")
+//    }
+    
+    func modifyGuildEmoji(guild guildId: Snowflake,
+                          emoji emojiId: Snowflake,
+                          modifications: ModifyEmojiRequest) async throws -> Emoji {
+        try await sendRequest(Emoji.self,
+                              endpoint: "/guilds/\(guildId)/emojis/\(emojiId)",
+                              method: .patch,
+                              data: modifications)
+    }
+    
+    func deleteGuildEmoji(guild guildId: Snowflake,
+                          emoji emojiId: Snowflake) async throws {
+        try await sendRequest(endpoint: "/guilds/\(guildId)/emojis/\(emojiId)",
+                              method: .delete)
+    }
 }
