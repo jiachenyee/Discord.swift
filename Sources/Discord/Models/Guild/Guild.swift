@@ -41,8 +41,7 @@ public struct Guild: Codable {
     /// explicit content filter level
     public var explicit_content_filter: ExplicitContentFilterLevel
     /// roles in the guild
-//    public var roles: array of role objects
-    #warning("role missing")
+    public var roles: [Role]
     /// custom guild emojis
     public var emojis: [Emoji]
     /// enabled guild features
