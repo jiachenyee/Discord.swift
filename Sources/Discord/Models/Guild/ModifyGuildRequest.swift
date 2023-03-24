@@ -57,13 +57,13 @@ public struct ModifyGuildRequest: Codable {
     public var preferredLocale: DiscordLocale?
     
     /// enabled guild features
-    public var features: [GuildFeature]
+    public var features: [GuildFeature]?
     
     /// the description for the guild
     public var description: String?
     
     /// whether the guild's boost progress bar should be enabled
-    public var premiumProgressBarEnabled: Bool
+    public var premiumProgressBarEnabled: Bool?
     
     enum CodingKeys: String, CodingKey {
         case name = "name"
@@ -87,7 +87,7 @@ public struct ModifyGuildRequest: Codable {
         case premiumProgressBarEnabled = "premium_progress_bar_enabled"
     }
     
-    public init(name: String? = nil, verificationLevel: Int? = nil, defaultMessageNotifications: DefaultMessageNotificationLevel? = nil, explicitContentFilter: ExplicitContentFilterLevel? = nil, afkChannelId: Snowflake? = nil, afkTimeout: AFKTimeout? = nil, icon: Data? = nil, ownerId: Snowflake? = nil, splash: Data? = nil, discoverySplash: Data? = nil, banner: Data? = nil, systemChannelId: Snowflake? = nil, systemChannelFlags: SystemChannelFlags? = nil, rulesChannelId: Snowflake? = nil, publicUpdatesChannelId: Snowflake? = nil, preferredLocale: DiscordLocale? = nil, features: [GuildFeature], description: String? = nil, premiumProgressBarEnabled: Bool) {
+    public init(name: String? = nil, verificationLevel: Int? = nil, defaultMessageNotifications: DefaultMessageNotificationLevel? = nil, explicitContentFilter: ExplicitContentFilterLevel? = nil, afkChannelId: Snowflake? = nil, afkTimeout: AFKTimeout? = nil, icon: Data? = nil, ownerId: Snowflake? = nil, splash: Data? = nil, discoverySplash: Data? = nil, banner: Data? = nil, systemChannelId: Snowflake? = nil, systemChannelFlags: SystemChannelFlags? = nil, rulesChannelId: Snowflake? = nil, publicUpdatesChannelId: Snowflake? = nil, preferredLocale: DiscordLocale? = nil, features: [GuildFeature]? = nil, description: String? = nil, premiumProgressBarEnabled: Bool? = nil) {
         self.name = name
         self.verificationLevel = verificationLevel
         self.defaultMessageNotifications = defaultMessageNotifications
@@ -125,9 +125,9 @@ public struct ModifyGuildRequest: Codable {
                                  rulesChannelId: Snowflake? = nil,
                                  publicUpdatesChannelId: Snowflake? = nil,
                                  preferredLocale: DiscordLocale? = nil,
-                                 features: [GuildFeature],
+                                 features: [GuildFeature]? = nil,
                                  description: String? = nil,
-                                 premiumProgressBarEnabled: Bool) -> Self {
+                                 premiumProgressBarEnabled: Bool? = nil) -> Self {
         Self(name: name,
              verificationLevel: verificationLevel,
              defaultMessageNotifications: defaultMessageNotifications,
