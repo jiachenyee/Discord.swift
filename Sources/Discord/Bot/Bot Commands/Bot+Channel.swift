@@ -164,4 +164,47 @@ public extension Bot {
                               endpoint: "/channels/\(channelId)/pins",
                               method: .post)
     }
+    
+    func pinMessage(channel channelId: Snowflake,
+                    message messageId: Snowflake) async throws {
+        try await sendRequest(endpoint: "/channels/\(channelId)/pins/\(messageId)",
+                              method: .put)
+    }
+    
+    func unpinMessage(channel channelId: Snowflake,
+                      message messageId: Snowflake) async throws {
+        try await sendRequest(endpoint: "/channels/\(channelId)/pins/\(messageId)",
+                              method: .delete)
+    }
+    
+    func groupDMAdd(groupDM channelId: Snowflake,
+                    recipient userId: Snowflake,
+                    recipientInfo: GroupDMRecipient) async throws {
+        try await sendRequest(endpoint: "/channels/\(channelId)/recipients/\(userId)",
+                              method: .put,
+                              data: recipientInfo)
+    }
+    
+    func groupDMRemove(groupDM channelId: Snowflake,
+                       recipient userId: Snowflake) async throws {
+        try await sendRequest(endpoint: "/channels/\(channelId)/recipients/\(userId)",
+                              method: .delete)
+    }
+    
+    func startThread(channel channelId: Snowflake,
+                     message messageId: Snowflake,
+                     threadInfo: NewThreadInformation) async throws -> Channel {
+        try await sendRequest(Channel.self,
+                              endpoint: "/channels/\(channelId)/messages/\(messageId)/threads",
+                              method: .post,
+                              data: threadInfo)
+    }
+    
+    func startThread(channel channelId: Snowflake,
+                     threadInfo: NewChannelThreadInformation) async throws -> Channel {
+        try await sendRequest(Channel.self,
+                              endpoint: "/channels/\(channelId)/threads",
+                              method: .post,
+                              data: threadInfo)
+    }
 }
