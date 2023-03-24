@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension Bot {
+public extension Bot {
     func listGuildEmoji(guild guildId: Snowflake) async throws -> [Emoji] {
         try await sendRequest([Emoji].self,
                               endpoint: "/guilds/\(guildId)/emojis")
