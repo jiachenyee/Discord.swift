@@ -40,4 +40,9 @@ public extension Bot {
         try await sendRequest(endpoint: "/guilds/\(guildId)",
                               method: .delete)
     }
+    
+    func getGuildChannels(guild guildId: Snowflake) async throws -> [Channel] {
+        try await sendRequest([Channel].self,
+                              endpoint: "/guilds/\(guildId)/channels")
+    }
 }
