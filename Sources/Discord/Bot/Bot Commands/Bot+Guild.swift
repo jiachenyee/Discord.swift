@@ -23,6 +23,11 @@ public extension Bot {
                               ])
     }
     
+    func getGuildPreview(_ guildId: Snowflake) async throws -> GuildPreview {
+        try await sendRequest(GuildPreview.self,
+                              endpoint: "/guilds/\(guildId)/preview")
+    }
+    
     func modifyGuild(_ guildId: Snowflake,
                      modify modifyRequest: ModifyGuildRequest) async throws -> Guild {
         try await sendRequest(Guild.self,
