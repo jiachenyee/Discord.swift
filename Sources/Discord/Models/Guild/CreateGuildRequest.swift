@@ -40,6 +40,19 @@ public struct CreateGuildRequest: Codable {
     
     /// system channel flags
     public var system_channel_flags: SystemChannelFlags?
+    
+    public init(name: String, icon: Date? = nil, verification_level: VerificationLevel? = nil, default_message_notifications: DefaultMessageNotificationLevel? = nil, explicit_content_filter: ExplicitContentFilterLevel? = nil, channels: [PartialChannel], afk_channel_id: Snowflake? = nil, afk_timeout: AFKTimeout? = nil, system_channel_id: Snowflake? = nil, system_channel_flags: SystemChannelFlags? = nil) {
+        self.name = name
+        self.icon = icon
+        self.verification_level = verification_level
+        self.default_message_notifications = default_message_notifications
+        self.explicit_content_filter = explicit_content_filter
+        self.channels = channels
+        self.afk_channel_id = afk_channel_id
+        self.afk_timeout = afk_timeout
+        self.system_channel_id = system_channel_id
+        self.system_channel_flags = system_channel_flags
+    }
 }
 
 public enum AFKTimeout: Int, Codable {
