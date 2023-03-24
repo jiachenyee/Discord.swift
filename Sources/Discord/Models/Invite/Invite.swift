@@ -12,8 +12,7 @@ public struct Invite: Codable {
     public var code: String
     
     /// the guild this invite is for
-    #warning("Incomplete implementation")
-//    public var guild: partial guild object?
+    public var guild: Guild?
     
     /// the channel this invite is for
     public var channel: Channel?

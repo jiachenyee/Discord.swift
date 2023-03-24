@@ -12,15 +12,22 @@ public struct ThreadMember: Codable {
     public var id: Snowflake?
     
     /// ID of the user
-    public var user_id: Snowflake?
+    public var userId: Snowflake?
     
     /// Time the user last joined the thread
-    public var join_timestamp: ISO8601Timestamp
+    public var joinTimestamp: ISO8601Timestamp
     
     /// Any user-thread settings, currently only used for notifications
     public var flags: Int
     
     /// Additional information about the user
-#warning("missing")
-    //    public var member? * **    guild member object
+    public var member: GuildMember?
+    
+    enum CodingKeys: String, CodingKey {
+        case id = "id"
+        case userId = "user_id"
+        case joinTimestamp = "join_timestamp"
+        case flags = "flags"
+        case member = "member"
+    }
 }
