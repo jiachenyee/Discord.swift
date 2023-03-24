@@ -154,4 +154,11 @@ public extension Bot {
         try await sendRequest([Role].self,
                               endpoint: "/guilds/\(guildId)/roles")
     }
+    
+    func createGuildRole(guild guildId: Snowflake,
+                         role: NewRole) async throws -> Role {
+        try await sendRequest(Role.self,
+                              endpoint: "/guilds/\(guildId)/roles", method: .post,
+                              data: role)
+    }
 }
