@@ -96,10 +96,30 @@ public extension Bot {
     }
     
     func modifyCurrentMember(guild guildId: Snowflake,
-                             user userId: Snowflake,
-                             modifications: ModifyCurrentMemberRequest) async throws -> Data {
-        try await sendRequest(endpoint: "/guilds/\(guildId)/members/\(userId)",
+                             modifications: ModifyCurrentMemberRequest) async throws -> GuildMember {
+        try await sendRequest(GuildMember.self,
+                              endpoint: "/guilds/\(guildId)/members/@me",
                               method: .patch,
                               data: modifications)
+    }
+    
+    func addGuildMemberRole(guild guildId: Snowflake,
+                            user userId: Snowflake,
+                            role roleId: Snowflake) async throws {
+        try await sendRequest(endpoint: "/guilds/\(guildId)/members/\(userId)/roles/\(roleId)",
+                              method: .put)
+    }
+    
+    func removeGuildMemberRole(guild guildId: Snowflake,
+                               user userId: Snowflake,
+                               role roleId: Snowflake) async throws {
+        try await sendRequest(endpoint: "/guilds/\(guildId)/members/\(userId)/roles/\(roleId)",
+                              method: .delete)
+    }
+    
+    func removeGuildMember(guild guildId: Snowflake,
+                           user userId: Snowflake) async throws {
+        try await sendRequest(endpoint: "/guilds/\(guildId)/members/\(userId)",
+                              method: .delete)
     }
 }
