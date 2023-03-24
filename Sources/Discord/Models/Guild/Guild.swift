@@ -72,7 +72,7 @@ public struct Guild: Codable {
     /// the number of boosts this guild currently has
     public var premium_subscription_count: Int?
     /// the preferred locale of a Community guild; used in server discovery and notices from Discord, and sent in interactions; defaults to "en-US"
-    public var preferred_locale: String
+    public var preferred_locale: DiscordLocale
     /// the id of the channel where admins and moderators of Community guilds receive notices from Discord
     public var public_updates_channel_id: Snowflake?
     /// the maximum amount of users in a video channel

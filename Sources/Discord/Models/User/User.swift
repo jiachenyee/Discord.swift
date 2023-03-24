@@ -37,7 +37,7 @@ public struct User: Codable {
     var accent_color: Int?
     
     /// the user's chosen language option
-    var locale: String?
+    var locale: DiscordLocale?
     
     /// whether the email on this account has been verified
     var verified: Bool?

@@ -22,4 +22,17 @@ public extension Bot {
                                 "with_counts": withCounts
                               ])
     }
+    
+    func modifyGuild(_ guildId: Snowflake,
+                     modify modifyRequest: ModifyGuildRequest) async throws -> Guild {
+        try await sendRequest(Guild.self,
+                              endpoint: "/guilds/\(guildId)",
+                              method: .post,
+                              data: modifyRequest)
+    }
+    
+    func deleteGuild(_ guildId: Snowflake) async throws {
+        try await sendRequest(endpoint: "/guilds/\(guildId)",
+                              method: .delete)
+    }
 }
