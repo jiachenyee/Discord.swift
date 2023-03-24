@@ -39,7 +39,7 @@ public struct Role: Codable {
     public var mentionable: Bool
      
     /// the tags this role has
-    public var tags: [RoleTag]?
+    public var tags: RoleTag?
     
     enum CodingKeys: String, CodingKey {
         case id = "id"
