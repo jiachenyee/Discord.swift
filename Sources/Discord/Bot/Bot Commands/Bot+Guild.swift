@@ -53,4 +53,29 @@ public extension Bot {
                               method: .post,
                               data: channel)
     }
+    
+    func modifyGuildChannelPositions(guild guildId: Snowflake,
+                                     move positionRequest: GuildChannelPositionsRequest) async throws {
+        try await sendRequest(endpoint: "/guilds/\(guildId)/channels",
+                              method: .patch,
+                              data: positionRequest)
+    }
+    
+    func listActiveGuildThreads(guild guildId: Snowflake) async throws -> ActiveGuildThreads {
+        try await sendRequest(ActiveGuildThreads.self,
+                              endpoint: "/guilds/\(guildId)/threads/active")
+    }
+
+    func getGuildMember(guild guildId: Snowflake,
+                        member userId: Snowflake) async throws -> GuildMember {
+        try await sendRequest(GuildMember.self,
+                              endpoint: "/guilds/\(guildId)/members/\(userId)")
+    }
+    
+    func listGuildMembers(guild guildId: Snowflake,
+                          filtered filters: GuildMemberFilter = .using()) async throws -> [GuildMember] {
+        try await sendRequest([GuildMember].self,
+                              endpoint: "/guilds/\(guildId)/members",
+                              parameters: filters.toParameters())
+    }
 }
