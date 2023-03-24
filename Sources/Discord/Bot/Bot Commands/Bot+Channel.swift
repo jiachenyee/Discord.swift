@@ -246,11 +246,31 @@ public extension Bot {
                               parameters: ["with_member": withGuildMember])
     }
     
-    func listThreadMember(_ threadId: Snowflake,
-                          user userId: Snowflake,
-                          filtered filters: ThreadMemberFilters) async throws -> [ThreadMember] {
+    func listThreadMembers(_ threadId: Snowflake,
+                           filtered filters: ThreadMemberFilters = .using()) async throws -> [ThreadMember] {
         try await sendRequest([ThreadMember].self,
                               endpoint: "/channels/\(threadId)/thread-members",
+                              parameters: filters.toParameters())
+    }
+    
+    func listPublicArchivedThreads(channel channelId: Snowflake,
+                                   filtered filters: ArchivedThreadFilter) async throws -> ArchivedThreads {
+        try await sendRequest(ArchivedThreads.self,
+                              endpoint: "/channels/\(channelId)/threads/archived/public",
+                              parameters: filters.toParameters())
+    }
+    
+    func listPrivateArchivedThreads(channel channelId: Snowflake,
+                                    filtered filters: ArchivedThreadFilter) async throws -> ArchivedThreads {
+        try await sendRequest(ArchivedThreads.self,
+                              endpoint: "/channels/\(channelId)/threads/archived/private",
+                              parameters: filters.toParameters())
+    }
+    
+    func listJoinedPrivateArchivedThreads(channel channelId: Snowflake,
+                                          filtered filters: ArchivedThreadFilter) async throws -> ArchivedThreads {
+        try await sendRequest(ArchivedThreads.self,
+                              endpoint: "/channels/\(channelId)/users/@me/threads/archived/private",
                               parameters: filters.toParameters())
     }
 }
