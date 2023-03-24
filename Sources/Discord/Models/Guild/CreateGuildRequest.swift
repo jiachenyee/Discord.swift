@@ -169,4 +169,42 @@ public struct PartialChannel: Codable {
         case defaultSortOrder = "default_sort_order"
         case defaultForumLayout = "default_forum_layout"
     }
+    
+    public init(id: String,
+                type: ChannelType, position: Int? = nil, permissionOverwrites: [Overwrite]? = nil, name: String? = nil, topic: String? = nil, nsfw: Bool? = nil, lastMessageId: Snowflake? = nil, bitrate: Int? = nil, userLimit: Int? = nil, rateLimitPerUser: Int? = nil, recipients: [User]? = nil, icon: String? = nil, ownerId: Snowflake? = nil, applicationId: Snowflake? = nil, managed: Bool? = nil, parentId: Snowflake? = nil, lastPinTimestamp: ISO8601Timestamp? = nil, rtcRegion: String? = nil, videoQualityMode: VideoQualityTag? = nil, messageCount: Int? = nil, memberCount: Int? = nil, threadMetadata: ThreadMetadata? = nil, member: ThreadMember? = nil, defaultAutoArchiveDuration: Int? = nil, permissions: String? = nil, flags: ChannelFlags? = nil, totalMessageSent: Int? = nil, availableTags: [ForumTag]? = nil, appliedTags: [Snowflake]? = nil, defaultReactionEmoji: DefaultReaction? = nil, defaultThreadRateLimitPerUser: Int? = nil, defaultSortOrder: ForumSortOrder? = nil, defaultForumLayout: ForumLayoutTypes? = nil) {
+        self.id = id
+        self.type = type
+        self.position = position
+        self.permissionOverwrites = permissionOverwrites
+        self.name = name
+        self.topic = topic
+        self.nsfw = nsfw
+        self.lastMessageId = lastMessageId
+        self.bitrate = bitrate
+        self.userLimit = userLimit
+        self.rateLimitPerUser = rateLimitPerUser
+        self.recipients = recipients
+        self.icon = icon
+        self.ownerId = ownerId
+        self.applicationId = applicationId
+        self.managed = managed
+        self.parentId = parentId
+        self.lastPinTimestamp = lastPinTimestamp
+        self.rtcRegion = rtcRegion
+        self.videoQualityMode = videoQualityMode
+        self.messageCount = messageCount
+        self.memberCount = memberCount
+        self.threadMetadata = threadMetadata
+        self.member = member
+        self.defaultAutoArchiveDuration = defaultAutoArchiveDuration
+        self.permissions = permissions
+        self.flags = flags
+        self.totalMessageSent = totalMessageSent
+        self.availableTags = availableTags
+        self.appliedTags = appliedTags
+        self.defaultReactionEmoji = defaultReactionEmoji
+        self.defaultThreadRateLimitPerUser = defaultThreadRateLimitPerUser
+        self.defaultSortOrder = defaultSortOrder
+        self.defaultForumLayout = defaultForumLayout
+    }
 }
