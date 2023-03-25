@@ -219,8 +219,8 @@ public extension Bot {
                               endpoint: "/guilds/\(guildId)/regions")
     }
     
-    func getGuildInvites(guild guildId: Snowflake) async throws -> [Invite] {
-        try await sendRequest([Invite].self,
+    func getGuildInvites(guild guildId: Snowflake) async throws -> Data {
+        try await sendRequest(
                               endpoint: "guilds/\(guildId)/invites")
     }
 }
