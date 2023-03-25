@@ -19,8 +19,8 @@ public struct AuditLog: Codable {
     public var auto_moderation_rules: [AutoModerationRule]
     #warning("Incomplete")
     
-//    /// array of guild scheduled event objects    List of guild scheduled events referenced in the audit log
-//    public var guild_scheduled_events
+    /// List of guild scheduled events referenced in the audit log
+    public var guild_scheduled_events: [ScheduledEvent]
     
     /// List of partial integration objects
     public var integrations: [Integration]
