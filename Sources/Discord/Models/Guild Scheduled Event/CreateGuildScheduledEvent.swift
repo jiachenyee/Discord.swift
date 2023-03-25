@@ -97,7 +97,7 @@ public struct CreateGuildScheduledEvent: Codable {
                                 location: String,
                                 privacyLevel: EventPrivacyLevel = .guildOnly,
                                 scheduledStartTime: ISO8601Timestamp,
-                                scheduledEndTime: ISO8601Timestamp? = nil,
+                                scheduledEndTime: ISO8601Timestamp,
                                 description: String? = nil,
                                 image: Data? = nil) -> Self {
         Self(entityMetadata: EventEntityMetadata(location: location),
