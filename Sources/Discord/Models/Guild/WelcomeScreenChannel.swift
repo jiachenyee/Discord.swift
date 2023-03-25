@@ -26,4 +26,14 @@ public struct WelcomeScreenChannel: Codable {
         case emojiId = "emoji_id"
         case emojiName = "emoji_name"
     }
+    
+    public init(channelId: Snowflake,
+                description: String,
+                emojiId: Snowflake? = nil,
+                emojiName: String? = nil) {
+        self.channelId = channelId
+        self.description = description
+        self.emojiId = emojiId
+        self.emojiName = emojiName
+    }
 }
