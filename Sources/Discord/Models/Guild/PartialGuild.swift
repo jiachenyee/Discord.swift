@@ -51,11 +51,11 @@ public struct PartialGuild: Codable {
     /// application id of the guild creator if it is bot-created
     public var application_id: Snowflake?
     /// the id of the channel where guild notices such as welcome messages and boost events are posted
-    public var system_channel_id: Snowflake?
+    public var system_channel_id: Int?
     /// system channel flags
     public var system_channel_flags: SystemChannelFlags?
     /// the id of the channel where Community guilds can display rules and/or guidelines
-    public var rules_channel_id: Snowflake?
+    public var rules_channel_id: Int?
     /// the maximum number of presences for the guild (null is always returned, apart from the largest of guilds)
     public var max_presences: Int?
     /// the maximum number of members for the guild
@@ -73,7 +73,7 @@ public struct PartialGuild: Codable {
     /// the preferred locale of a Community guild; used in server discovery and notices from Discord, and sent in interactions; defaults to "en-US"
     public var preferred_locale: DiscordLocale?
     /// the id of the channel where admins and moderators of Community guilds receive notices from Discord
-    public var public_updates_channel_id: Snowflake?
+    public var public_updates_channel_id: Int?
     /// the maximum amount of users in a video channel
     public var max_video_channel_users: Int?
     /// approximate number of members in this guild, returned from the GET /guilds/<id> endpoint when with_counts is true
