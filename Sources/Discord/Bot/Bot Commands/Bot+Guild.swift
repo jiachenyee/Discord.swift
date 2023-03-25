@@ -218,4 +218,9 @@ public extension Bot {
         try await sendRequest([VoiceRegion].self,
                               endpoint: "/guilds/\(guildId)/regions")
     }
+    
+    func getGuildInvites(guild guildId: Snowflake) async throws -> [Invite] {
+        try await sendRequest([Invite].self,
+                              endpoint: "guilds/\(guildId)/invites")
+    }
 }
