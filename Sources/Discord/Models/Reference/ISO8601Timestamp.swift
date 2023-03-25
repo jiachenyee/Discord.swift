@@ -74,4 +74,24 @@ public struct ISO8601Timestamp: Codable {
         
         self.date = date
     }
+    
+    public init(_ date: Date) {
+        self.date = date
+    }
+    
+    public init(timeIntervalSince1970: TimeInterval) {
+        self.init(Date(timeIntervalSince1970: timeIntervalSince1970))
+    }
+    
+    public static var now: Self {
+        Self(.now)
+    }
+    
+    public mutating func addTimeInterval(_ timeInterval: TimeInterval) {
+        date.addTimeInterval(timeInterval)
+    }
+    
+    public func addingTimeInterval(_ timeInterval: TimeInterval) -> ISO8601Timestamp {
+        ISO8601Timestamp(date.addingTimeInterval(timeInterval))
+    }
 }

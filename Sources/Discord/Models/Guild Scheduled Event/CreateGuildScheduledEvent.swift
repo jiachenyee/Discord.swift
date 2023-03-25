@@ -59,13 +59,13 @@ public struct CreateGuildScheduledEvent: Codable {
         self.image = image
     }
     
-    public static func stageChannelEvent(channelId: Snowflake,
-                                         name: String,
-                                         privacyLevel: EventPrivacyLevel = .guildOnly,
-                                         scheduledStartTime: ISO8601Timestamp,
-                                         scheduledEndTime: ISO8601Timestamp? = nil,
-                                         description: String? = nil,
-                                         image: Data? = nil) -> Self {
+    public static func stageChannel(channelId: Snowflake,
+                                    name: String,
+                                    privacyLevel: EventPrivacyLevel = .guildOnly,
+                                    scheduledStartTime: ISO8601Timestamp,
+                                    scheduledEndTime: ISO8601Timestamp? = nil,
+                                    description: String? = nil,
+                                    image: Data? = nil) -> Self {
         Self(channelId: channelId,
              name: name,
              privacyLevel: privacyLevel,
@@ -76,13 +76,13 @@ public struct CreateGuildScheduledEvent: Codable {
              image: image)
     }
     
-    public static func voiceChannelEvent(channelId: Snowflake,
-                                         name: String,
-                                         privacyLevel: EventPrivacyLevel = .guildOnly,
-                                         scheduledStartTime: ISO8601Timestamp,
-                                         scheduledEndTime: ISO8601Timestamp? = nil,
-                                         description: String? = nil,
-                                         image: Data? = nil) -> Self {
+    public static func voiceChannel(channelId: Snowflake,
+                                    name: String,
+                                    privacyLevel: EventPrivacyLevel = .guildOnly,
+                                    scheduledStartTime: ISO8601Timestamp,
+                                    scheduledEndTime: ISO8601Timestamp? = nil,
+                                    description: String? = nil,
+                                    image: Data? = nil) -> Self {
         Self(channelId: channelId,
              name: name,
              privacyLevel: privacyLevel,
@@ -93,13 +93,13 @@ public struct CreateGuildScheduledEvent: Codable {
              image: image)
     }
     
-    public static func externalEvent(name: String,
-                                     location: String,
-                                     privacyLevel: EventPrivacyLevel = .guildOnly,
-                                     scheduledStartTime: ISO8601Timestamp,
-                                     scheduledEndTime: ISO8601Timestamp? = nil,
-                                     description: String? = nil,
-                                     image: Data? = nil) -> Self {
+    public static func external(name: String,
+                                location: String,
+                                privacyLevel: EventPrivacyLevel = .guildOnly,
+                                scheduledStartTime: ISO8601Timestamp,
+                                scheduledEndTime: ISO8601Timestamp? = nil,
+                                description: String? = nil,
+                                image: Data? = nil) -> Self {
         Self(entityMetadata: EventEntityMetadata(location: location),
              name: name,
              privacyLevel: privacyLevel,
