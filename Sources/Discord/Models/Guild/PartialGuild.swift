@@ -83,7 +83,7 @@ public struct PartialGuild: Codable {
     /// the welcome screen of a Community guild, shown to new members, returned in an Invite's guild object
     public var welcome_screen: WelcomeScreen?
     /// guild NSFW level
-    public var nsfw_level: GuildNSFWLevel
+    public var nsfw_level: GuildNSFWLevel?
     /// custom guild stickers
     //    public var stickers?: array of sticker objects
 #warning("sticker missing")
