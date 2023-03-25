@@ -30,4 +30,13 @@ public extension Bot {
                               endpoint: "guilds/\(guildId)/scheduled-events/\(eventId)",
                               parameters: ["with_user_count": withUserCount])
     }
+    
+    func modifyScheduledEvent(guild guildId: Snowflake,
+                              event eventId: Snowflake,
+                              modifying modifications: ModifyGuildScheduledRequest) async throws -> ScheduledEvent {
+        try await sendRequest(ScheduledEvent.self,
+                              endpoint: "guilds/\(guildId)/scheduled-events/\(eventId)",
+                              method: .patch,
+                              data: modifications)
+    }
 }
