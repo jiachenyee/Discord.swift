@@ -173,7 +173,7 @@ public extension Bot {
                                   requests: [ModifyGuildRolePositionRequest]) async throws -> [Role] {
         try await sendRequest([Role].self,
                               endpoint: "/guilds/\(guildId)/roles", method: .patch,
-                              data: request)
+                              data: requests)
     }
     
     @discardableResult
@@ -191,5 +191,11 @@ public extension Bot {
         try await sendRequest(MFALevel.self,
                               endpoint: "/guilds/\(guildId)/mfa", method: .post,
                               data: modifications)
+    }
+    
+    func deleteGuildRole(guild guildId: Snowflake,
+                         role roleId: Snowflake) async throws {
+        try await sendRequest(endpoint: "/guilds/\(guildId)/roles/\(roleId)",
+                              method: .delete)
     }
 }
