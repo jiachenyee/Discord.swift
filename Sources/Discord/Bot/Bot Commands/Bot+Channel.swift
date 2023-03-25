@@ -193,6 +193,15 @@ public extension Bot {
                               method: .delete)
     }
     
+    /// Deletes all the reactions for a given emoji on a message.
+    /// - Parameters:
+    ///   - reaction: The reaction emoji to delete.
+    ///   - channelId: The channel ID of the target channel.
+    ///   - messageId: The message ID of the target message.
+    /// - Important: This endpoint requires the `MANAGE_MESSAGES` permission to be present on the current user.
+    /// - Warning: The emoji must be URL Encoded or the request will fail with `10014: Unknown Emoji`.
+    /// - Note: To use custom emoji, you must encode it in the format `name:id` with the emoji name and emoji ID.
+    /// > Discord Reference: https://discord.com/developers/docs/resources/channel#delete-all-reactions-for-emoji
     func deleteAllReactions(forEmoji reaction: ReactionEmoji,
                             inChannel channelId: Snowflake,
                             onMessage messageId: Snowflake) async throws {
@@ -200,6 +209,17 @@ public extension Bot {
                               method: .delete)
     }
     
+    /// Edit a previously sent message.
+    ///
+    /// The fields content, embeds, and flags can be edited by the original message author. Other users can only edit `flags` and only if they have the `MANAGE_MESSAGES` permission in the corresponding channel. When specifying `flags`, ensure to include all previously set flags/bits in addition to ones that you are modifying. Only `flags` documented in the table below may be modified by users (unsupported `flag` changes are currently ignored without error).
+    ///
+    /// When the `content` field is edited, the `mentions` array in the message object will be reconstructed from scratch based on the new content. The `allowed_mentions` field of the edit request controls how this happens. If there is no explicit `allowed_mentions` in the edit request, the content will be parsed with default allowances, that is, without regard to whether or not an `allowed_mentions` was present in the request that originally created the message.
+    /// - Parameters:
+    ///   - channelId: The channel ID of the target channel.
+    ///   - messageId: The message ID of the target message.
+    ///   - editedContents: The modified content of the target message.
+    /// - Returns: Returns a message object. Fires a Message Update Gateway event.
+    /// > Discord Reference: https://discord.com/developers/docs/resources/channel#edit-message
     func editMessage(channel channelId: Snowflake,
                      message messageId: Snowflake,
                      editedContents: MessageEdit) async throws -> Message {
@@ -209,12 +229,26 @@ public extension Bot {
                               data: editedContents)
     }
     
+    /// Deletes a message.
+    /// - Parameters:
+    ///   - channelId: The channel ID of the target channel.
+    ///   - messageId: The message ID of the target message.
+    /// - Note: If operating on a guild channel and trying to delete a message that was not sent by the current user, this endpoint requires the `MANAGE_MESSAGES` permission.
+    /// > Discord Reference: https://discord.com/developers/docs/resources/channel#delete-message
     func deleteMessage(channel channelId: Snowflake,
                        message messageId: Snowflake) async throws {
         try await sendRequest(endpoint: "/channels/\(channelId)/messages/\(messageId)",
                               method: .delete)
     }
     
+    /// Delete multiple messages in a single request.
+    ///
+    /// Any message IDs given that do not exist or are invalid will count towards the minimum and maximum message count (currently 2 and 100 respectively).
+    /// - Parameters:
+    ///   - channelId: The channel ID of the target channel. 
+    ///   - bulkDeleteMessages: The array of message IDs to be deleted.
+    /// - Important: This endpoint can only be used on guild channels and requires the `MANAGE_MESSAGES` permission. It will not delete messages older than 2 weeks, and will fail with a 400 BAD REQUEST if any message provided is older than that or if any duplicate message IDs are provided.
+    /// > Discord Reference: https://discord.com/developers/docs/resources/channel#bulk-delete-messages
     func bulkDeleteMessages(channel channelId: Snowflake,
                             bulkDelete bulkDeleteMessages: BulkDeleteMessages) async throws {
         try await sendRequest(endpoint: "/channels/\(channelId)/messages/bulk-delete",
@@ -222,6 +256,15 @@ public extension Bot {
                               data: bulkDeleteMessages)
     }
     
+    /// Edit the channel permission overwrites for a user or role in a channel.
+    ///
+    /// Only usable for guild channels.
+    /// - Parameters:
+    ///   - channelId: The channel ID of the target channel.
+    ///   - overwriteId: The overwrite ID of the permissions.
+    ///   - permission: The specifications of the permissions to be overwritten.
+    /// - Important: Requires the `MANAGE_ROLES` permission.
+    /// > Disord Reference: https://discord.com/developers/docs/resources/channel#edit-channel-permissions
     func editChannelPermission(channel channelId: Snowflake,
                                overwrite overwriteId: Snowflake,
                                permission: ChannelPermission) async throws {
@@ -230,17 +273,41 @@ public extension Bot {
                               data: permission)
     }
     
+    /// Delete a channel permission overwrite for a user or role in a channel.
+    ///
+    /// Only usable for guild channels.
+    /// - Parameters:
+    ///   - channelId: The channel ID of the target channel.
+    ///   - overwriteId: The overwrite ID of the permissions.
+    /// - Important: Requires the `MANAGE_ROLES` permission.
+    /// > Discord Reference: https://discord.com/developers/docs/resources/channel#delete-channel-permission
     func deleteChannelPermission(channel channelId: Snowflake,
                                  overwrite overwriteId: Snowflake) async throws {
         try await sendRequest(endpoint: "/channels/\(channelId)/permissions/\(overwriteId)",
                               method: .delete)
     }
     
+    /// Returns a list of invite objects (with invite metadata) for the channel.
+    ///
+    /// Only usable for guild channels.
+    /// - Parameter channelId: The channel ID of the target channel.
+    /// - Returns: Returns an array of invite objects.
+    /// - Important: Requires the `MANAGE_CHANNELS` permission.
+    /// > Discord Reference: https://discord.com/developers/docs/resources/channel#get-channel-invites
     func getChannelInvites(channel channelId: Snowflake) async throws -> [Invite] {
         try await sendRequest([Invite].self,
                               endpoint: "/channels/\(channelId)/invites")
     }
     
+    /// Create a new invite object for the channel.
+    ///
+    /// Only usable for guild channels.
+    /// - Parameters:
+    ///   - channelId: The channel ID of the target channel.
+    ///   - channelInvite: The specifications of the channel invite.
+    /// - Returns: Returns an invite object.
+    /// - Important: Requires the `CREATE_INSTANT_INVITE` permission.
+    /// > Discord Reference: https://discord.com/developers/docs/resources/channel#create-channel-invite
     func createChannelInvite(channel channelId: Snowflake,
                              invite channelInvite: ChannelInvite) async throws -> Invite {
         try await sendRequest(Invite.self,
@@ -248,6 +315,14 @@ public extension Bot {
                               data: channelInvite)
     }
     
+    
+    /// Follow an Announcement Channel to send messages to a target channel.
+    /// - Parameters:
+    ///   - channelId: The channel ID of the target channel.
+    ///   - announcementChannel: The webhook ID of the announcement channel. 
+    /// - Returns: Returns a followed channel object. Fires a Webhooks Update Gateway event for the target channel.
+    /// - Important: Requires the `MANAGE_WEBHOOKS` permission in the target channel.
+    /// > Discord Reference: https://discord.com/developers/docs/resources/channel#follow-announcement-channel
     func followAnnouncementChannel(channel channelId: Snowflake,
                                    announcementChannel: FollowChannel) async throws -> FollowedChannel {
         try await sendRequest(FollowedChannel.self,
@@ -256,29 +331,57 @@ public extension Bot {
                               data: announcementChannel)
     }
     
+    /// Post a typing indicator for the specified channel.
+    ///
+    /// Generally bots should not implement this route. However, if a bot is responding to a command and expects the computation to take a few seconds, this endpoint may be called to let the user know that the bot is processing their message.
+    /// - Parameters:
+    ///   - channelId: The channel ID of the target channel.
+    /// > Discord Reference: https://discord.com/developers/docs/resources/channel#trigger-typing-indicator
     func triggerTypingIndicator(channel channelId: Snowflake) async throws {
         try await sendRequest(endpoint: "/channels/\(channelId)/typing",
                               method: .post)
     }
     
+    /// Gets all the pinned messages of a channel.
+    /// - Parameter channelId: The channel ID of the target channel.
+    /// - Returns: Returns all pinned messages in the channel as an array of message objects.
+    /// > Discord Reference: https://discord.com/developers/docs/resources/channel#get-pinned-messages
     func getPinnedMessages(channel channelId: Snowflake) async throws -> [Message] {
         try await sendRequest([Message].self,
                               endpoint: "/channels/\(channelId)/pins",
                               method: .post)
     }
     
+    /// Pin a message in the channel.
+    /// - Parameters:
+    ///   - channelId: The channel ID of the target channel.
+    ///   - messageId: The message ID of the targte message.
+    /// - Important: Requires the `MANAGE_MESSAGES` permission. The maximum amount of pinned messages in a channel is 50.
+    /// > Discord Reference: https://discord.com/developers/docs/resources/channel#pin-message
     func pinMessage(channel channelId: Snowflake,
                     message messageId: Snowflake) async throws {
         try await sendRequest(endpoint: "/channels/\(channelId)/pins/\(messageId)",
                               method: .put)
     }
     
+    /// Unpin a message in the channel.
+    /// - Parameters:
+    ///   - channelId: The channel ID of the target channel.
+    ///   - messageId: The message ID of the targte message.
+    /// - Important: Requires the `MANAGE_MESSAGES` permission.
+    /// > Discord Reference: https://discord.com/developers/docs/resources/channel#unpin-messagez
     func unpinMessage(channel channelId: Snowflake,
                       message messageId: Snowflake) async throws {
         try await sendRequest(endpoint: "/channels/\(channelId)/pins/\(messageId)",
                               method: .delete)
     }
     
+    /// Adds a recipient to a Group DM using their access token.
+    /// - Parameters:
+    ///   - channelId: The channel ID of the target channel.
+    ///   - userId: The user ID of the target user.
+    ///   - recipientInfo: The information of the user added, including their nickname and access token.
+    /// > Discord Reference: https://discord.com/developers/docs/resources/channel#group-dm-add-recipient
     func groupDMAdd(groupDM channelId: Snowflake,
                     recipient userId: Snowflake,
                     recipientInfo: GroupDMRecipient) async throws {
@@ -287,12 +390,26 @@ public extension Bot {
                               data: recipientInfo)
     }
     
+    /// Removes a recipient from a Group DM.
+    /// - Parameters:
+    ///   - channelId: The channel ID of the target channel.
+    ///   - userId: The user ID of the target user.
+    /// > Discord Reference: https://discord.com/developers/docs/resources/channel#group-dm-remove-recipient
     func groupDMRemove(groupDM channelId: Snowflake,
                        recipient userId: Snowflake) async throws {
         try await sendRequest(endpoint: "/channels/\(channelId)/recipients/\(userId)",
                               method: .delete)
     }
     
+    /// Creates a new thread from an existing message.
+    ///
+    /// When called on a `GUILD_TEXT` channel, creates a `PUBLIC_THREAD`. When called on a `GUILD_ANNOUNCEMENT` channel, creates a `ANNOUNCEMENT_THREAD`. Does not work on a `GUILD_FORUM` channel. The id of the created thread will be the same as the id of the source message, and as such a message can only have a single thread created from it.
+    /// - Parameters:
+    ///   - channelId: The channel ID of the target channel.
+    ///   - messageId: The message ID of the target message.
+    ///   - threadInfo: The specifications of the threat created.
+    /// - Returns: Returns a channel on success, and a 400 BAD REQUEST on invalid parameters. Fires a Thread Create and a Message Update Gateway event.
+    /// > Discord Reference: https://discord.com/developers/docs/resources/channel#start-thread-from-message
     func startThread(channel channelId: Snowflake,
                      message messageId: Snowflake,
                      threadInfo: NewThreadInformation) async throws -> Channel {
