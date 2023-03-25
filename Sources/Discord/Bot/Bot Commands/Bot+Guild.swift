@@ -241,8 +241,8 @@ public extension Bot {
     }
     
     func modifyGuildWidget(guild guildId: Snowflake,
-                           widgetSettings: GuildWidgetSettings) async throws -> GuildWidget {
-        try await sendRequest(GuildWidget.self,
+                           widgetSettings: GuildWidgetSettings) async throws -> GuildWidgetSettings {
+        try await sendRequest(GuildWidgetSettings.self,
                               endpoint: "guilds/\(guildId)/widget",
                               method: .patch,
                               data: widgetSettings)
