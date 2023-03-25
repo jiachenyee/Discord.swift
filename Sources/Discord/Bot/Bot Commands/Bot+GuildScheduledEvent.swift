@@ -39,4 +39,10 @@ public extension Bot {
                               method: .patch,
                               data: modifications)
     }
+    
+    func deleteScheduledEvent(guild guildId: Snowflake,
+                              event eventId: Snowflake) async throws {
+        try await sendRequest(endpoint: "guilds/\(guildId)/scheduled-events/\(eventId)",
+                              method: .delete)
+    }
 }
