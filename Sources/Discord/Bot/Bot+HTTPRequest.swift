@@ -32,7 +32,8 @@ public extension Bot {
                                  parameters: parameters,
                                  headers: [
                                     .authorization("Bot \(token)"),
-                                    .userAgent("DiscordBot (https://github.com/jiachenyee/Discord.swift, 0)")
+                                    .userAgent("DiscordBot (https://github.com/jiachenyee/Discord.swift, 0)"),
+                                    .contentType("application/json")
                                  ])
         
         let value = try await request.serializingData().value
@@ -69,7 +70,8 @@ public extension Bot {
                                  encoder: .json,
                                  headers: [
                                     .authorization("Bot \(token)"),
-                                    .userAgent("DiscordBot (https://github.com/jiachenyee/Discord.swift, 0)")
+                                    .userAgent("DiscordBot (https://github.com/jiachenyee/Discord.swift, 0)"),
+                                    .contentType("application/json")
                                  ])
         
         let value = try await request.serializingData().value
