@@ -205,4 +205,17 @@ public extension Bot {
                               endpoint: "/guilds/\(guildId)/prune",
                               parameters: filters.toParameters())
     }
+    
+    func beginGuildPrune(guild guildId: Snowflake,
+                         request: PruneRequest) async throws -> Prune {
+        try await sendRequest(Prune.self,
+                              endpoint: "/guilds/\(guildId)/prune",
+                              method: .post,
+                              data: request)
+    }
+    
+    func getGuildVoiceRegions(guild guildId: Snowflake) async throws -> [VoiceRegion] {
+        try await sendRequest([VoiceRegion].self,
+                              endpoint: "/guilds/\(guildId)/regions")
+    }
 }

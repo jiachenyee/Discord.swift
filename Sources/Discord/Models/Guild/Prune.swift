@@ -8,5 +8,5 @@
 import Foundation
 
 public struct Prune: Codable {
-    public var pruned: Int
+    public var pruned: Int?
 }
