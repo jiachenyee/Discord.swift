@@ -170,7 +170,7 @@ public extension Bot {
     
     @discardableResult
     func modifyGuildRolePositions(guild guildId: Snowflake,
-                                  request: ModifyGuildRolePositionRequest) async throws -> [Role] {
+                                  request: [ModifyGuildRolePositionRequest]) async throws -> [Role] {
         try await sendRequest([Role].self,
                               endpoint: "/guilds/\(guildId)/roles", method: .patch,
                               data: request)
