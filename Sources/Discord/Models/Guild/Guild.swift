@@ -23,7 +23,7 @@ public struct Guild: Codable {
     /// true if the user is the owner of the guild
     public var owner: Bool?
     /// id of owner
-    public var owner_id: Snowflake
+    public var owner_id: Snowflake?
     /// total permissions for the user in the guild (excludes overwrites)
     public var permissions: String?
     /// id of afk channel
