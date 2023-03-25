@@ -12,14 +12,14 @@ public struct GuildWidgetSettings: Codable {
     public var enabled: Bool
     
     /// the widget channel id
-    public var channelId: Snowflake
+    public var channelId: Snowflake?
     
     enum CodingKeys: String, CodingKey {
         case enabled = "enabled"
         case channelId = "channel_id"
     }
     
-    public init(enabled: Bool, channelId: Snowflake) {
+    public init(enabled: Bool, channelId: Snowflake? = nil) {
         self.enabled = enabled
         self.channelId = channelId
     }
