@@ -198,4 +198,11 @@ public extension Bot {
         try await sendRequest(endpoint: "/guilds/\(guildId)/roles/\(roleId)",
                               method: .delete)
     }
+    
+    func getGuildPruneCount(guild guildId: Snowflake,
+                            filtering filters: PruneFilter) async throws -> Prune {
+        try await sendRequest(Prune.self,
+                              endpoint: "/guilds/\(guildId)/prune",
+                              parameters: filters.toParameters())
+    }
 }
