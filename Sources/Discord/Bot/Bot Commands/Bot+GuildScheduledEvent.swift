@@ -23,4 +23,11 @@ public extension Bot {
                               data: scheduledEvent)
     }
     
+    func getScheduledEvent(forGuild guildId: Snowflake,
+                           event eventId: Snowflake,
+                           withUserCount: Bool = true) async throws -> ScheduledEvent {
+        try await sendRequest(ScheduledEvent.self,
+                              endpoint: "guilds/\(guildId)/scheduled-events/\(eventId)",
+                              parameters: ["with_user_count": withUserCount])
+    }
 }
