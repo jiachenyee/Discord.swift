@@ -43,8 +43,7 @@ public struct Invite: Codable {
     public var stage_instance: [InviteStageInstance]?
     
     /// guild scheduled event data, only included if guild_scheduled_event_id contains a valid guild scheduled event id
-#warning("Incomplete implementation")
-//    public var guild_scheduled_event: guild scheduled event object?
+    public var guild_scheduled_event: ScheduledEvent?
     
     /// number of times this invite has been used
     public var uses: Int?

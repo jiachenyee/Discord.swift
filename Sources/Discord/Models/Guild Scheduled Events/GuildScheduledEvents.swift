@@ -12,13 +12,13 @@ public struct ScheduledEvent: Codable {
     public var id: Snowflake
     
     /// the guild id which the scheduled event belongs to
-    public var guild_id: Snowflake
+    public var guildId: Snowflake
     
     /// the channel id in which the scheduled event will be hosted, or null if scheduled entity type is EXTERNAL
-    public var channel_id: Snowflake?
+    public var channelId: Snowflake?
     
     /// the id of the user that created the scheduled event *
-    public var creator_id: Snowflake?
+    public var creatorId: Snowflake?
     
     /// the name of the scheduled event (1-100 characters)
     public var name: String
@@ -27,34 +27,51 @@ public struct ScheduledEvent: Codable {
     public var description: String?
     
     /// the time the scheduled event will start
-    public var scheduled_start_time: ISO8601Timestamp?
+    public var scheduledStartTime: ISO8601Timestamp?
     
     /// the time the scheduled event will end, required if entity_type is EXTERNAL
-    public var scheduled_end_time: ISO8601Timestamp?
+    public var scheduledEndTime: ISO8601Timestamp?
      
     /// the privacy level of the scheduled event
-    public var privacy_level: EventPrivacyLevel
+    public var privacyLevel: EventPrivacyLevel
     
     /// the status of the scheduled event
     public var status: EventStatus
     
     /// the type of the scheduled event
-    public var entity_type: GuildScheduledEventEntityType
+    public var entityType: GuildScheduledEventEntityType
     
     /// the id of an entity associated with a guild scheduled event
-    public var entity_id: Snowflake?
+    public var entityId: Snowflake?
     
     /// additional metadata for the guild scheduled event
-    public var entity_metadata: EventEntityMetadata?
+    public var entityMetadata: EventEntityMetadata?
     
     /// the user that created the scheduled event
     public var creator: User?
     
     /// the number of users subscribed to the scheduled event
-    static var user_count: Int?
+    static var userCount: Int?
     
     /// the cover image hash of the scheduled event
     static var image: String?
+    
+    enum CodingKeys: String, CodingKey {
+        case id = "id"
+        case guildId = "guild_id"
+        case channelId = "channel_id"
+        case creatorId = "creator_id"
+        case name = "name"
+        case description = "description"
+        case scheduledStartTime = "scheduled_start_time"
+        case scheduledEndTime = "scheduled_end_time"
+        case privacyLevel = "privacy_level"
+        case status = "status"
+        case entityType = "entity_type"
+        case entityId = "entity_id"
+        case entityMetadata = "entity_metadata"
+        case creator = "creator"
+    }
 }
 
 public enum EventPrivacyLevel: Int, Codable {
@@ -69,10 +86,10 @@ public enum GuildScheduledEventEntityType: Int, Codable {
 }
 
 public enum EventStatus: Int, Codable {
-    case SCHEDULED = 1
-    case ACTIVE = 2
-    case COMPLETED = 3
-    case CANCELED = 4
+    case scheduled = 1
+    case active = 2
+    case completed = 3
+    case cancelled = 4
 }
 
 public struct EventEntityMetadata: Codable {
@@ -82,11 +99,17 @@ public struct EventEntityMetadata: Codable {
 
 public struct ScheduledEventUser: Codable {
     /// the scheduled event id which the user subscribed to
-    public var guild_scheduled_event_id: Snowflake
+    public var guildScheduledEventId: Snowflake
     
     /// user which subscribed to an event
     public var user: User
     
     /// guild member data for this user for the guild which this event belongs to, if any
     public var member: GuildMember?
+    
+    enum CodingKeys: String, CodingKey {
+        case guildScheduledEventId = "guild_scheduled_event_id"
+        case user = "user"
+        case member = "member"
+    }
 }
