@@ -248,9 +248,8 @@ public extension Bot {
                               data: widgetSettings)
     }
     
-    func getGuildWidget(guild guildId: Snowflake) async throws -> GuildWidget {
-        try await sendRequest(GuildWidget.self,
-                              endpoint: "guilds/\(guildId)/widget.json")
+    func getGuildWidget(guild guildId: Snowflake) async throws -> Data {
+        try await sendRequest(endpoint: "guilds/\(guildId)/widget.json")
     }
     
     func getGuildVanityURL(guild guildId: Snowflake) async throws -> Invite {
