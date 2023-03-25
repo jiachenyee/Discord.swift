@@ -22,4 +22,18 @@ public struct ModifyCurrentUserVoiceState: Codable {
         case suppress = "suppress"
         case requestToSpeakTimestamp = "request_to_speak_timestamp"
     }
+    
+    public init(channelId: Snowflake? = nil, suppress: Bool? = nil, requestToSpeakTimestamp: ISO8601Timestamp? = nil) {
+        self.channelId = channelId
+        self.suppress = suppress
+        self.requestToSpeakTimestamp = requestToSpeakTimestamp
+    }
+    
+    public static func modifying(channelId: Snowflake? = nil,
+                                 suppress: Bool? = nil,
+                                 requestToSpeakTimestamp: ISO8601Timestamp? = nil) -> Self {
+        Self(channelId: channelId,
+             suppress: suppress,
+             requestToSpeakTimestamp: requestToSpeakTimestamp)
+    }
 }

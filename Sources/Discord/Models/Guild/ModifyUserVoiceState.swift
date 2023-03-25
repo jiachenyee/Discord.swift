@@ -14,9 +14,15 @@ public struct ModifyUserVoiceState: Codable {
     /// toggles the user's suppress state
     public var suppress: Bool?
     
-    init(channelId: Snowflake? = nil, suppress: Bool? = nil) {
+    public init(channelId: Snowflake? = nil, suppress: Bool? = nil) {
         self.channelId = channelId
         self.suppress = suppress
+    }
+    
+    public static func modifying(channelId: Snowflake? = nil,
+                                 suppress: Bool? = nil) -> Self {
+        Self(channelId: channelId,
+             suppress: suppress)
     }
     
     enum CodingKeys: String, CodingKey {
