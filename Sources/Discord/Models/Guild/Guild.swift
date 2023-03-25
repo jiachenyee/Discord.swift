@@ -9,7 +9,7 @@ import Foundation
 
 public struct Guild: Codable {
     /// guild id
-    public var id: Snowflake
+    public var id: Snowflake?
     /// guild name (2-100 characters, excluding trailing and leading whitespace)
     public var name: String
     /// icon hash
