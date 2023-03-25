@@ -161,4 +161,26 @@ public extension Bot {
                               endpoint: "/guilds/\(guildId)/roles", method: .post,
                               data: role)
     }
+    
+    func modifyGuildRolePositions(guild guildId: Snowflake,
+                                  request: ModifyGuildRolePositionRequest) async throws -> [Role] {
+        try await sendRequest([Role].self,
+                              endpoint: "/guilds/\(guildId)/roles", method: .patch,
+                              data: request)
+    }
+    
+    func modifyGuildRole(guild guildId: Snowflake,
+                         role roleId: Snowflake,
+                         withModifications modifications: ModifyGuildRoleRequest) async throws -> Role {
+        try await sendRequest(Role.self,
+                              endpoint: "/guilds/\(guildId)/roles/\(roleId)", method: .patch,
+                              data: modifications)
+    }
+    
+    func modifyGuildMFALevel(guild guildId: Snowflake,
+                             withModifications modifications: ModifyGuildMFARequest) async throws -> MFALevel {
+        try await sendRequest(MFALevel.self,
+                              endpoint: "/guilds/\(guildId)/mfa", method: .post,
+                              data: modifications)
+    }
 }
