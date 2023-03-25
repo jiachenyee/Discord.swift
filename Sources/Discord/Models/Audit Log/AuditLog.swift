@@ -21,8 +21,9 @@ public struct AuditLog: Codable {
     
 //    /// array of guild scheduled event objects    List of guild scheduled events referenced in the audit log
 //    public var guild_scheduled_events
-//    /// array of partial integration objects    List of partial integration objects
-//    public var integrations
+    
+    /// List of partial integration objects
+    public var integrations: [Integration]
     
     /// List of threads referenced in the audit log*
     public var threads: [Channel]

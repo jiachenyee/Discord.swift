@@ -14,8 +14,8 @@ public struct Emoji: Codable {
     /// emoji name
     public var name: String?
     
-    #warning("incomplete implementation")
-//    public var roles: array of role object ids    roles allowed to use this emoji
+    /// roles allowed to use this emoji
+    public var roles: [Snowflake]?
     
     /// user that created this emoji
     public var user: User?

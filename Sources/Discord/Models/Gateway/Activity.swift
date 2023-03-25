@@ -10,15 +10,15 @@ import Foundation
 public struct Activity: Codable {
     
     /// Activity's name
-    var name: String
+    public var name: String
     
     /// Activity type
-    var type: ActivityType
+    public var type: ActivityType
     
     /// Stream URL
-    var url: String?
+    public var url: String?
     
-    enum ActivityType: Int, Codable {
+    public enum ActivityType: Int, Codable {
         /// Playing {name}    "Playing Rocket League"
         case game = 0
         /// Streaming {details}    "Streaming Rocket League"
@@ -31,7 +31,7 @@ public struct Activity: Codable {
         case competing = 5
     }
     
-    init(name: String, type: ActivityType, url: String? = nil) {
+    public init(name: String, type: ActivityType, url: String? = nil) {
         self.name = name
         self.type = type
         self.url = url

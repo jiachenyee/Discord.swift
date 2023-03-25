@@ -9,18 +9,18 @@ import Foundation
 
 public struct Presence: Codable {
     /// Unix time (in milliseconds) of when the client went idle, or null if the client is not idle
-    var since: Int?
+    public var since: Int?
     
     /// User's activities
-    var activities: [Activity]
+    public var activities: [Activity]
     
     /// User's new status
-    var status: Status
+    public var status: Status
     
     /// Whether or not the client is afk
-    var afk: Bool
+    public var afk: Bool
     
-    enum Status: String, Codable {
+    public enum Status: String, Codable {
         case online = "online"
         case doNotDisturb = "dnd"
         case idle = "idle"
@@ -28,7 +28,7 @@ public struct Presence: Codable {
         case offline = "offline"
     }
     
-    init(since: Int? = nil, activities: [Activity], status: Status, afk: Bool) {
+    public init(since: Int? = nil, activities: [Activity], status: Status, afk: Bool) {
         self.since = since
         self.activities = activities
         self.status = status

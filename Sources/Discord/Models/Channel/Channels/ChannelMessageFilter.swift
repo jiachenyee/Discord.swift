@@ -10,18 +10,18 @@ import Alamofire
 
 public struct ChannelMessageFilter: Parameterable {
     /// Get messages around this message ID
-    var around: Snowflake?
+    public var around: Snowflake?
     
     /// Get messages before this message ID
-    var before: Snowflake?
+    public var before: Snowflake?
     
     /// Get messages after this message ID
-    var after: Snowflake?
+    public var after: Snowflake?
     
     /// Max number of messages to return (1-100)
-    var limit: Int?
+    public var limit: Int?
     
-    init(around: Snowflake? = nil, before: Snowflake? = nil, after: Snowflake? = nil, limit: Int? = nil) {
+    public init(around: Snowflake? = nil, before: Snowflake? = nil, after: Snowflake? = nil, limit: Int? = nil) {
         self.around = around
         self.before = before
         self.after = after

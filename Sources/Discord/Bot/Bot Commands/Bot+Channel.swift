@@ -13,6 +13,7 @@ public extension Bot {
                               endpoint: "/channels/\(channelId)")
     }
     
+    @discardableResult
     func modifyChannel(_ channelId: Snowflake,
                        updatedProperties: ChannelUpdateRequest) async throws -> Channel {
         try await sendRequest(Channel.self,
@@ -39,6 +40,7 @@ public extension Bot {
                               endpoint: "/channels/\(channelId)/messages/\(messageId)")
     }
     
+    @discardableResult
     func sendMessage(in channelId: Snowflake,
                      message: MessageRequest) async throws -> Message {
         try await sendRequest(Message.self,
@@ -47,6 +49,7 @@ public extension Bot {
                               data: message)
     }
     
+    @discardableResult
     func crosspostMessage(in channelId: Snowflake,
                           messageId: Snowflake) async throws -> Message {
         try await sendRequest(Message.self,
@@ -98,6 +101,7 @@ public extension Bot {
                               method: .delete)
     }
     
+    @discardableResult
     func editMessage(channel channelId: Snowflake,
                      message messageId: Snowflake,
                      editedContents: MessageEdit) async throws -> Message {
@@ -139,6 +143,7 @@ public extension Bot {
                               endpoint: "/channels/\(channelId)/invites")
     }
     
+    @discardableResult
     func createChannelInvite(channel channelId: Snowflake,
                              invite channelInvite: ChannelInvite) async throws -> Invite {
         try await sendRequest(Invite.self,
@@ -191,6 +196,7 @@ public extension Bot {
                               method: .delete)
     }
     
+    @discardableResult
     func startThread(channel channelId: Snowflake,
                      message messageId: Snowflake,
                      threadInfo: NewThreadInformation) async throws -> Channel {
@@ -200,6 +206,7 @@ public extension Bot {
                               data: threadInfo)
     }
     
+    @discardableResult
     func startThread(channel channelId: Snowflake,
                      threadInfo: NewChannelThreadInformation) async throws -> Channel {
         try await sendRequest(Channel.self,
@@ -208,6 +215,7 @@ public extension Bot {
                               data: threadInfo)
     }
     
+    @discardableResult
     func startForumThread(channel channelId: Snowflake,
                           postInfo: NewForumThread) async throws -> Channel {
         try await sendRequest(Channel.self,

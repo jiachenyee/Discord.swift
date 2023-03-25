@@ -74,6 +74,7 @@ public extension Bot {
         
     }
     
+    @discardableResult
     func bulkOverwriteCommands(type: CommandType = .application, _ commands: [Command]) async throws -> [Command] {
         switch type {
         case .application:

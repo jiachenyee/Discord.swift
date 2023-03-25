@@ -8,7 +8,7 @@
 import Foundation
 
 public struct BulkDeleteMessages: Codable {
-    var messages: [Snowflake]
+    public var messages: [Snowflake]
     
     public init(messages: [Snowflake]) {
         self.messages = messages

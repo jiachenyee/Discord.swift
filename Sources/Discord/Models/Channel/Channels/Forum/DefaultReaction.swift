@@ -9,10 +9,10 @@ import Foundation
 
 public struct DefaultReaction: Codable {
     /// the id of a guild's custom emoji
-    var emojiId: Snowflake?
+    public var emojiId: Snowflake?
     
     /// the unicode character of the emoji
-    var emojiName: String
+    public var emojiName: String
     
     enum CodingKeys: String, CodingKey {
         case emojiId = "emoji_id"

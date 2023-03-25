@@ -9,8 +9,13 @@ import Foundation
 
 public struct Ban: Codable {
     /// the reason for the ban
-    var reason: String?
+    public var reason: String?
     
     /// the banned user
-    var user: User
+    public var user: User
+    
+    public init(reason: String? = nil, user: User) {
+        self.reason = reason
+        self.user = user
+    }
 }

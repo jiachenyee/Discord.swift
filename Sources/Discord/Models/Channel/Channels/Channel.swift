@@ -11,7 +11,7 @@ public struct Channel: Codable {
     /// the id of this channel
     public var id: Snowflake
     /// the type of channel
-    public var type: ChannelType
+    public var type: ChannelType?
     /// the id of the guild (may be missing for some channel objects received over gateway guild dispatches)
     public var guildId: Snowflake?
     /// sorting position of the channel
