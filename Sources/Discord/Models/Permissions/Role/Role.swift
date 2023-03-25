@@ -9,7 +9,7 @@ import Foundation
 
 public struct Role: Codable {
     /// role id
-    public var id: Snowflake
+    public var id: Snowflake?
     
     /// role name
     public var name: String
