@@ -16,7 +16,8 @@ public extension Bot {
                                  method: method,
                                  headers: [
                                     .authorization("Bot \(token)"),
-                                    .userAgent("DiscordBot (https://github.com/jiachenyee/Discord.swift, 0)")
+                                    .userAgent("DiscordBot (https://github.com/jiachenyee/Discord.swift, 0)"),
+                                    .contentType("application/json")
                                  ])
         
         let value = try await request.serializingData().value
