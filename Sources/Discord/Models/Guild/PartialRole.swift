@@ -27,7 +27,7 @@ public struct PartialRole: Codable {
     public var unicodeEmoji: String?
     
     /// position of this role
-    public var position: Int
+    public var position: Int?
     
     /// permission bit set
     public var permissions: Permissions
