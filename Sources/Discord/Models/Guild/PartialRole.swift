@@ -9,7 +9,7 @@ import Foundation
 
 public struct PartialRole: Codable {
     /// role id
-    public var id: Snowflake?
+    public var id: Int?
     
     /// role name
     public var name: String
