@@ -45,7 +45,7 @@ public struct PartialGuild: Codable {
     /// custom guild emojis
     public var emojis: [Emoji]?
     /// enabled guild features
-    public var features: [GuildFeature]
+    public var features: [GuildFeature]?
     /// required MFA level for the guild
     public var mfa_level: MFALevel?
     /// application id of the guild creator if it is bot-created
