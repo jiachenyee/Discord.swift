@@ -7,7 +7,6 @@
 
 import Foundation
 
-#warning("Incomplete implementation")
 public struct AuditLog: Codable {
     /// List of application commands referenced in the audit log
     public var application_commands: [Command]
@@ -17,10 +16,9 @@ public struct AuditLog: Codable {
     
     /// List of auto moderation rules referenced in the audit log
     public var auto_moderation_rules: [AutoModerationRule]
-    #warning("Incomplete")
     
-//    /// array of guild scheduled event objects    List of guild scheduled events referenced in the audit log
-//    public var guild_scheduled_events
+    /// List of guild scheduled events referenced in the audit log
+    public var guild_scheduled_events: [ScheduledEvent]
     
     /// List of partial integration objects
     public var integrations: [Integration]
@@ -31,6 +29,7 @@ public struct AuditLog: Codable {
     /// List of users referenced in the audit log
     public var users: [User]
     
+#warning("Incomplete implementation")
 //    /// array of webhook objects    List of webhooks referenced in the audit log
 //    public var webhooks:
 }
