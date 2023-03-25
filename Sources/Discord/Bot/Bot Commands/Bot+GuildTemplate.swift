@@ -8,8 +8,8 @@
 import Foundation
 
 public extension Bot {
-    func getGuildTemplate(code templateCode: String) async throws -> GuildTemplate {
-        try await sendRequest(GuildTemplate.self,
+    func getGuildTemplate(code templateCode: String) async throws -> Data {
+        try await sendRequest(
                               endpoint: "guilds/templates/\(templateCode)")
     }
 }
