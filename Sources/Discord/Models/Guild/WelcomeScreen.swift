@@ -9,10 +9,10 @@ import Foundation
 
 public struct WelcomeScreen: Codable {
     /// the server description shown in the welcome screen
-    var description: String?
+    public var description: String?
     
     /// the channels shown in the welcome screen, up to 5
-    var welcomeChannels: [WelcomeScreenChannel]
+    public var welcomeChannels: [WelcomeScreenChannel]
     
     enum CodingKeys: String, CodingKey {
         case description = "description"

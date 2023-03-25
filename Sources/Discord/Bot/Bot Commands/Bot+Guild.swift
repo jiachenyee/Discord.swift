@@ -68,7 +68,7 @@ public extension Bot {
         try await sendRequest(ActiveGuildThreads.self,
                               endpoint: "/guilds/\(guildId)/threads/active")
     }
-
+    
     func getGuildMember(guild guildId: Snowflake,
                         member userId: Snowflake) async throws -> GuildMember {
         try await sendRequest(GuildMember.self,
@@ -222,5 +222,72 @@ public extension Bot {
     func getGuildInvites(guild guildId: Snowflake) async throws -> [Invite] {
         try await sendRequest([Invite].self,
                               endpoint: "guilds/\(guildId)/invites")
+    }
+    
+    func getGuildIntegrations(guild guildId: Snowflake) async throws -> [Integration] {
+        try await sendRequest([Integration].self,
+                              endpoint: "guilds/\(guildId)/integrations")
+    }
+    
+    func deleteGuildIntegrations(guild guildId: Snowflake,
+                                 integration integrationId: Integration) async throws {
+        try await sendRequest(endpoint: "guilds/\(guildId)/integrations/\(integrationId)",
+                              method: .delete)
+    }
+    
+    func getGuildWidgetSettings(guild guildId: Snowflake) async throws -> GuildWidgetSettings {
+        try await sendRequest(GuildWidgetSettings.self,
+                              endpoint: "guilds/\(guildId)/widget")
+    }
+    
+    func modifyGuildWidget(guild guildId: Snowflake,
+                           widgetSettings: GuildWidgetSettings) async throws -> GuildWidget {
+        try await sendRequest(GuildWidget.self,
+                              endpoint: "guilds/\(guildId)/widget",
+                              method: .patch)
+    }
+    
+    func getGuildWidget(guild guildId: Snowflake) async throws -> GuildWidget {
+        try await sendRequest(GuildWidget.self,
+                              endpoint: "guilds/\(guildId)/widget.json")
+    }
+    
+    func getGuildVanityURL(guild guildId: Snowflake) async throws -> Invite {
+        try await sendRequest(Invite.self,
+                              endpoint: "guilds/\(guildId)/vanity-url")
+    }
+    
+    func getGuildWidgetImage(guild guildId: Snowflake,
+                             style: WidgetStyle = .shield) async throws -> Data {
+        try await sendRequest(endpoint: "guilds/\(guildId)/widget.png",
+                              parameters: ["style": style.rawValue])
+    }
+    
+    func getGuildWelcomeScreen(guild guildId: Snowflake) async throws -> WelcomeScreen {
+        try await sendRequest(WelcomeScreen.self,
+                              endpoint: "guilds/\(guildId)/welcome-screen")
+    }
+    
+    func modifyGuildWelcomeScreen(guild guildId: Snowflake,
+                                  modifications: ModifyWelcomeScreen) async throws -> WelcomeScreen {
+        try await sendRequest(WelcomeScreen.self,
+                              endpoint: "guilds/\(guildId)/welcome-screen",
+                              method: .patch,
+                              data: modifications)
+    }
+    
+    func modifyCurrentUserVoiceState(guild guildId: Snowflake,
+                                     modifications: ModifyCurrentUserVoiceState) async throws {
+        try await sendRequest(endpoint: "guilds/\(guildId)/voice-states/@me",
+                              method: .patch,
+                              data: modifications)
+    }
+    
+    func modifyUserVoiceState(guild guildId: Snowflake,
+                              user userId: Snowflake,
+                              modifications: ModifyUserVoiceState) async throws {
+        try await sendRequest(endpoint: "guilds/\(guildId)/voice-states/\(userId)",
+                              method: .patch,
+                              data: modifications)
     }
 }

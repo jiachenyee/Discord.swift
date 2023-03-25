@@ -10,35 +10,35 @@ import Foundation
 public struct MessageRequest: Codable {
     
     /// Message contents (up to 2000 characters)
-    var content: String?
+    public var content: String?
     
     /// Can be used to verify a message was sent (up to 25 characters). Value will appear in the Message Create event.
-    var nonce: Nonce?
+    public var nonce: Nonce?
     
     /// true if this is a TTS message
-    var tts: Bool?
+    public var tts: Bool?
     
     /// Up to 10 rich embeds (up to 6000 characters)
-    var embeds: [Embed]?
+    public var embeds: [Embed]?
     
     /// Allowed mentions for the message
-    var allowed_mentions: [AllowedMention]?
+    public var allowed_mentions: [AllowedMention]?
      
     /// Include to make your message a reply
-    var message_reference: MessageReference?
+    public var message_reference: MessageReference?
      
     #warning("Incomplete implementation")
     /// Components to include with the message
-//    var components?*    array of message component objects
-//     var sticker_ids?*    array of snowflakes    IDs of up to 3 stickers in the server to send in the message
-//     var files[n]?*    file contents    Contents of the file being sent. See Uploading Files
-//     var payload_json?    string    JSON-encoded body of non-file params, only for multipart/form-data requests. See Uploading Files
+//    public var components?*    array of message component objects
+//     public var sticker_ids?*    array of snowflakes    IDs of up to 3 stickers in the server to send in the message
+//     public var files[n]?*    file contents    Contents of the file being sent. See Uploading Files
+//     public var payload_json?    string    JSON-encoded body of non-file params, only for multipart/form-data requests. See Uploading Files
     
     /// Attachment objects with filename and description. See Uploading Files
-    var attachments: [Attachment]?
+    public var attachments: [Attachment]?
     
     /// Message flags combined as a bitfield (only SUPPRESS_EMBEDS and SUPPRESS_NOTIFICATIONS can be set)
-    var flags: MessageFlags?
+    public var flags: MessageFlags?
     
     public init(content: String? = nil,
                 nonce: Nonce? = nil,

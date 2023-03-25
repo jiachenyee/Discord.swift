@@ -18,4 +18,9 @@ public struct GuildWidgetSettings: Codable {
         case enabled = "enabled"
         case channelId = "channel_id"
     }
+    
+    public init(enabled: Bool, channelId: Snowflake) {
+        self.enabled = enabled
+        self.channelId = channelId
+    }
 }

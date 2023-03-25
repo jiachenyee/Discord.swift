@@ -9,22 +9,22 @@ import Foundation
 
 public struct RoleTag: Codable {
     /// the id of the bot this role belongs to
-    var botId: Snowflake?
+    public var botId: Snowflake?
     
     /// the id of the integration this role belongs to
-    var integrationId: Snowflake?
+    public var integrationId: Snowflake?
     
     /// whether this is the guild's Booster role
-    var premiumSubscriber: Bool
+    public var premiumSubscriber: Bool
     
     /// the id of this role's subscription sku and listing
-    var subscriptionListingId: Snowflake?
+    public var subscriptionListingId: Snowflake?
     
     /// whether this role is available for purchase
-    var availableForPurchase: Bool
+    public var availableForPurchase: Bool
     
     /// whether this role is a guild's linked role
-    var guildConnections: Bool
+    public var guildConnections: Bool
     
     enum CodingKeys: String, CodingKey {
         case botId = "bot_id"

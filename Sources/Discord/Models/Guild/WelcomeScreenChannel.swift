@@ -9,16 +9,16 @@ import Foundation
 
 public struct WelcomeScreenChannel: Codable {
     /// the channel's id
-    var channelId: Snowflake
+    public var channelId: Snowflake
     
     /// the description shown for the channel
-    var description: String
+    public var description: String
     
     /// the emoji id, if the emoji is custom
-    var emojiId: Snowflake?
+    public var emojiId: Snowflake?
     
     /// the emoji name if custom, the unicode character if standard, or null if no emoji is set
-    var emojiName: String?
+    public var emojiName: String?
     
     enum CodingKeys: String, CodingKey {
         case channelId = "channel_id"

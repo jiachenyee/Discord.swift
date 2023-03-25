@@ -9,14 +9,21 @@ import Foundation
 
 public struct Overwrite: Codable {
     /// role or user id
-    var id: Snowflake
+    public var id: Snowflake
     
     /// either 0 (role) or 1 (member)
-    var type: Int
+    public var type: Int
     
     /// permission bit set
-    var allow: Permissions
+    public var allow: Permissions
     
     /// permission bit set
-    var deny: Permissions
+    public var deny: Permissions
+    
+    public init(id: Snowflake, type: Int, allow: Permissions, deny: Permissions) {
+        self.id = id
+        self.type = type
+        self.allow = allow
+        self.deny = deny
+    }
 }
