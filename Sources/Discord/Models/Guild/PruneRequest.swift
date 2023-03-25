@@ -23,7 +23,9 @@ public struct PruneRequest: Codable {
         case includeRoles = "include_roles"
     }
     
-    public init(days: Int, computePruneCount: Bool, includeRoles: [Snowflake]) {
+    public init(days: Int = 7,
+                computePruneCount: Bool = true,
+                includeRoles: [Snowflake] = []) {
         self.days = days
         self.computePruneCount = computePruneCount
         self.includeRoles = includeRoles
