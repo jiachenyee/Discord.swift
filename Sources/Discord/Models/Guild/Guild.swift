@@ -29,7 +29,7 @@ public struct Guild: Codable {
     /// id of afk channel
     public var afk_channel_id: Snowflake?
     /// afk timeout in seconds, can be set to: 60, 300, 900, 1800, 3600
-    public var afk_timeout: AFKTimeout
+    public var afk_timeout: AFKTimeout?
     /// true if the server widget is enabled
     public var widget_enabled: Bool?
     /// the channel id that the widget will generate an invite to, or null if set to no invite
