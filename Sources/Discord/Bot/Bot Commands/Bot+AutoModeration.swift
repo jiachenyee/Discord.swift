@@ -19,6 +19,7 @@ public extension Bot {
                               endpoint: "/guilds/\(guildId)/auto-moderation/rules/\(ruleId)")
     }
     
+    @discardableResult
     func createAutoModerationRule(forGuild guildId: Snowflake,
                                   rule: AutoModerationRuleRequest) async throws -> AutoModerationRule {
         try await sendRequest(AutoModerationRule.self,
@@ -27,6 +28,7 @@ public extension Bot {
                               data: rule)
     }
     
+    @discardableResult
     func updateAutoModerationRule(forGuild guildId: Snowflake,
                                   ruleId: Snowflake,
                                   rule: AutoModerationRuleUpdateRequest) async throws -> AutoModerationRule {

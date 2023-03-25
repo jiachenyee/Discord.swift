@@ -25,6 +25,7 @@ public extension Bot {
 //                              endpoint: "/guilds/\(guildId)/emojis/\(emojiId)")
 //    }
     
+    @discardableResult
     func modifyGuildEmoji(guild guildId: Snowflake,
                           emoji emojiId: Snowflake,
                           modifications: ModifyEmojiRequest) async throws -> Emoji {

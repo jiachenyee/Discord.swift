@@ -8,6 +8,7 @@
 import Foundation
 
 public extension Bot {
+    @discardableResult
     func createGuild(info guildInformation: CreateGuildRequest) async throws -> Guild {
         try await sendRequest(Guild.self,
                               endpoint: "/guilds",
@@ -28,6 +29,7 @@ public extension Bot {
                               endpoint: "/guilds/\(guildId)/preview")
     }
     
+    @discardableResult
     func modifyGuild(_ guildId: Snowflake,
                      modify modifyRequest: ModifyGuildRequest) async throws -> Guild {
         try await sendRequest(Guild.self,
@@ -46,6 +48,7 @@ public extension Bot {
                               endpoint: "/guilds/\(guildId)/channels")
     }
     
+    @discardableResult
     func createGuildChannel(guild guildId: Snowflake,
                             channel: NewGuildChannel) async throws -> Channel {
         try await sendRequest(Channel.self,
@@ -86,6 +89,7 @@ public extension Bot {
                               parameters: query.toParameters())
     }
     
+    @discardableResult
     func modifyGuildMember(guild guildId: Snowflake,
                            user userId: Snowflake,
                            modifications: ModifyGuildMemberRequest) async throws -> GuildMember {
@@ -95,6 +99,7 @@ public extension Bot {
                               data: modifications)
     }
     
+    @discardableResult
     func modifyCurrentMember(guild guildId: Snowflake,
                              modifications: ModifyCurrentMemberRequest) async throws -> GuildMember {
         try await sendRequest(GuildMember.self,
@@ -155,6 +160,7 @@ public extension Bot {
                               endpoint: "/guilds/\(guildId)/roles")
     }
     
+    @discardableResult
     func createGuildRole(guild guildId: Snowflake,
                          role: NewRole) async throws -> Role {
         try await sendRequest(Role.self,
@@ -162,6 +168,7 @@ public extension Bot {
                               data: role)
     }
     
+    @discardableResult
     func modifyGuildRolePositions(guild guildId: Snowflake,
                                   request: ModifyGuildRolePositionRequest) async throws -> [Role] {
         try await sendRequest([Role].self,
@@ -169,6 +176,7 @@ public extension Bot {
                               data: request)
     }
     
+    @discardableResult
     func modifyGuildRole(guild guildId: Snowflake,
                          role roleId: Snowflake,
                          withModifications modifications: ModifyGuildRoleRequest) async throws -> Role {
@@ -177,6 +185,7 @@ public extension Bot {
                               data: modifications)
     }
     
+    @discardableResult
     func modifyGuildMFALevel(guild guildId: Snowflake,
                              withModifications modifications: ModifyGuildMFARequest) async throws -> MFALevel {
         try await sendRequest(MFALevel.self,
