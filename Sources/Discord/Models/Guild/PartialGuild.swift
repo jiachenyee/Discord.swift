@@ -2,16 +2,16 @@
 //  File.swift
 //  
 //
-//  Created by Jia Chen Yee on 24/3/23.
+//  Created by Jia Chen Yee on 26/3/23.
 //
 
 import Foundation
 
-public struct Guild: Codable {
+public struct PartialGuild: Codable {
     /// guild id
-    public var id: Snowflake
+    public var id: Snowflake?
     /// guild name (2-100 characters, excluding trailing and leading whitespace)
-    public var name: String
+    public var name: String?
     /// icon hash
     public var icon: String?
     /// icon hash, returned when in the template object
@@ -41,7 +41,7 @@ public struct Guild: Codable {
     /// explicit content filter level
     public var explicit_content_filter: ExplicitContentFilterLevel?
     /// roles in the guild
-    public var roles: [Role]?
+    public var roles: [PartialRole]?
     /// custom guild emojis
     public var emojis: [Emoji]?
     /// enabled guild features
@@ -85,7 +85,7 @@ public struct Guild: Codable {
     /// guild NSFW level
     public var nsfw_level: GuildNSFWLevel
     /// custom guild stickers
-//    public var stickers?: array of sticker objects
+    //    public var stickers?: array of sticker objects
 #warning("sticker missing")
     /// whether the guild has the boost progress bar enabled
     public var premium_progress_bar_enabled: Bool

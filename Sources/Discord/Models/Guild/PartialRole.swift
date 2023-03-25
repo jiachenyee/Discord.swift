@@ -2,14 +2,14 @@
 //  File.swift
 //  
 //
-//  Created by Jia Chen Yee on 25/3/23.
+//  Created by Jia Chen Yee on 26/3/23.
 //
 
 import Foundation
 
-public struct Role: Codable {
+public struct PartialRole: Codable {
     /// role id
-    public var id: Snowflake
+    public var id: Snowflake?
     
     /// role name
     public var name: String
@@ -37,7 +37,7 @@ public struct Role: Codable {
     
     /// whether this role is mentionable
     public var mentionable: Bool
-     
+    
     /// the tags this role has
     public var tags: RoleTag?
     

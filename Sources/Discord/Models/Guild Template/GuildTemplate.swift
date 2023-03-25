@@ -36,7 +36,7 @@ public struct GuildTemplate: Codable {
     public var sourceGuildId: Snowflake
     
     /// the guild snapshot this template contains
-    public var serializedSourceGuild: Guild
+    public var serializedSourceGuild: PartialGuild
     
     /// whether the template has unsynced changes
     public var isDirty: Bool?
