@@ -33,7 +33,7 @@ public struct PartialRole: Codable {
     public var permissions: Permissions
     
     /// whether this role is managed by an integration
-    public var managed: Bool
+    public var managed: Bool?
     
     /// whether this role is mentionable
     public var mentionable: Bool
