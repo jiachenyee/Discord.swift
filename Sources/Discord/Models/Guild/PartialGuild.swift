@@ -88,5 +88,5 @@ public struct PartialGuild: Codable {
     //    public var stickers?: array of sticker objects
 #warning("sticker missing")
     /// whether the guild has the boost progress bar enabled
-    public var premium_progress_bar_enabled: Bool
+    public var premium_progress_bar_enabled: Bool?
 }
