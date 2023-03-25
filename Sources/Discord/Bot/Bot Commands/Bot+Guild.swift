@@ -230,7 +230,7 @@ public extension Bot {
     }
     
     func deleteGuildIntegrations(guild guildId: Snowflake,
-                                 integration integrationId: Integration) async throws {
+                                 integration integrationId: Snowflake) async throws {
         try await sendRequest(endpoint: "guilds/\(guildId)/integrations/\(integrationId)",
                               method: .delete)
     }
