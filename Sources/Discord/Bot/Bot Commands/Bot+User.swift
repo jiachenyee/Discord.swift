@@ -17,4 +17,28 @@ public extension Bot {
         try await sendRequest(User.self,
                               endpoint: "users/\(userId)")
     }
+    
+    @discardableResult
+    func modifyCurrentUser(_ modifications: ModifyCurrentUser) async throws -> User {
+        try await sendRequest(User.self,
+                              endpoint: "users/@me",
+                              method: .patch,
+                              data: modifications)
+    }
+    
+    func getCurrentUserGuild(filtering filters: FilterCurrentUserGuild) async throws -> [PartialGuild] {
+        try await sendRequest([PartialGuild].self,
+                              endpoint: "users/@me/guilds",
+                              parameters: filters.toParameters())
+    }
+    
+    func getCurrentUserGuildMember(_ guildId: Snowflake) async throws -> GuildMember {
+        try await sendRequest(GuildMember.self,
+                              endpoint: "users/@me/guilds/\(guildId)")
+    }
+    
+    func leaveGuild(_ guildId: Snowflake) async throws {
+        try await sendRequest(endpoint: "users/@me/guilds/\(guildId)",
+                              method: .delete)
+    }
 }
