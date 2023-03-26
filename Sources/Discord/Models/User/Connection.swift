@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Connection {
+public struct Connection: Codable {
     /// id of the connection account
     public var id: String
     

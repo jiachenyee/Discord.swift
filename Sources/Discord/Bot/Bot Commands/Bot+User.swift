@@ -48,4 +48,29 @@ public extension Bot {
                               method: .post,
                               data: directMessage)
     }
+    
+    func createGroupDM(_ groupDirectMessage: CreateGroupDM) async throws -> Channel {
+        try await sendRequest(Channel.self,
+                              endpoint: "users/@me/channels",
+                              method: .post,
+                              data: groupDirectMessage)
+    }
+    
+    func getUserConnections() async throws -> [Connection] {
+        try await sendRequest([Connection].self,
+                              endpoint: "users/@me/connections")
+    }
+    
+    func getUserApplicationRoleConnection(_ appId: Snowflake) async throws -> ApplicationRoleConnection {
+        try await sendRequest(ApplicationRoleConnection.self,
+                              endpoint: "users/@me/applications/\(appId)/role-connection")
+    }
+    
+    func updateUserApplicationRoleConnection(_ appId: Snowflake,
+                                             updating updates: UserApplicationRoleConnectionRequest) async throws -> ApplicationRoleConnection {
+        try await sendRequest(ApplicationRoleConnection.self,
+                              endpoint: "users/@me/applications/\(appId)/role-connection",
+                              method: .patch,
+                              data: updates)
+    }
 }

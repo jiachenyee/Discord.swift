@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct Snowflake: ExpressibleByStringLiteral, ExpressibleByIntegerLiteral, CustomStringConvertible, Codable {
+public struct Snowflake: ExpressibleByStringLiteral, ExpressibleByIntegerLiteral, CustomStringConvertible, Codable, Hashable {
     
     public var description: String {
         stringValue
