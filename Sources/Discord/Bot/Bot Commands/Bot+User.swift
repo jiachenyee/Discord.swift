@@ -41,4 +41,11 @@ public extension Bot {
         try await sendRequest(endpoint: "users/@me/guilds/\(guildId)",
                               method: .delete)
     }
+    
+    func createDM(_ directMessage: CreateDirectMessage) async throws -> Channel {
+        try await sendRequest(Channel.self,
+                              endpoint: "users/@me/channels",
+                              method: .post,
+                              data: directMessage)
+    }
 }
