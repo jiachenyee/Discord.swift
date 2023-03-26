@@ -38,7 +38,6 @@ public extension Bot {
     ///   - rule: The configuration of the rule created.
     /// - Returns: Returns an auto moderation rule on success. Fires an Auto Moderation Rule Create Gateway event.
     /// - Important: This endpoint requires the `MANAGE_GUILD` permission
-    /// - Note: This endpoint supports the `X-Audit-Log-Reason` header.
     /// > Discord Reference: [https://discord.com/developers/docs/resources/auto-moderation#create-auto-moderation-rule](https://discord.com/developers/docs/resources/auto-moderation#create-auto-moderation-rule)
     @discardableResult
     func createAutoModerationRule(forGuild guildId: Snowflake,
@@ -56,7 +55,6 @@ public extension Bot {
     ///   - rule: The updated configurations of the target rule.
     /// - Returns: Returns an auto moderation rule on success. Fires an Auto Moderation Rule Update Gateway event.
     /// - Important: Requires `MANAGE_GUILD` permissions.
-    /// - Note: All parameters for this endpoint are optional. This endpoint supports the `X-Audit-Log-Reason` header.
     /// > Discord Reference: [https://discord.com/developers/docs/resources/auto-moderation#modify-auto-moderation-rule](https://discord.com/developers/docs/resources/auto-moderation#modify-auto-moderation-rule)
     @discardableResult
     func updateAutoModerationRule(forGuild guildId: Snowflake,
@@ -73,7 +71,6 @@ public extension Bot {
     ///   - guildId: The guild ID of the target guild.
     ///   - ruleId: The rule ID of the target rule.
     /// - Important: This endpoint requires the `MANAGE_GUILD` permission.
-    /// - Note: This endpoint supports the `X-Audit-Log-Reason` header.
     /// > Discord Reference: [https://discord.com/developers/docs/resources/auto-moderation#delete-auto-moderation-rule](https://discord.com/developers/docs/resources/auto-moderation#delete-auto-moderation-rule)
     func deleteAutoModerationRule(forGuild guildId: Snowflake,
                                   ruleId: Snowflake) async throws {
