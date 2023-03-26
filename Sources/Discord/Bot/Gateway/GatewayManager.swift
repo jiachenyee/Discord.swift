@@ -46,7 +46,7 @@ class GatewayManager {
             
             switch operation {
             case .dispatch:
-                print("Dispatch")
+                handleDispatch(jsonObject: jsonObject)
             case .heartbeat:
                 try? await sendHeartbeatMessage()
             case .reconnect:
@@ -78,7 +78,10 @@ class GatewayManager {
     func handleDispatch(jsonObject: [String: Any]) {
         guard let typeCode = jsonObject["t"] as? String,
               let event = GatewayEvent(rawValue: typeCode),
-              let data = jsonObject["d"] as? String else { return }
+              let data = jsonObject["d"] as? String else {
+            print("Unrecognised Event")
+            return
+        }
         
         print(event)
         print(data)
