@@ -91,7 +91,7 @@ public struct Message: Codable {
     //    public var components?**: array of message components
     
     /// sent if the message contains stickers
-    //    public var sticker_items?: array of message sticker item objects
+    public var sticker_items: [StickerItem]?
     
     /// Deprecated the stickers sent with the message
     public var stickers: [Sticker]?
