@@ -18,13 +18,13 @@ public extension Bot {
                               endpoint: "sticker-packs").stickerPacks
     }
     
-    func listGuildStickers(guild guildId: String) async throws -> [Sticker] {
+    func listGuildStickers(guild guildId: Snowflake) async throws -> [Sticker] {
         try await sendRequest([Sticker].self,
                               endpoint: "guilds/\(guildId)/stickers")
     }
     
-    func getGuildSticker(guild guildId: String,
-                         sticker stickerId: Sticker) async throws -> Sticker {
+    func getGuildSticker(guild guildId: Snowflake,
+                         sticker stickerId: Snowflake) async throws -> Sticker {
         try await sendRequest(Sticker.self,
                               endpoint: "guilds/\(guildId)/stickers/\(stickerId)")
     }
