@@ -21,7 +21,7 @@ public struct Sticker: Codable {
     public var description: String?
     
     /// autocomplete/suggestion tags for the sticker (max 200 characters)
-    public var tags: String?
+    public var tags: String
     
     /// type of sticker
     public var type: StickerType
