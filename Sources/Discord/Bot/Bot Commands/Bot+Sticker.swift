@@ -29,6 +29,7 @@ public extension Bot {
                               endpoint: "guilds/\(guildId)/stickers/\(stickerId)")
     }
     
+    @discardableResult
     func createGuildSticker(guild guildId: Snowflake,
                             sticker: CreateGuildSticker) async throws -> Sticker {
         try await sendRequest(Sticker.self,
@@ -37,6 +38,7 @@ public extension Bot {
                               data: sticker)
     }
     
+    @discardableResult
     func modifyGuildSticker(guild guildId: Snowflake,
                             sticker stickerId: Snowflake,
                             modifications: ModifyGuildStickerRequest) async throws -> Sticker {
