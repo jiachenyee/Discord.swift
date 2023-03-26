@@ -13,7 +13,7 @@ public extension Bot {
     /// - Parameter command: The specifications of your command.
     /// - Warning: Creating a command with the same name as an existing command for your application will overwrite the old command.
     /// - Returns: Returns 201 if a command with the same name does not already exist, or a 200 if it does. Both responses include an application command object.
-    /// > Discord Reference: https://discord.com/developers/docs/interactions/application-commands#create-global-application-command
+    /// > Discord Reference: [https://discord.com/developers/docs/interactions/application-commands#create-global-application-command](https://discord.com/developers/docs/interactions/application-commands#create-global-application-command)
     func createCommand(_ command: Command) async throws -> Command {
         if let guildId = command.guildId {
             return try await sendRequest(Command.self,
@@ -32,7 +32,7 @@ public extension Bot {
     /// - Parameters:
     ///   - type: The type of command that is to be deleted (application or guild).
     ///   - commandId: The command ID of the target command.
-    /// > Discord Reference: https://discord.com/developers/docs/interactions/application-commands#delete-guild-application-command
+    /// > Discord Reference: [https://discord.com/developers/docs/interactions/application-commands#delete-guild-application-command](https://discord.com/developers/docs/interactions/application-commands#delete-guild-application-command)
     func deleteCommand(type: CommandType = .application, _ commandId: Snowflake) async throws {
         switch type {
         case .application:
@@ -47,8 +47,8 @@ public extension Bot {
     /// Fetches permissions for all commands for your application in a guild.
     /// - Parameter guildId: The guild ID of the target guild.
     /// - Returns: Returns a guild application command permissions object.
-    /// - Tip: Looking for permissions for one specific command? Try  <doc:getCommandsPermissions(in:)>.
-    /// > Discord Reference: https://discord.com/developers/docs/interactions/application-commands#get-guild-application-command-permissions
+    /// - Tip: Looking for permissions for one specific command? Try  <[doc:getCommandsPermissions](doc:getCommandsPermissions)(in:)>.
+    /// > Discord Reference: [https://discord.com/developers/docs/interactions/application-commands#get-guild-application-command-permissions](https://discord.com/developers/docs/interactions/application-commands#get-guild-application-command-permissions)
     func getCommandsPermissions(in guildId: Snowflake) async throws -> [Command.Permissions] {
         try await sendRequest([Command.Permissions].self,
                               endpoint: "/applications/\(applicationId)/guilds/\(guildId)/commands/permissions",
@@ -60,7 +60,7 @@ public extension Bot {
     ///   - commandId: The command ID of the target command.
     ///   - guildId: The guild ID of the target guild.
     /// - Returns: Returns a guild application command permissions object.
-    /// > Discord Reference: https://discord.com/developers/docs/interactions/application-commands#get-application-command-permissions
+    /// > Discord Reference: [https://discord.com/developers/docs/interactions/application-commands#get-application-command-permissions](https://discord.com/developers/docs/interactions/application-commands#get-application-command-permissions)
     func getCommandPermissions(forCommand commandId: Snowflake,
                                in guildId: Snowflake) async throws -> Command.Permissions {
         try await sendRequest(Command.Permissions.self,
@@ -90,7 +90,7 @@ public extension Bot {
     ///   - type: The type of command that will be returned (application or guild).
     ///   - commandId: The command ID of the target command.
     /// - Returns: Returns an application command object.
-    /// > Discord Reference: https://discord.com/developers/docs/interactions/application-commands#get-global-application-command
+    /// > Discord Reference: [https://discord.com/developers/docs/interactions/application-commands#get-global-application-command](https://discord.com/developers/docs/interactions/application-commands#get-global-application-command)
     func getCommand(type: CommandType = .application, _ commandId: Snowflake) async throws -> Command {
         switch type {
         case .application:
@@ -112,7 +112,7 @@ public extension Bot {
     /// - Returns: Returns 200 and a list of application command objects.
     /// - Important: Commands that do not already exist will count toward daily application command create limits.
     /// - Warning: This will overwrite all types of application commands: slash commands, user commands, and message commands.
-    /// > Discord Reference: https://discord.com/developers/docs/interactions/application-commands#bulk-overwrite-global-application-commands
+    /// > Discord Reference: [https://discord.com/developers/docs/interactions/application-commands#bulk-overwrite-global-application-commands](https://discord.com/developers/docs/interactions/application-commands#bulk-overwrite-global-application-commands)
     @discardableResult
     func bulkOverwriteCommands(type: CommandType = .application, _ commands: [Command]) async throws -> [Command] {
         switch type {
