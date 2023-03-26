@@ -14,4 +14,9 @@ public extension Bot {
                               method: .post,
                               data: stageInstance)
     }
+    
+    func getStageInstance(channel channelId: Snowflake) async throws -> StageInstance {
+        try await sendRequest(StageInstance.self,
+                              endpoint: "stage-instances/\(channelId)")
+    }
 }
