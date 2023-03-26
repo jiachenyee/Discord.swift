@@ -19,7 +19,6 @@ public extension Bot {
     ///   - guildId: The guild ID of the target guild.
     ///   - filters: The filters applied on the returned audit log object. 
     /// - Returns: Returns an audit log object for the guild.
-
     func getGuildAuditLog(forGuild guildId: Snowflake,
                           filters: AuditLogFilters = .using()) async throws -> AuditLog {
         try await sendRequest(AuditLog.self,

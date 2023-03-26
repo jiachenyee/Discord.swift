@@ -14,7 +14,8 @@ public struct NewForumThreadMessage: Codable {
     
 #warning("Incomplete implementation")
     //    public var components?*
-    //    public var sticker_ids?*
+    public var sticker_ids: [Snowflake]?
+    
     //    public var files[n]*
     //    public var payload_json?
     public var attachments: [Attachment]?

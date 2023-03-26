@@ -39,6 +39,5 @@ public struct GuildPreview: Codable {
     public var description: String?
     
     /// custom guild stickers
-    //    public var stickers:  array of sticker objects
-#warning("sticker missing")
+    public var stickers: [Sticker]
 }

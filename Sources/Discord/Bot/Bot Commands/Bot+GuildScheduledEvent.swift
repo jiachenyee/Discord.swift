@@ -15,6 +15,7 @@ public extension Bot {
                               parameters: ["with_user_count": withUserCount])
     }
     
+    @discardableResult
     func createScheduledEvent(guild guildId: Snowflake,
                               scheduledEvent: CreateGuildScheduledEvent) async throws -> ScheduledEvent {
         try await sendRequest(ScheduledEvent.self,
@@ -31,6 +32,7 @@ public extension Bot {
                               parameters: ["with_user_count": withUserCount])
     }
     
+    @discardableResult
     func modifyScheduledEvent(guild guildId: Snowflake,
                               event eventId: Snowflake,
                               modifying modifications: ModifyGuildScheduledRequest) async throws -> ScheduledEvent {

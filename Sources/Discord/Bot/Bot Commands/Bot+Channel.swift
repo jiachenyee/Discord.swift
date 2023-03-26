@@ -22,7 +22,6 @@ public extension Bot {
     ///   - channelId: The channel ID of the target channel.
     ///   - updatedProperties: The properties and specifications
     /// - Returns: Returns a channel on success, and a 400 BAD REQUEST on invalid parameters.
-    /// - Note: This endpoint supports the `X-Audit-Log-Reason` header.
     /// > Discord Reference: [https://discord.com/developers/docs/resources/channel#modify-channel](https://discord.com/developers/docs/resources/channel#modify-channel)
     @discardableResult
     func modifyChannel(_ channelId: Snowflake,
@@ -40,7 +39,6 @@ public extension Bot {
     /// - Parameter channelId: The channel ID of the target channel.
     /// - Warning: Deleting a guild channel cannot be undone. Use this with caution, as it is impossible to undo this action when performed on a guild channel. In contrast, when used with a private message, it is possible to undo the action by opening a private message with the recipient again.
     /// - Note: For Community guilds, the Rules or Guidelines channel and the Community Updates channel cannot be deleted.
-    /// - Note: This endpoint supports the `X-Audit-Log-Reason` header.
     /// > Discord Reference: [https://discord.com/developers/docs/resources/channel#deleteclose-channel](https://discord.com/developers/docs/resources/channel#deleteclose-channel)
     func deleteChannel(_ channelId: Snowflake) async throws {
         try await sendRequest(endpoint: "/channels/\(channelId)",

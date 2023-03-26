@@ -13,6 +13,7 @@ public extension Bot {
     /// - Parameter stageInstance: New Stage Instance information
     /// - Returns: Returns `Stage` instance. Fires a Stage Instance Create Gateway event.
     /// > Discord Reference: [https://discord.com/developers/docs/resources/stage-instance#create-stage-instance](https://discord.com/developers/docs/resources/stage-instance#create-stage-instance)
+    @discardableResult
     func createStageInstance(_ stageInstance: NewStageInstance) async throws -> StageInstance {
         try await sendRequest(StageInstance.self,
                               endpoint: "stage-instances",
@@ -36,6 +37,7 @@ public extension Bot {
     ///   - modifications: Modifications to apply to the stage instance
     /// - Returns: Returns the updated Stage instance. Fires a Stage Instance Update Gateway event.
     /// > Discord Reference: [https://discord.com/developers/docs/resources/stage-instance#modify-stage-instance](https://discord.com/developers/docs/resources/stage-instance#modify-stage-instance)
+    @discardableResult
     func modifyStageInstance(channel channelId: Snowflake,
                              modifications: ModifyStageInstanceRequest) async throws -> StageInstance {
         try await sendRequest(StageInstance.self,

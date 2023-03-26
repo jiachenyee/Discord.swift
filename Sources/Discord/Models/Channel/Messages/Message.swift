@@ -79,7 +79,7 @@ public struct Message: Codable {
     public var flags: MessageFlags?
     
     /// the message associated with the message_reference
-    public var referenced_message: ReferencedMessage
+    public var referenced_message: ReferencedMessage?
     
     /// sent if the message is a response to an Interaction
     //    public var interaction?: message interaction object
@@ -91,10 +91,10 @@ public struct Message: Codable {
     //    public var components?**: array of message components
     
     /// sent if the message contains stickers
-    //    public var sticker_items?: array of message sticker item objects
+    public var sticker_items: [StickerItem]?
     
     /// Deprecated the stickers sent with the message
-    //    public var stickers?: array of sticker objects
+    public var stickers: [Sticker]?
     
     /// A generally increasing integer (there may be gaps or duplicates) that represents the approximate position of the message in a thread, it can be used to estimate the relative position of the message in a thread in company with total_message_sent on parent thread
     public var position: Int?

@@ -13,6 +13,7 @@ public extension Bot {
                               endpoint: "guilds/templates/\(templateCode)")
     }
     
+    @discardableResult
     func createGuildTemplate(guild guildId: Snowflake,
                              template: CreateGuildTemplate) async throws -> GuildTemplate {
         try await sendRequest(GuildTemplate.self,
@@ -21,6 +22,7 @@ public extension Bot {
                               data: template)
     }
     
+    @discardableResult
     func syncGuildTemplate(guild guildId: Snowflake,
                            code templateCode: String) async throws -> GuildTemplate {
         try await sendRequest(GuildTemplate.self,
@@ -28,6 +30,7 @@ public extension Bot {
                               method: .put)
     }
     
+    @discardableResult
     func modifyGuildTemplate(guild guildId: Snowflake,
                              code templateCode: String,
                              modifying modifications: ModifyGuildTemplateRequest) async throws -> GuildTemplate {

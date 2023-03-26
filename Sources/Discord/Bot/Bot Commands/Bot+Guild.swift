@@ -210,6 +210,7 @@ public extension Bot {
                               parameters: filters.toParameters())
     }
     
+    @discardableResult
     func beginGuildPrune(guild guildId: Snowflake,
                          request: PruneRequest) async throws -> Prune {
         try await sendRequest(Prune.self,
@@ -244,6 +245,7 @@ public extension Bot {
                               endpoint: "guilds/\(guildId)/widget")
     }
     
+    @discardableResult
     func modifyGuildWidget(guild guildId: Snowflake,
                            widgetSettings: GuildWidgetSettings) async throws -> GuildWidgetSettings {
         try await sendRequest(GuildWidgetSettings.self,
@@ -273,6 +275,7 @@ public extension Bot {
                               endpoint: "guilds/\(guildId)/welcome-screen")
     }
     
+    @discardableResult
     func modifyGuildWelcomeScreen(guild guildId: Snowflake,
                                   modifications: ModifyWelcomeScreen) async throws -> WelcomeScreen {
         try await sendRequest(WelcomeScreen.self,
@@ -281,6 +284,7 @@ public extension Bot {
                               data: modifications)
     }
     
+    @discardableResult
     func modifyCurrentUserVoiceState(guild guildId: Snowflake,
                                      modifications: ModifyCurrentUserVoiceState) async throws {
         try await sendRequest(endpoint: "guilds/\(guildId)/voice-states/@me",
@@ -288,6 +292,7 @@ public extension Bot {
                               data: modifications)
     }
     
+    @discardableResult
     func modifyUserVoiceState(guild guildId: Snowflake,
                               user userId: Snowflake,
                               modifications: ModifyUserVoiceState) async throws {
