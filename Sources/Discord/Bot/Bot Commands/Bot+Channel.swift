@@ -24,6 +24,7 @@ public extension Bot {
     /// - Returns: Returns a channel on success, and a 400 BAD REQUEST on invalid parameters.
     /// - Note: This endpoint supports the `X-Audit-Log-Reason` header.
     /// > Discord Reference: [https://discord.com/developers/docs/resources/channel#modify-channel](https://discord.com/developers/docs/resources/channel#modify-channel)
+    @discardableResult
     func modifyChannel(_ channelId: Snowflake,
                        updatedProperties: ChannelUpdateRequest) async throws -> Channel {
         try await sendRequest(Channel.self,
@@ -90,6 +91,7 @@ public extension Bot {
     /// - Note: This function has limitations, such as certain permissions that the user needs to have under specific contexts. Visit Discord Reference (linked below) for a full list of limitations.
     /// > Discord Reference: [https://discord.com/developers/docs/resources/channel#create-message](https://discord.com/developers/docs/resources/channel#create-message)
     /// > Tip:  See [message formatting]([https://discord.com/developers/docs/reference#message-formatting](https://discord.com/developers/docs/reference#message-formatting)) for more information on how to properly format messages.
+    @discardableResult
     func sendMessage(in channelId: Snowflake,
                      message: MessageRequest) async throws -> Message {
         try await sendRequest(Message.self,
@@ -106,6 +108,7 @@ public extension Bot {
     /// - Returns: Returns a message object. Fires a Message Update Gateway event.
     /// - Important: This endpoint requires the `SEND_MESSAGES` permission, if the current user sent the message, or additionally the `MANAGE_MESSAGES` permission, for all other messages, to be present for the current user.
     /// > Discord Reference: [https://discord.com/developers/docs/resources/channel#crosspost-message](https://discord.com/developers/docs/resources/channel#crosspost-message)
+    @discardableResult
     func crosspostMessage(in channelId: Snowflake,
                           messageId: Snowflake) async throws -> Message {
         try await sendRequest(Message.self,
@@ -220,6 +223,7 @@ public extension Bot {
     ///   - editedContents: The modified content of the target message.
     /// - Returns: Returns a message object. Fires a Message Update Gateway event.
     /// > Discord Reference: [https://discord.com/developers/docs/resources/channel#edit-message](https://discord.com/developers/docs/resources/channel#edit-message)
+    @discardableResult
     func editMessage(channel channelId: Snowflake,
                      message messageId: Snowflake,
                      editedContents: MessageEdit) async throws -> Message {
@@ -308,6 +312,7 @@ public extension Bot {
     /// - Returns: Returns an invite object.
     /// - Important: Requires the `CREATE_INSTANT_INVITE` permission.
     /// > Discord Reference: [https://discord.com/developers/docs/resources/channel#create-channel-invite](https://discord.com/developers/docs/resources/channel#create-channel-invite)
+    @discardableResult
     func createChannelInvite(channel channelId: Snowflake,
                              invite channelInvite: ChannelInvite) async throws -> Invite {
         try await sendRequest(Invite.self,
@@ -410,6 +415,7 @@ public extension Bot {
     ///   - threadInfo: The specifications of the threat created.
     /// - Returns: Returns a channel on success, and a 400 BAD REQUEST on invalid parameters. Fires a Thread Create and a Message Update Gateway event.
     /// > Discord Reference: [https://discord.com/developers/docs/resources/channel#start-thread-from-message](https://discord.com/developers/docs/resources/channel#start-thread-from-message)
+    @discardableResult
     func startThread(channel channelId: Snowflake,
                      message messageId: Snowflake,
                      threadInfo: NewThreadInformation) async throws -> Channel {
@@ -425,6 +431,7 @@ public extension Bot {
     ///   - threadInfo: The specifications of the threat created.
     /// - Returns: Returns a channel on success, and a 400 BAD REQUEST on invalid parameters. Fires a Thread Create Gateway event.
     /// > Discord Reference: [https://discord.com/developers/docs/resources/channel#start-thread-without-message](https://discord.com/developers/docs/resources/channel#start-thread-without-message)
+    @discardableResult
     func startThread(channel channelId: Snowflake,
                      threadInfo: NewChannelThreadInformation) async throws -> Channel {
         try await sendRequest(Channel.self,
@@ -441,7 +448,7 @@ public extension Bot {
     /// - Note: The type of the created thread is `PUBLIC_THREAD`.
     /// - Important: The current user must have the `SEND_MESSAGES` permission (`CREATE_PUBLIC_THREADS` is ignored).
     /// > Discord Reference: [https://discord.com/developers/docs/resources/channel#start-thread-in-forum-channel](https://discord.com/developers/docs/resources/channel#start-thread-in-forum-channel)
-
+    @discardableResult
     func startForumThread(channel channelId: Snowflake,
                           postInfo: NewForumThread) async throws -> Channel {
         try await sendRequest(Channel.self,

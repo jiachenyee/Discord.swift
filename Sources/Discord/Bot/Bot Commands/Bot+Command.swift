@@ -113,6 +113,7 @@ public extension Bot {
     /// - Important: Commands that do not already exist will count toward daily application command create limits.
     /// - Warning: This will overwrite all types of application commands: slash commands, user commands, and message commands.
     /// > Discord Reference: https://discord.com/developers/docs/interactions/application-commands#bulk-overwrite-global-application-commands
+    @discardableResult
     func bulkOverwriteCommands(type: CommandType = .application, _ commands: [Command]) async throws -> [Command] {
         switch type {
         case .application:

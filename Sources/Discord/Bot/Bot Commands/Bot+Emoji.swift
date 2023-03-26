@@ -43,6 +43,7 @@ public extension Bot {
     /// - Returns: Returns the updated emoji object on success. Fires a Guild Emojis Update Gateway event.
     /// - Important: Requires the `MANAGE_EMOJIS_AND_STICKERS` permission.
     /// > Discord Reference: https://discord.com/developers/docs/resources/emoji#modify-guild-emoji
+    @discardableResult
     func modifyGuildEmoji(guild guildId: Snowflake,
                           emoji emojiId: Snowflake,
                           modifications: ModifyEmojiRequest) async throws -> Emoji {

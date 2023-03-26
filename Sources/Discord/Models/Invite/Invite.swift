@@ -12,7 +12,7 @@ public struct Invite: Codable {
     public var code: String
     
     /// the guild this invite is for
-    public var guild: Guild?
+    public var guild: PartialGuild?
     
     /// the channel this invite is for
     public var channel: Channel?
@@ -43,8 +43,7 @@ public struct Invite: Codable {
     public var stage_instance: [InviteStageInstance]?
     
     /// guild scheduled event data, only included if guild_scheduled_event_id contains a valid guild scheduled event id
-#warning("Incomplete implementation")
-//    public var guild_scheduled_event: guild scheduled event object?
+    public var guild_scheduled_event: ScheduledEvent?
     
     /// number of times this invite has been used
     public var uses: Int?
@@ -60,20 +59,4 @@ public struct Invite: Codable {
     
     /// when this invite was created
     public var created_at: ISO8601Timestamp?
-}
-
-public enum InviteTarget: Int, Codable {
-    case stream = 1
-    case embeddedApplication = 2
-}
-
-public struct InviteStageInstance: Codable {
-    ///      the members speaking in the Stage
-//    public var members: array of partial guild member objects
-    ///     the number of users in the Stage
-    public var participant_count: Int
-    ///     the number of users speaking in the Stage
-    public var speaker_count: Int
-    ///     the topic of the Stage instance (1-120 characters)
-    public var topic: String
 }

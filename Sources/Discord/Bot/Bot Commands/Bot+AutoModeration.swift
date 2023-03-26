@@ -40,6 +40,7 @@ public extension Bot {
     /// - Important: This endpoint requires the `MANAGE_GUILD` permission
     /// - Note: This endpoint supports the `X-Audit-Log-Reason` header.
     /// > Discord Reference: [https://discord.com/developers/docs/resources/auto-moderation#create-auto-moderation-rule](https://discord.com/developers/docs/resources/auto-moderation#create-auto-moderation-rule)
+    @discardableResult
     func createAutoModerationRule(forGuild guildId: Snowflake,
                                   rule: AutoModerationRuleRequest) async throws -> AutoModerationRule {
         try await sendRequest(AutoModerationRule.self,
@@ -58,6 +59,8 @@ public extension Bot {
     /// - Note: All parameters for this endpoint are optional. This endpoint supports the `X-Audit-Log-Reason` header.
     /// > Discord Reference: [https://discord.com/developers/docs/resources/auto-moderation#modify-auto-moderation-rule](https://discord.com/developers/docs/resources/auto-moderation#modify-auto-moderation-rule)
     func modifyAutoModerationRule(forGuild guildId: Snowflake,
+    @discardableResult
+    func updateAutoModerationRule(forGuild guildId: Snowflake,
                                   ruleId: Snowflake,
                                   rule: AutoModerationRuleUpdateRequest) async throws -> AutoModerationRule {
         try await sendRequest(AutoModerationRule.self,

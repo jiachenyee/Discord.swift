@@ -8,8 +8,8 @@
 import Foundation
 
 public struct AutoModerationTrigger {
-    var triggerType: TriggerType
-    var triggerMetadata: TriggerMetadata?
+    public var triggerType: TriggerType
+    public var triggerMetadata: TriggerMetadata?
     
     public static func keyword(keywordFilter: [String],
                                regexPatterns: [String] = [],

@@ -9,36 +9,36 @@ import Foundation
 
 public struct GuildPreview: Codable {
     /// guild id
-    var id: Snowflake
+    public var id: Snowflake
     
     /// guild name (2-100 characters)
-    var name: String
+    public var name: String
     
     /// icon hash
-    var icon: String?
+    public var icon: String?
     
     /// splash hash
-    var splash: String?
+    public var splash: String?
     
     /// discovery splash hash
-    var discovery_splash: String?
+    public var discovery_splash: String?
     
     /// custom guild emojis
-    var emojis: [Emoji]
+    public var emojis: [Emoji]
     
     /// enabled guild features
-    var features:  [GuildFeature]
+    public var features:  [GuildFeature]
     
     /// approximate number of members in this guild
-    var approximate_member_count: Int
+    public var approximate_member_count: Int
     
     /// approximate number of online members in this guild
-    var approximate_presence_count: Int
+    public var approximate_presence_count: Int
     
     /// the description for the guild
-    var description: String?
+    public var description: String?
     
     /// custom guild stickers
-    //    var stickers:  array of sticker objects
+    //    public var stickers:  array of sticker objects
 #warning("sticker missing")
 }
