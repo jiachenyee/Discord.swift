@@ -78,8 +78,8 @@ class GatewayManager {
     func handleDispatch(jsonObject: [String: Any]) {
         guard let typeCode = jsonObject["t"] as? String,
               let event = GatewayEvent(rawValue: typeCode),
-              let data = jsonObject["d"] as? String else {
-            print("Unrecognised Event: ", jsonObject["t"] ?? "")
+              let data = jsonObject["d"] else {
+            print("Unrecognised Event:", jsonObject["t"] ?? "")
             return
         }
         
