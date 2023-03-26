@@ -75,8 +75,8 @@ public extension Bot {
     /// - Returns: Returns a message object on success.
     /// > Discord Reference: [https://discord.com/developers/docs/resources/channel#get-channel-message](https://discord.com/developers/docs/resources/channel#get-channel-message)
     func getChannelMessage(_ channelId: Snowflake,
-                           messageId: Snowflake) async throws -> Data {
-        try await sendRequest(
+                           messageId: Snowflake) async throws -> Message {
+        try await sendRequest(Message.self,
                               endpoint: "/channels/\(channelId)/messages/\(messageId)")
     }
     
