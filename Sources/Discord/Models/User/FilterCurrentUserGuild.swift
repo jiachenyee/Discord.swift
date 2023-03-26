@@ -17,15 +17,15 @@ public struct FilterCurrentUserGuild: Parameterable {
     /// max number of guilds to return (1-200)
     public var limit: Int?
     
-    init(before: Snowflake? = nil, after: Snowflake? = nil, limit: Int? = nil) {
+    public init(before: Snowflake? = nil, after: Snowflake? = nil, limit: Int? = nil) {
         self.before = before
         self.after = after
         self.limit = limit
     }
     
-    public func filter(before: Snowflake? = nil,
-                       after: Snowflake? = nil,
-                       limit: Int? = nil) -> Self {
+    public static func filter(before: Snowflake? = nil,
+                              after: Snowflake? = nil,
+                              limit: Int? = nil) -> Self {
         Self(before: before,
              after: after,
              limit: limit)

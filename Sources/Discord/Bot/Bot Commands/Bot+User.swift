@@ -26,7 +26,7 @@ public extension Bot {
                               data: modifications)
     }
     
-    func getCurrentUserGuild(filtering filters: FilterCurrentUserGuild) async throws -> [PartialGuild] {
+    func getCurrentUserGuilds(filtering filters: FilterCurrentUserGuild) async throws -> [PartialGuild] {
         try await sendRequest([PartialGuild].self,
                               endpoint: "users/@me/guilds",
                               parameters: filters.toParameters())
