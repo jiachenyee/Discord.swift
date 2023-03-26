@@ -30,4 +30,17 @@ public extension Bot {
         try await sendRequest(Webhook.self,
                               endpoint: "webhooks/\(webhookId)")
     }
+    
+    func modifyWebhook(_ webhookId: Snowflake,
+                       modifications: ModifyWebhook) async throws -> Webhook {
+        try await sendRequest(Webhook.self,
+                              endpoint: "webhooks/\(webhookId)",
+                              method: .patch,
+                              data: modifications)
+    }
+    
+    func deleteWebhook(_ webhookId: Snowflake) async throws {
+        try await sendRequest(endpoint: "webhooks/\(webhookId)",
+                              method: .delete)
+    }
 }
