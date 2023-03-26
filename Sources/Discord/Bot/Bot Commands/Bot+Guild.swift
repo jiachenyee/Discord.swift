@@ -8,6 +8,10 @@
 import Foundation
 
 public extension Bot {
+    /// Create a new guild.
+    /// - Parameter guildInformation: The specifications of the guild returned.
+    /// - Returns: Returns a guild object on success. Fires a Guild Create Gateway event.
+    /// > Discord Reference: [https://discord.com/developers/docs/resources/guild#create-guild](https://discord.com/developers/docs/resources/guild#create-guild)
     @discardableResult
     func createGuild(info guildInformation: CreateGuildRequest) async throws -> Guild {
         try await sendRequest(Guild.self,
