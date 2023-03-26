@@ -87,9 +87,8 @@ public struct Message: Codable {
     /// the thread that was started from this message, includes thread member object
     public var thread: Channel?
     
-#warning("missing message components")
     /// sent if the message contains components like buttons, action rows, or other interactive components
-    //    public var components?**: array of message components
+    public var components: [Component]?
     
     /// sent if the message contains stickers
     public var sticker_items: [StickerItem]?

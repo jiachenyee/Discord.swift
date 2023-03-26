@@ -27,13 +27,13 @@ public struct MessageRequest: Codable {
     /// Include to make your message a reply
     public var message_reference: MessageReference?
      
-    #warning("Incomplete implementation")
     /// Components to include with the message
-//    public var components?*    array of message component objects
+    public var components: [Component]?
     
     /// IDs of up to 3 stickers in the server to send in the message
     public var sticker_ids: [Snowflake]?
     
+#warning("Incomplete implementation")
 //     public var files[n]?*    file contents    Contents of the file being sent. See Uploading Files
 //     public var payload_json?    string    JSON-encoded body of non-file params, only for multipart/form-data requests. See Uploading Files
     
@@ -49,6 +49,8 @@ public struct MessageRequest: Codable {
                 embeds: [Embed]? = nil,
                 allowed_mentions: [AllowedMention]? = nil,
                 message_reference: MessageReference? = nil,
+                components: [Component]? = nil,
+                sticker_ids: [Snowflake]? = nil,
                 attachments: [Attachment]? = nil,
                 flags: MessageFlags? = nil) {
         self.content = content
@@ -57,6 +59,8 @@ public struct MessageRequest: Codable {
         self.embeds = embeds
         self.allowed_mentions = allowed_mentions
         self.message_reference = message_reference
+        self.components = components
+        self.sticker_ids = sticker_ids
         self.attachments = attachments
         self.flags = flags
     }
@@ -67,6 +71,8 @@ public struct MessageRequest: Codable {
                               embeds: [Embed]? = nil,
                               allowed_mentions: [AllowedMention]? = nil,
                               message_reference: MessageReference? = nil,
+                              components: [Component]? = nil,
+                              sticker_ids: [Snowflake]? = nil,
                               attachments: [Attachment]? = nil,
                               flags: MessageFlags? = nil) -> Self {
         Self(content: content,
@@ -75,6 +81,8 @@ public struct MessageRequest: Codable {
              embeds: embeds,
              allowed_mentions: allowed_mentions,
              message_reference: message_reference,
+             components: components,
+             sticker_ids: sticker_ids,
              attachments: attachments,
              flags: flags)
     }
