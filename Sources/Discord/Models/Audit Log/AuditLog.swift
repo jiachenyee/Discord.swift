@@ -29,7 +29,6 @@ public struct AuditLog: Codable {
     /// List of users referenced in the audit log
     public var users: [User]
     
-#warning("Incomplete implementation")
-//    /// array of webhook objects    List of webhooks referenced in the audit log
-//    public var webhooks:
+    /// List of webhooks referenced in the audit log
+    public var webhooks: [Webhook]
 }
