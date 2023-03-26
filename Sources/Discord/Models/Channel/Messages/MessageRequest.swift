@@ -30,7 +30,10 @@ public struct MessageRequest: Codable {
     #warning("Incomplete implementation")
     /// Components to include with the message
 //    public var components?*    array of message component objects
-//     public var sticker_ids?*    array of snowflakes    IDs of up to 3 stickers in the server to send in the message
+    
+    /// IDs of up to 3 stickers in the server to send in the message
+    public var sticker_ids: [Snowflake]?
+    
 //     public var files[n]?*    file contents    Contents of the file being sent. See Uploading Files
 //     public var payload_json?    string    JSON-encoded body of non-file params, only for multipart/form-data requests. See Uploading Files
     

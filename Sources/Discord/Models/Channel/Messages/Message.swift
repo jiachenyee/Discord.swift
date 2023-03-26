@@ -94,7 +94,7 @@ public struct Message: Codable {
     //    public var sticker_items?: array of message sticker item objects
     
     /// Deprecated the stickers sent with the message
-    //    public var stickers?: array of sticker objects
+    public var stickers: [Sticker]?
     
     /// A generally increasing integer (there may be gaps or duplicates) that represents the approximate position of the message in a thread, it can be used to estimate the relative position of the message in a thread in company with total_message_sent on parent thread
     public var position: Int?

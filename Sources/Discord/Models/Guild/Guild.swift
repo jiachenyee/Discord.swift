@@ -85,8 +85,7 @@ public struct Guild: Codable {
     /// guild NSFW level
     public var nsfw_level: GuildNSFWLevel
     /// custom guild stickers
-//    public var stickers?: array of sticker objects
-#warning("sticker missing")
+    public var stickers: [Sticker]?
     /// whether the guild has the boost progress bar enabled
     public var premium_progress_bar_enabled: Bool
 }
