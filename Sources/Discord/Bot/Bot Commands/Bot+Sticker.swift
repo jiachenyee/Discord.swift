@@ -12,4 +12,20 @@ public extension Bot {
         try await sendRequest(Sticker.self,
                               endpoint: "stickers/\(stickerId)")
     }
+    
+    func listNitroStickerPacks() async throws -> [StickerPack] {
+        try await sendRequest([StickerPack].self,
+                              endpoint: "stickers-packs")
+    }
+    
+    func listGuildStickers(guild guildId: String) async throws -> [Sticker] {
+        try await sendRequest([Sticker].self,
+                              endpoint: "guilds/\(guildId)/stickers")
+    }
+    
+    func getGuildSticker(guild guildId: String,
+                         sticker stickerId: Sticker) async throws -> Sticker {
+        try await sendRequest(Sticker.self,
+                              endpoint: "guilds/\(guildId)/stickers/\(stickerId)")
+    }
 }
