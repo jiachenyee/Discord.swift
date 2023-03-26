@@ -79,7 +79,7 @@ class GatewayManager {
         guard let typeCode = jsonObject["t"] as? String,
               let event = GatewayEvent(rawValue: typeCode),
               let data = jsonObject["d"] as? String else {
-            print("Unrecognised Event")
+            print("Unrecognised Event: ", jsonObject["t"] ?? "")
             return
         }
         
