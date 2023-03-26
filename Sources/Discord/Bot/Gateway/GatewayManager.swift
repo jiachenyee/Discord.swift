@@ -34,7 +34,6 @@ class GatewayManager {
         let message = try! await task.receive()
         switch message {
         case .string(let text):
-            print("Received message: \(text)")
             let data = Data(text.utf8)
             
             guard let jsonObject = try? JSONSerialization.jsonObject(with: data) as? [String: Any],
@@ -74,5 +73,14 @@ class GatewayManager {
         guard let data = try? jsonEncoder.encode(identifyPayload) else { return }
         
         try? await task.send(.data(data))
+    }
+    
+    func handleDispatch(jsonObject: [String: Any]) {
+        guard let typeCode = jsonObject["t"] as? String,
+              let event = GatewayEvent(rawValue: typeCode),
+              let data = jsonObject["d"] as? String else { return }
+        
+        print(event)
+        print(data)
     }
 }
