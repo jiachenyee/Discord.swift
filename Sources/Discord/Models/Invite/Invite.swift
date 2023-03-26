@@ -12,7 +12,7 @@ public struct Invite: Codable {
     public var code: String
     
     /// the guild this invite is for
-    public var guild: Guild?
+    public var guild: PartialGuild?
     
     /// the channel this invite is for
     public var channel: Channel?
