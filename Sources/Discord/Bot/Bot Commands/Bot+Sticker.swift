@@ -28,4 +28,27 @@ public extension Bot {
         try await sendRequest(Sticker.self,
                               endpoint: "guilds/\(guildId)/stickers/\(stickerId)")
     }
+    
+    func createGuildSticker(guild guildId: Snowflake,
+                            sticker: CreateGuildSticker) async throws -> Sticker {
+        try await sendRequest(Sticker.self,
+                              endpoint: "guilds/\(guildId)/stickers",
+                              method: .post,
+                              data: sticker)
+    }
+    
+    func modifyGuildSticker(guild guildId: Snowflake,
+                            sticker stickerId: Snowflake,
+                            modifications: ModifyGuildStickerRequest) async throws -> Sticker {
+        try await sendRequest(Sticker.self,
+                              endpoint: "guilds/\(guildId)/stickers/\(stickerId)",
+                              method: .patch,
+                              data: modifications)
+    }
+    
+    func deleteGuildSticker(guild guildId: Snowflake,
+                            sticker stickerId: Snowflake) async throws {
+        try await sendRequest(endpoint: "guilds/\(guildId)/stickers/\(stickerId)",
+                              method: .delete)
+    }
 }
