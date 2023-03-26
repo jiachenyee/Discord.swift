@@ -58,7 +58,6 @@ public extension Bot {
     /// - Important: Requires `MANAGE_GUILD` permissions.
     /// - Note: All parameters for this endpoint are optional. This endpoint supports the `X-Audit-Log-Reason` header.
     /// > Discord Reference: [https://discord.com/developers/docs/resources/auto-moderation#modify-auto-moderation-rule](https://discord.com/developers/docs/resources/auto-moderation#modify-auto-moderation-rule)
-    func modifyAutoModerationRule(forGuild guildId: Snowflake,
     @discardableResult
     func updateAutoModerationRule(forGuild guildId: Snowflake,
                                   ruleId: Snowflake,
