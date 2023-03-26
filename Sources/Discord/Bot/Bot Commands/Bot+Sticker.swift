@@ -15,7 +15,7 @@ public extension Bot {
     
     func listNitroStickerPacks() async throws -> [StickerPack] {
         try await sendRequest([StickerPack].self,
-                              endpoint: "stickers-packs")
+                              endpoint: "sticker-packs")
     }
     
     func listGuildStickers(guild guildId: String) async throws -> [Sticker] {
