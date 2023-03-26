@@ -13,8 +13,8 @@ public extension Bot {
                               endpoint: "stickers/\(stickerId)")
     }
     
-    func listNitroStickerPacks() async throws -> [StickerPack] {
-        try await sendRequest([StickerPack].self,
+    func listNitroStickerPacks() async throws -> Data {
+        try await sendRequest(
                               endpoint: "sticker-packs")
     }
     
