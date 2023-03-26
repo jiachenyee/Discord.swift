@@ -35,7 +35,7 @@ public struct PartialGuild: Codable {
     /// the channel id that the widget will generate an invite to, or null if set to no invite
     public var widgetChannelId: Snowflake?
     /// verification level required for the guild
-    public var verificationLevel: VerificationLevel
+    public var verificationLevel: VerificationLevel?
     /// default message notifications level
     public var defaultMessageNotifications: DefaultMessageNotificationLevel?
     /// explicit content filter level
