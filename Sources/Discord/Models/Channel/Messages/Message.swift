@@ -79,7 +79,7 @@ public struct Message: Codable {
     public var flags: MessageFlags?
     
     /// the message associated with the message_reference
-    public var referenced_message: ReferencedMessage
+    public var referenced_message: ReferencedMessage?
     
     /// sent if the message is a response to an Interaction
     //    public var interaction?: message interaction object
