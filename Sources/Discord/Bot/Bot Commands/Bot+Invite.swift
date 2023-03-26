@@ -9,7 +9,7 @@ import Foundation
 
 public extension Bot {
     func getInvite(withCode inviteCode: String,
-                   filtering filters: InviteFilters) async throws -> Invite {
+                   including filters: InviteFilters = .using()) async throws -> Invite {
         try await sendRequest(Invite.self,
                               endpoint: "invites/\(inviteCode)",
                               parameters: filters.toParameters())
