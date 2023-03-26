@@ -66,8 +66,7 @@ public struct Message: Codable {
     public var activity: MessageActivity?
     
     /// sent with Rich Presence-related chat embeds
-#warning("incomplete")
-    //    public var application?: partial application object
+    public var application: Application?
     
     /// if the message is an Interaction or application-owned webhook, this is the id of the application
     public var application_id: Snowflake?
@@ -81,12 +80,14 @@ public struct Message: Codable {
     /// the message associated with the message_reference
     public var referenced_message: ReferencedMessage?
     
+#warning("missing interaction")
     /// sent if the message is a response to an Interaction
     //    public var interaction?: message interaction object
     
     /// the thread that was started from this message, includes thread member object
     public var thread: Channel?
     
+#warning("missing message components")
     /// sent if the message contains components like buttons, action rows, or other interactive components
     //    public var components?**: array of message components
     

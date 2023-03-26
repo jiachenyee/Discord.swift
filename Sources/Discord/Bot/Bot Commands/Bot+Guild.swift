@@ -284,7 +284,6 @@ public extension Bot {
                               data: modifications)
     }
     
-    @discardableResult
     func modifyCurrentUserVoiceState(guild guildId: Snowflake,
                                      modifications: ModifyCurrentUserVoiceState) async throws {
         try await sendRequest(endpoint: "guilds/\(guildId)/voice-states/@me",
@@ -292,7 +291,6 @@ public extension Bot {
                               data: modifications)
     }
     
-    @discardableResult
     func modifyUserVoiceState(guild guildId: Snowflake,
                               user userId: Snowflake,
                               modifications: ModifyUserVoiceState) async throws {

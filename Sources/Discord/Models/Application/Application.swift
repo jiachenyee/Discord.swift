@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct Application {
+public struct Application: Codable {
     /// the id of the app
     public var id: Snowflake
     

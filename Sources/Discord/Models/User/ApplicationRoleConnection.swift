@@ -7,14 +7,19 @@
 
 import Foundation
 
-public struct ApplicationRoleConnection {
+public struct ApplicationRoleConnection: Codable {
     /// the vanity name of the platform a bot has connected (max 50 characters)
-    public var platform_name: String?
+    public var platformName: String?
     
     /// the username on the platform a bot has connected (max 100 characters)
-    public var platform_username: String?
+    public var platformUsername: String?
     
     /// object mapping application role connection metadata keys to their string-ified value (max 100 characters) for the user on the platform a bot has connected
-//    public var metadata    object
-    #warning("Incomplete implementation")
+    public var metadata: ApplicationRoleConnectionMetadata
+    
+    enum CodingKeys: String, CodingKey {
+        case platformName = "platform_name"
+        case platformUsername = "platform_username"
+        case metadata = "metadata"
+    }
 }
