@@ -13,6 +13,12 @@ public struct InteractionResponse: Codable {
     
     /// an optional response message
     public var data: InteractionCallbackData?
+    
+    public init(type: InteractionCallbackType,
+                data: InteractionCallbackData? = nil) {
+        self.type = type
+        self.data = data
+    }
 }
 
 public enum InteractionCallbackType: Int, Codable {
@@ -78,11 +84,25 @@ public struct InteractionMessage: Codable {
     
     /// attachment objects with filename and description
     public var attachments: [Attachment]
+    
+    public init(tts: Bool, content: String? = nil, embeds: [Embed]? = nil, allowed_mentions: [AllowedMention]? = nil, flags: MessageFlags, components: [Component], attachments: [Attachment]) {
+        self.tts = tts
+        self.content = content
+        self.embeds = embeds
+        self.allowed_mentions = allowed_mentions
+        self.flags = flags
+        self.components = components
+        self.attachments = attachments
+    }
 }
 
 public struct Autocomplete: Codable {
     /// autocomplete choices (max of 25 choices)
     public var choices: [Command.OptionChoice]
+    
+    public init(choices: [Command.OptionChoice]) {
+        self.choices = choices
+    }
 }
 
 public struct Modal: Codable {
@@ -94,4 +114,10 @@ public struct Modal: Codable {
     
     /// between 1 and 5 (inclusive) components that make up the modal
     public var components: [Component]
+    
+    public init(custom_id: String, title: String, components: [Component]) {
+        self.custom_id = custom_id
+        self.title = title
+        self.components = components
+    }
 }
