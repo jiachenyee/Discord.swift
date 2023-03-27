@@ -77,13 +77,15 @@ public extension Bot {
         
         let value = try await request.serializingData().value
         
-        let errorValue = try JSONSerialization.jsonObject(with: value) as? [String: Any]
-        
-        if let errorValue {
-            throw DiscordError.apiError(value: errorValue)
-        } else {
-            return value
+        if value.count != 0 {
+            let errorValue = try JSONSerialization.jsonObject(with: value) as? [String: Any]
+            
+            if let errorValue {
+                throw DiscordError.apiError(value: errorValue)
+            }
         }
+        
+        return value
     }
     
     internal func sendRequest<T: Encodable, D: Decodable>(_ type: D.Type,
