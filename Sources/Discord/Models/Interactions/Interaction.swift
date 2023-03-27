@@ -45,10 +45,10 @@ public struct Interaction: GatewayEventData {
     public var appPermissions: String?
     
     /// Selected language of the invoking user
-    public var locale: Locale?
+    public var locale: DiscordLocale?
     
     /// Guild's preferred locale, if invoked in a guild
-    public var guildLocale: Locale?
+    public var guildLocale: DiscordLocale?
     
     enum CodingKeys: String, CodingKey {
         case id = "id"
@@ -82,8 +82,8 @@ public struct Interaction: GatewayEventData {
         self.version = try container.decode(Int.self, forKey: .version)
         self.message = try container.decodeIfPresent(Message.self, forKey: .message)
         self.appPermissions = try container.decodeIfPresent(String.self, forKey: .appPermissions)
-        self.locale = try container.decodeIfPresent(Locale.self, forKey: .locale)
-        self.guildLocale = try container.decodeIfPresent(Locale.self, forKey: .guildLocale)
+        self.locale = try container.decodeIfPresent(DiscordLocale.self, forKey: .locale)
+        self.guildLocale = try container.decodeIfPresent(DiscordLocale.self, forKey: .guildLocale)
     }
 }
 

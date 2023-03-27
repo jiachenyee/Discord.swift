@@ -74,7 +74,7 @@ public enum GatewayEvent {
     
     /// Some user(s) were added to or removed from a thread
     /// > Discord Reference [https://discord.com/developers/docs/topics/gateway-events#thread-members-update](https://discord.com/developers/docs/topics/gateway-events#thread-members-update)
-    case threadMembersUpdate(ThreadMembersUpdate); // untested
+    case threadMembersUpdate(ThreadMembersUpdate) // untested
     
     /// Lazy-load for unavailable guild, guild became available, or user joined a new guild
     /// > Discord Reference [https://discord.com/developers/docs/topics/gateway-events#guild-create](https://discord.com/developers/docs/topics/gateway-events#guild-create)
@@ -94,11 +94,11 @@ public enum GatewayEvent {
     
     /// User was banned from a guild
     /// > Discord Reference [https://discord.com/developers/docs/topics/gateway-events#guild-ban-add](https://discord.com/developers/docs/topics/gateway-events#guild-ban-add)
-    case guildBanAdd(GatewayGuildBan) // untested
+    case guildBanAdd(GatewayGuildBan)
     
     /// User was unbanned from a guild
     /// > Discord Reference [https://discord.com/developers/docs/topics/gateway-events#guild-ban-remove](https://discord.com/developers/docs/topics/gateway-events#guild-ban-remove)
-    case guildBanRemove(GatewayGuildBan) // untested
+    case guildBanRemove(GatewayGuildBan)
     
     /// Guild emojis were updated
     /// > Discord Reference [https://discord.com/developers/docs/topics/gateway-events#guild-emojis-update](https://discord.com/developers/docs/topics/gateway-events#guild-emojis-update)
@@ -122,7 +122,7 @@ public enum GatewayEvent {
     /// - Important: If using Gateway Intents, the `GUILD_MEMBERS` intent will be required to receive this event.
     ///
     /// > Discord Reference [https://discord.com/developers/docs/topics/gateway-events#guild-member-remove](https://discord.com/developers/docs/topics/gateway-events#guild-member-remove)
-    case guildMemberRemove(GatewayGuildMemberRemove) // untested
+    case guildMemberRemove(GatewayGuildMemberRemove)
     
     /// Guild member was updated
     /// - Important: If using Gateway Intents, the `GUILD_MEMBERS` intent will be required to receive this event.
@@ -184,11 +184,11 @@ public enum GatewayEvent {
     
     /// Invite to a channel was created
     /// > Discord Reference [https://discord.com/developers/docs/topics/gateway-events#invite-create](https://discord.com/developers/docs/topics/gateway-events#invite-create)
-    case inviteCreate(GatewayInvite) // untested
+    case inviteCreate(GatewayInvite)
     
     /// Invite to a channel was deleted
     /// > Discord Reference [https://discord.com/developers/docs/topics/gateway-events#invite-delete](https://discord.com/developers/docs/topics/gateway-events#invite-delete)
-    case inviteDelete(GatewayInviteDelete); // untested
+    case inviteDelete(GatewayInviteDelete)
     
     /// Message was created
     /// > Discord Reference [https://discord.com/developers/docs/topics/gateway-events#message-create](https://discord.com/developers/docs/topics/gateway-events#message-create)
@@ -229,7 +229,7 @@ public enum GatewayEvent {
     /// - Important: If you are using Gateway Intents, you must specify the `GUILD_PRESENCES` intent in order to receive Presence Update events
     ///
     /// > Discord Reference [https://discord.com/developers/docs/topics/gateway-events#presence-update](https://discord.com/developers/docs/topics/gateway-events#presence-update)
-    case presenceUpdate(GatewayPresence) // untested
+    case presenceUpdate(GatewayPresence)
     
     /// Stage instance was created
     /// > Discord Reference [https://discord.com/developers/docs/topics/gateway-events#stage-instance-create](https://discord.com/developers/docs/topics/gateway-events#stage-instance-create)
@@ -245,7 +245,7 @@ public enum GatewayEvent {
     
     /// User started typing in a channel
     /// > Discord Reference [https://discord.com/developers/docs/topics/gateway-events#typing-start](https://discord.com/developers/docs/topics/gateway-events#typing-start)
-    case typingStart(GatewayTypingStart) // untested
+    case typingStart(GatewayTypingStart)
     
     /// Properties about the user changed
     /// > Discord Reference [https://discord.com/developers/docs/topics/gateway-events#user-update](https://discord.com/developers/docs/topics/gateway-events#user-update)
@@ -253,7 +253,7 @@ public enum GatewayEvent {
     
     /// Someone joined, left, or moved a voice channel
     /// > Discord Reference [https://discord.com/developers/docs/topics/gateway-events#voice-state-update](https://discord.com/developers/docs/topics/gateway-events#voice-state-update)
-    case voiceStateUpdate(VoiceState) // untested
+    case voiceStateUpdate(VoiceState)
     
     /// Guild's voice server was updated
     /// > Discord Reference [https://discord.com/developers/docs/topics/gateway-events#voice-server-update](https://discord.com/developers/docs/topics/gateway-events#voice-server-update)
@@ -274,7 +274,7 @@ public enum GatewayEvent {
         
         switch typeCode {
         case "READY": self = .ready(.decode(data))
-//        case "RESUMED": return .resumed(.decode(data))
+            //        case "RESUMED": return .resumed(.decode(data))
         case "APPLICATION_COMMAND_PERMISSIONS_UPDATE": self = .applicationCommandPermissionsUpdate(.decode(data))
         case "AUTO_MODERATION_RULE_CREATE": self = .autoModerationRuleCreate(.decode(data))
         case "AUTO_MODERATION_RULE_UPDATE": self = .autoModerationRuleUpdate(.decode(data))
