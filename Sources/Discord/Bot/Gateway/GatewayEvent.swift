@@ -340,27 +340,3 @@ public enum GatewayEvent {
         }
     }
 }
-
-public struct GatewayGuildRole: GatewayEventData {
-    /// ID of the guild
-    public var guildId: Snowflake
-    /// Role that was created
-    public var role: Role
-    
-    enum CodingKeys: String, CodingKey {
-        case guildId = "guild_id"
-        case role = "role"
-    }
-}
-
-public struct GatewayGuildRoleDelete: GatewayEventData {
-    /// ID of the guild
-    public var guildId: Snowflake
-    /// ID of the role
-    public var roleId: Snowflake
-    
-    enum CodingKeys: String, CodingKey {
-        case guildId = "guild_id"
-        case roleId = "role_id"
-    }
-}
