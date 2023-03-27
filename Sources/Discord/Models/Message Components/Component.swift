@@ -15,6 +15,22 @@ public struct Component: Codable {
         case type
     }
     
+    public static func actionRow(components: [Component]) -> Self {
+        Component(value: .actionRow(ActionRow(components: components)))
+    }
+    
+    public static func button(_ button: Button) -> Self {
+        Component(value: .button(button))
+    }
+    
+    public static func selectMenu(_ selectMenu: SelectMenu) -> Self {
+        Component(value: .selectMenu(selectMenu))
+    }
+    
+    public static func textInput(_ textInput: TextInput) -> Self {
+        Component(value: .textInput(textInput))
+    }
+    
     public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         

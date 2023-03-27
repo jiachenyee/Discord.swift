@@ -128,7 +128,7 @@ public enum GatewayEvent {
     /// - Important: If using Gateway Intents, the `GUILD_MEMBERS` intent will be required to receive this event.
     ///
     /// > Discord Reference: [https://discord.com/developers/docs/topics/gateway-events#guild-member-update](https://discord.com/developers/docs/topics/gateway-events#guild-member-update)
-    case guildMemberUpdate(GatewayGuildMemberUpdate) // untested
+    case guildMemberUpdate(GatewayGuildMemberUpdate)
     
     /// Response to Request Guild Members
     /// > Discord Reference: [https://discord.com/developers/docs/topics/gateway-events#guild-members-chunk](https://discord.com/developers/docs/topics/gateway-events#guild-members-chunk)
