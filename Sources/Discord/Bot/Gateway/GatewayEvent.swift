@@ -66,15 +66,15 @@ public enum GatewayEvent {
     
     /// Sent when gaining access to a channel, contains all active threads in that channel
     /// > Discord Reference [https://discord.com/developers/docs/topics/gateway-events#thread-list-sync](https://discord.com/developers/docs/topics/gateway-events#thread-list-sync)
-    case threadListSync(GatewayEventData); #warning("Incomplete")
+    case threadListSync(ThreadListSync) // untested
     
     /// Thread member for the current user was updated
     /// > Discord Reference [https://discord.com/developers/docs/topics/gateway-events#thread-member-update](https://discord.com/developers/docs/topics/gateway-events#thread-member-update)
-    case threadMemberUpdate(GatewayEventData); #warning("Incomplete")
+    case threadMemberUpdate(GatewayThreadMember) // untested
     
     /// Some user(s) were added to or removed from a thread
     /// > Discord Reference [https://discord.com/developers/docs/topics/gateway-events#thread-members-update](https://discord.com/developers/docs/topics/gateway-events#thread-members-update)
-    case threadMembersUpdate(GatewayEventData); #warning("Incomplete")
+    case threadMembersUpdate(ThreadMembersUpdate); // untested
     
     /// Lazy-load for unavailable guild, guild became available, or user joined a new guild
     /// > Discord Reference [https://discord.com/developers/docs/topics/gateway-events#guild-create](https://discord.com/developers/docs/topics/gateway-events#guild-create)
@@ -250,7 +250,7 @@ public enum GatewayEvent {
     
     /// Guild channel webhook was created, update, or deleted
     /// > Discord Reference [https://discord.com/developers/docs/topics/gateway-events#webhooks-update](https://discord.com/developers/docs/topics/gateway-events#webhooks-update)
-    case webhooksUpdate(GatewayEventData); #warning("Incomplete")
+    case webhooksUpdate(WebhookUpdate) // untested
     
     public init?(jsonObject: [String: Any]) {
         guard let typeCode = jsonObject["t"] as? String,
@@ -274,9 +274,9 @@ public enum GatewayEvent {
         case "THREAD_CREATE": self = .threadCreate(.decode(data))
         case "THREAD_UPDATE": self = .threadUpdate(.decode(data))
         case "THREAD_DELETE": self = .threadDelete(.decode(data))
-//        case "THREAD_LIST_SYNC": self = .threadListSync(.decode(data))
-//        case "THREAD_MEMBER_UPDATE": self = .threadMemberUpdate(.decode(data))
-//        case "THREAD_MEMBERS_UPDATE": self = .threadMembersUpdate(.decode(data))
+        case "THREAD_LIST_SYNC": self = .threadListSync(.decode(data))
+        case "THREAD_MEMBER_UPDATE": self = .threadMemberUpdate(.decode(data))
+        case "THREAD_MEMBERS_UPDATE": self = .threadMembersUpdate(.decode(data))
 //        case "GUILD_CREATE": self = .guildCreate(.decode(data))
         case "GUILD_UPDATE": self = .guildUpdate(.decode(data))
         case "GUILD_DELETE": self = .guildDelete(.decode(data))
@@ -320,7 +320,7 @@ public enum GatewayEvent {
 //        case "USER_UPDATE": self = .userUpdate(.decode(data))
 //        case "VOICE_STATE_UPDATE": self = .voiceStateUpdate(.decode(data))
 //        case "VOICE_SERVER_UPDATE": self = .voiceServerUpdate(.decode(data))
-//        case "WEBHOOKS_UPDATE": self = .webhooksUpdate(.decode(data))
+        case "WEBHOOKS_UPDATE": self = .webhooksUpdate(.decode(data))
         default:
             print("Unrecognised case")
             return nil
