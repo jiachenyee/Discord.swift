@@ -74,16 +74,4 @@ class GatewayManager {
         
         try? await task.send(.data(data))
     }
-    
-    func handleDispatch(jsonObject: [String: Any]) {
-        guard let typeCode = jsonObject["t"] as? String,
-              let event = GatewayEvent(rawValue: typeCode),
-              let data = jsonObject["d"] else {
-            print("Unrecognised Event:", jsonObject["t"] ?? "")
-            return
-        }
-        
-        print(event)
-        print(data)
-    }
 }

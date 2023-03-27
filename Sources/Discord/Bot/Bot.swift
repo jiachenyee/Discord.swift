@@ -16,6 +16,8 @@ public class Bot {
     
     var gatewayManager: GatewayManager!
     
+    var eventHandler: ((GatewayEvent) -> Void)?
+    
     public init(applicationId: String, token: String, presence: Presence, intents: Intents) {
         self.applicationId = applicationId
         self.token = token
@@ -24,9 +26,13 @@ public class Bot {
     }
     
     @discardableResult
-    public func connect() -> Bot {
+    public func connect(eventHandler: ((GatewayEvent) -> Void)?) -> Bot {
         gatewayManager = GatewayManager(bot: self)
+        
+        self.eventHandler = eventHandler
+        
         gatewayManager.connect()
+        
         return self
     }
 }
