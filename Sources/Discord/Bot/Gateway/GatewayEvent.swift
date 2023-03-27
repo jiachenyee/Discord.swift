@@ -116,23 +116,23 @@ public enum GatewayEvent {
     /// - Important: If using Gateway Intents, the `GUILD_MEMBERS` intent will be required to receive this event.
     ///
     /// > Discord Reference [https://discord.com/developers/docs/topics/gateway-events#guild-member-add](https://discord.com/developers/docs/topics/gateway-events#guild-member-add)
-    case guildMemberAdd(GatewayEventData); #warning("Incomplete")
+    case guildMemberAdd(GatewayGuildMember) // untested
     
     /// User was removed from a guild
     /// - Important: If using Gateway Intents, the `GUILD_MEMBERS` intent will be required to receive this event.
     ///
     /// > Discord Reference [https://discord.com/developers/docs/topics/gateway-events#guild-member-remove](https://discord.com/developers/docs/topics/gateway-events#guild-member-remove)
-    case guildMemberRemove(GatewayEventData); #warning("Incomplete")
+    case guildMemberRemove(GatewayGuildMemberRemove) // untested
     
     /// Guild member was updated
     /// - Important: If using Gateway Intents, the `GUILD_MEMBERS` intent will be required to receive this event.
     ///
     /// > Discord Reference [https://discord.com/developers/docs/topics/gateway-events#guild-member-update](https://discord.com/developers/docs/topics/gateway-events#guild-member-update)
-    case guildMemberUpdate(GatewayEventData); #warning("Incomplete")
+    case guildMemberUpdate(GatewayGuildMemberUpdate) // untested
     
     /// Response to Request Guild Members
     /// > Discord Reference [https://discord.com/developers/docs/topics/gateway-events#guild-members-chunk](https://discord.com/developers/docs/topics/gateway-events#guild-members-chunk)
-    case guildMembersChunk(GatewayEventData); #warning("Incomplete")
+    case guildMembersChunk(GatewayGuildMemberChunk) // untested
     
     /// Guild role was created
     /// > Discord Reference [https://discord.com/developers/docs/topics/gateway-events#guild-role-create](https://discord.com/developers/docs/topics/gateway-events#guild-role-create)
@@ -257,7 +257,7 @@ public enum GatewayEvent {
     
     /// Guild's voice server was updated
     /// > Discord Reference [https://discord.com/developers/docs/topics/gateway-events#voice-server-update](https://discord.com/developers/docs/topics/gateway-events#voice-server-update)
-    case voiceServerUpdate(GatewayEventData); #warning("Incomplete")
+    case voiceServerUpdate(GatewayVoiceServerUpdate) // untested
     
     /// Guild channel webhook was created, update, or deleted
     /// > Discord Reference [https://discord.com/developers/docs/topics/gateway-events#webhooks-update](https://discord.com/developers/docs/topics/gateway-events#webhooks-update)
@@ -269,6 +269,8 @@ public enum GatewayEvent {
             print("Unrecognised Event:", jsonObject["t"] ?? "")
             return nil
         }
+        
+        print(typeCode)
         
         switch typeCode {
         case "READY": self = .ready(.decode(data))
@@ -296,10 +298,10 @@ public enum GatewayEvent {
         case "GUILD_EMOJIS_UPDATE": self = .guildEmojisUpdate(.decode(data))
         case "GUILD_STICKERS_UPDATE": self = .guildStickersUpdate(.decode(data))
         case "GUILD_INTEGRATIONS_UPDATE": self = .guildIntegrationsUpdate(.decode(data))
-//        case "GUILD_MEMBER_ADD": self = .guildMemberAdd(.decode(data))
-//        case "GUILD_MEMBER_REMOVE": self = .guildMemberRemove(.decode(data))
-//        case "GUILD_MEMBER_UPDATE": self = .guildMemberUpdate(.decode(data))
-//        case "GUILD_MEMBERS_CHUNK": self = .guildMembersChunk(.decode(data))
+        case "GUILD_MEMBER_ADD": self = .guildMemberAdd(.decode(data))
+        case "GUILD_MEMBER_REMOVE": self = .guildMemberRemove(.decode(data))
+        case "GUILD_MEMBER_UPDATE": self = .guildMemberUpdate(.decode(data))
+        case "GUILD_MEMBERS_CHUNK": self = .guildMembersChunk(.decode(data))
 //        case "GUILD_ROLE_CREATE": self = .guildRoleCreate(.decode(data))
 //        case "GUILD_ROLE_UPDATE": self = .guildRoleUpdate(.decode(data))
 //        case "GUILD_ROLE_DELETE": self = .guildRoleDelete(.decode(data))
@@ -330,7 +332,7 @@ public enum GatewayEvent {
 //        case "TYPING_START": self = .typingStart(.decode(data))
 //        case "USER_UPDATE": self = .userUpdate(.decode(data))
 //        case "VOICE_STATE_UPDATE": self = .voiceStateUpdate(.decode(data))
-//        case "VOICE_SERVER_UPDATE": self = .voiceServerUpdate(.decode(data))
+        case "VOICE_SERVER_UPDATE": self = .voiceServerUpdate(.decode(data))
         case "WEBHOOKS_UPDATE": self = .webhooksUpdate(.decode(data))
         default:
             print("Unrecognised case")
