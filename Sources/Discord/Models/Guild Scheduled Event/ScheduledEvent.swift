@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct ScheduledEvent: Codable {
+public struct ScheduledEvent: Codable, GatewayEventData {
     /// the id of the scheduled event
     public var id: Snowflake
     
