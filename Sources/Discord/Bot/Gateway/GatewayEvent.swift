@@ -19,24 +19,21 @@ public enum GatewayEvent {
     case autoModerationRuleCreate(AutoModerationRule)
     case autoModerationRuleUpdate(AutoModerationRule)
     case autoModerationRuleDelete(AutoModerationRule)
-    case autoModerationActionExecution(AutoModerationActionExecution) // untested
+    case autoModerationActionExecution(AutoModerationActionExecution)
     case channelCreate(Channel)
     case channelUpdate(Channel)
     case channelDelete(Channel)
-    
-    case channelPinsUpdate(ChannelPinsUpdate) // untested
-    case threadCreate(Channel) // untested
-    case threadUpdate(Channel) // untested
-    case threadDelete(Channel) // untested
+    case channelPinsUpdate(ChannelPinsUpdate)
+    case threadCreate(Channel)
+    case threadUpdate(Channel)
+    case threadDelete(Channel)
     
     case threadListSync(GatewayEventData); #warning("Incomplete")
-    
     case threadMemberUpdate(GatewayEventData); #warning("Incomplete")
     case threadMembersUpdate(GatewayEventData); #warning("Incomplete")
-    
     case guildCreate(GatewayEventData); #warning("Incomplete")
     
-    case guildUpdate(Guild) // untested
+    case guildUpdate(Guild)
     case guildDelete(UnavailableGuild) // untested
     
     case guildBanAdd(GatewayEventData); #warning("Incomplete")
@@ -72,9 +69,9 @@ public enum GatewayEvent {
     case messageReactionRemoveAll(GatewayEventData); #warning("Incomplete")
     case messageReactionRemoveEmoji(GatewayEventData); #warning("Incomplete")
     case presenceUpdate(GatewayEventData); #warning("Incomplete")
-    case stageInstanceCreate(StageInstance) // untested
-    case stageInstanceDelete(StageInstance) // untested
-    case stageInstanceUpdate(StageInstance) // untested
+    case stageInstanceCreate(StageInstance)
+    case stageInstanceDelete(StageInstance)
+    case stageInstanceUpdate(StageInstance)
     case typingStart(GatewayEventData); #warning("Incomplete")
     case userUpdate(GatewayEventData); #warning("Incomplete")
     case voiceStateUpdate(GatewayEventData); #warning("Incomplete")
