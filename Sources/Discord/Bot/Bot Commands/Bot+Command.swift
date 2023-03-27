@@ -14,14 +14,14 @@ public extension Bot {
     /// - Warning: Creating a command with the same name as an existing command for your application will overwrite the old command.
     /// - Returns: Returns 201 if a command with the same name does not already exist, or a 200 if it does. Both responses include an application command object.
     /// > Discord Reference: [https://discord.com/developers/docs/interactions/application-commands#create-global-application-command](https://discord.com/developers/docs/interactions/application-commands#create-global-application-command)
-    func createCommand(_ command: Command) async throws -> Command {
+    func createCommand(_ command: Command) async throws -> Data {
         if let guildId = command.guildId {
-            return try await sendRequest(Command.self,
+            return try await sendRequest(
                                          endpoint: "applications/\(applicationId)/guilds/\(guildId)/commands",
                                          method: .post,
                                          data: command)
         } else {
-            return try await sendRequest(Command.self,
+            return try await sendRequest(
                                          endpoint: "applications/\(applicationId)/commands",
                                          method: .post,
                                          data: command)
