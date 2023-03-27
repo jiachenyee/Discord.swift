@@ -66,11 +66,11 @@ public enum GatewayEvent {
     
     /// Sent when gaining access to a channel, contains all active threads in that channel
     /// > Discord Reference: [https://discord.com/developers/docs/topics/gateway-events#thread-list-sync](https://discord.com/developers/docs/topics/gateway-events#thread-list-sync)
-    case threadListSync(ThreadListSync) // untested
+    case threadListSync(ThreadListSync)
     
     /// Thread member for the current user was updated
     /// > Discord Reference: [https://discord.com/developers/docs/topics/gateway-events#thread-member-update](https://discord.com/developers/docs/topics/gateway-events#thread-member-update)
-    case threadMemberUpdate(GatewayThreadMember) // untested
+    case threadMemberUpdate(GatewayThreadMember)
     
     /// Some user(s) were added to or removed from a thread
     /// > Discord Reference: [https://discord.com/developers/docs/topics/gateway-events#thread-members-update](https://discord.com/developers/docs/topics/gateway-events#thread-members-update)

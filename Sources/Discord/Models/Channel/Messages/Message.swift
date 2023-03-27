@@ -18,7 +18,7 @@ public struct Message: Codable {
     public var author: User?
     
     /// contents of the message
-    public var content: String
+    public var content: String?
     
     /// when this message was sent
     public var timestamp: ISO8601Timestamp
