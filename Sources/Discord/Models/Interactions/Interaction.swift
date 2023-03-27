@@ -73,7 +73,11 @@ public struct Interaction: GatewayEventData {
         self.id = try container.decode(Snowflake.self, forKey: .id)
         self.applicationId = try container.decodeIfPresent(Snowflake.self, forKey: .applicationId)
         self.type = try container.decode(InteractionType.self, forKey: .type)
-        self.data = try InteractionData(from: decoder)
+        
+        if container.allKeys.contains(.data) {
+            self.data = try InteractionData(from: decoder)
+        }
+        
         self.guildId = try container.decodeIfPresent(Snowflake.self, forKey: .guildId)
         self.channelId = try container.decodeIfPresent(Snowflake.self, forKey: .channelId)
         self.member = try container.decodeIfPresent(GuildMember.self, forKey: .member)
