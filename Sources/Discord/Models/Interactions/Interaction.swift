@@ -36,7 +36,7 @@ public struct Interaction: GatewayEventData {
     public var token: String?
     
     /// Read-only property, always 1
-    public var version: Int
+    public var version: Int?
     
     /// For components, the message they were attached to
     public var message: Message?
@@ -83,7 +83,7 @@ public struct Interaction: GatewayEventData {
         self.member = try container.decodeIfPresent(GuildMember.self, forKey: .member)
         self.user = try container.decodeIfPresent(User.self, forKey: .user)
         self.token = try container.decodeIfPresent(String.self, forKey: .token)
-        self.version = try container.decode(Int.self, forKey: .version)
+        self.version = try container.decodeIfPresent(Int.self, forKey: .version)
         self.message = try container.decodeIfPresent(Message.self, forKey: .message)
         self.appPermissions = try container.decodeIfPresent(String.self, forKey: .appPermissions)
         self.locale = try container.decodeIfPresent(DiscordLocale.self, forKey: .locale)
