@@ -8,187 +8,248 @@
 import Foundation
 
 public enum GatewayEvent {
-    /// https://discord.com/developers/docs/topics/gateway-events#ready
+    /// Contains the initial state information
+    /// > Discord Reference [https://discord.com/developers/docs/topics/gateway-events#ready](https://discord.com/developers/docs/topics/gateway-events#ready)
     case ready(GatewayReady)
     
-    /// https://discord.com/developers/docs/topics/gateway-events#resumed
+    /// Response to Resume
+    /// > Discord Reference [https://discord.com/developers/docs/topics/gateway-events#resumed](https://discord.com/developers/docs/topics/gateway-events#resumed)
     case resumed(GatewayEventData); #warning("Incomplete")
     
-    /// https://discord.com/developers/docs/topics/gateway-events#application-command-permissions-update
+    /// Application command permission was updated
+    /// > Discord Reference [https://discord.com/developers/docs/topics/gateway-events#application-command-permissions-update](https://discord.com/developers/docs/topics/gateway-events#application-command-permissions-update)
     case applicationCommandPermissionsUpdate(Command.Permissions)
     
-    /// https://discord.com/developers/docs/topics/gateway-events#auto-moderation-rule-create
+    /// Auto Moderation rule was created
+    /// > Discord Reference [https://discord.com/developers/docs/topics/gateway-events#auto-moderation-rule-create](https://discord.com/developers/docs/topics/gateway-events#auto-moderation-rule-create)
     case autoModerationRuleCreate(AutoModerationRule)
     
-    /// https://discord.com/developers/docs/topics/gateway-events#auto-moderation-rule-update
+    /// Auto Moderation rule was updated
+    /// > Discord Reference [https://discord.com/developers/docs/topics/gateway-events#auto-moderation-rule-update](https://discord.com/developers/docs/topics/gateway-events#auto-moderation-rule-update)
     case autoModerationRuleUpdate(AutoModerationRule)
     
-    /// https://discord.com/developers/docs/topics/gateway-events#auto-moderation-rule-delete
+    /// Auto Moderation rule was deleted
+    /// > Discord Reference [https://discord.com/developers/docs/topics/gateway-events#auto-moderation-rule-delete](https://discord.com/developers/docs/topics/gateway-events#auto-moderation-rule-delete)
     case autoModerationRuleDelete(AutoModerationRule)
     
-    /// https://discord.com/developers/docs/topics/gateway-events#auto-moderation-action-execution
+    /// Auto Moderation rule was triggered and an action was executed (e.g. a message was blocked)
+    /// > Discord Reference [https://discord.com/developers/docs/topics/gateway-events#auto-moderation-action-execution](https://discord.com/developers/docs/topics/gateway-events#auto-moderation-action-execution)
     case autoModerationActionExecution(AutoModerationActionExecution)
     
-    /// https://discord.com/developers/docs/topics/gateway-events#channel-create
+    /// New guild channel created
+    /// > Discord Reference [https://discord.com/developers/docs/topics/gateway-events#channel-create](https://discord.com/developers/docs/topics/gateway-events#channel-create)
     case channelCreate(Channel)
     
-    /// https://discord.com/developers/docs/topics/gateway-events#channel-update
+    /// Channel was updated
+    /// > Discord Reference [https://discord.com/developers/docs/topics/gateway-events#channel-update](https://discord.com/developers/docs/topics/gateway-events#channel-update)
     case channelUpdate(Channel)
     
-    /// https://discord.com/developers/docs/topics/gateway-events#channel-delete
+    /// Channel was deleted
+    /// > Discord Reference [https://discord.com/developers/docs/topics/gateway-events#channel-delete](https://discord.com/developers/docs/topics/gateway-events#channel-delete)
     case channelDelete(Channel)
     
-    /// https://discord.com/developers/docs/topics/gateway-events#channel-pins-update
+    /// Message was pinned or unpinned
+    /// > Discord Reference [https://discord.com/developers/docs/topics/gateway-events#channel-pins-update](https://discord.com/developers/docs/topics/gateway-events#channel-pins-update)
     case channelPinsUpdate(ChannelPinsUpdate)
     
-    /// https://discord.com/developers/docs/topics/gateway-events#thread-create
+    /// Thread created, also sent when being added to a private thread
+    /// > Discord Reference [https://discord.com/developers/docs/topics/gateway-events#thread-create](https://discord.com/developers/docs/topics/gateway-events#thread-create)
     case threadCreate(Channel)
     
-    /// https://discord.com/developers/docs/topics/gateway-events#thread-update
+    /// Thread was updated
+    /// > Discord Reference [https://discord.com/developers/docs/topics/gateway-events#thread-update](https://discord.com/developers/docs/topics/gateway-events#thread-update)
     case threadUpdate(Channel)
     
-    /// https://discord.com/developers/docs/topics/gateway-events#thread-delete
+    /// Thread was deleted
+    /// > Discord Reference [https://discord.com/developers/docs/topics/gateway-events#thread-delete](https://discord.com/developers/docs/topics/gateway-events#thread-delete)
     case threadDelete(Channel)
     
-    /// https://discord.com/developers/docs/topics/gateway-events#thread-list-sync
+    /// Sent when gaining access to a channel, contains all active threads in that channel
+    /// > Discord Reference [https://discord.com/developers/docs/topics/gateway-events#thread-list-sync](https://discord.com/developers/docs/topics/gateway-events#thread-list-sync)
     case threadListSync(GatewayEventData); #warning("Incomplete")
     
-    /// https://discord.com/developers/docs/topics/gateway-events#thread-member-update
+    /// Thread member for the current user was updated
+    /// > Discord Reference [https://discord.com/developers/docs/topics/gateway-events#thread-member-update](https://discord.com/developers/docs/topics/gateway-events#thread-member-update)
     case threadMemberUpdate(GatewayEventData); #warning("Incomplete")
     
-    /// https://discord.com/developers/docs/topics/gateway-events#thread-members-update
+    /// Some user(s) were added to or removed from a thread
+    /// > Discord Reference [https://discord.com/developers/docs/topics/gateway-events#thread-members-update](https://discord.com/developers/docs/topics/gateway-events#thread-members-update)
     case threadMembersUpdate(GatewayEventData); #warning("Incomplete")
     
-    /// https://discord.com/developers/docs/topics/gateway-events#guild-create
+    /// Lazy-load for unavailable guild, guild became available, or user joined a new guild
+    /// > Discord Reference [https://discord.com/developers/docs/topics/gateway-events#guild-create](https://discord.com/developers/docs/topics/gateway-events#guild-create)
     case guildCreate(GatewayEventData); #warning("Incomplete")
     
-    /// https://discord.com/developers/docs/topics/gateway-events#guild-update
+    /// Guild was updated
+    /// > Discord Reference [https://discord.com/developers/docs/topics/gateway-events#guild-update](https://discord.com/developers/docs/topics/gateway-events#guild-update)
     case guildUpdate(Guild)
     
-    /// https://discord.com/developers/docs/topics/gateway-events#guild-delete
+    /// Guild became unavailable, or user left/was removed from a guild
+    /// > Discord Reference [https://discord.com/developers/docs/topics/gateway-events#guild-delete](https://discord.com/developers/docs/topics/gateway-events#guild-delete)
     case guildDelete(UnavailableGuild) // untested
     
-    /// https://discord.com/developers/docs/topics/gateway-events#guild-audit-log-entry-create
+    /// A guild audit log entry was created
+    /// > Discord Reference [https://discord.com/developers/docs/topics/gateway-events#guild-audit-log-entry-create](https://discord.com/developers/docs/topics/gateway-events#guild-audit-log-entry-create)
     case guildAuditLogEntryCreate(GatewayEventData); #warning("Incomplete")
     
-    /// https://discord.com/developers/docs/topics/gateway-events#guild-ban-add
+    /// User was banned from a guild
+    /// > Discord Reference [https://discord.com/developers/docs/topics/gateway-events#guild-ban-add](https://discord.com/developers/docs/topics/gateway-events#guild-ban-add)
     case guildBanAdd(GatewayEventData); #warning("Incomplete")
     
-    /// https://discord.com/developers/docs/topics/gateway-events#guild-ban-remove
+    /// User was unbanned from a guild
+    /// > Discord Reference [https://discord.com/developers/docs/topics/gateway-events#guild-ban-remove](https://discord.com/developers/docs/topics/gateway-events#guild-ban-remove)
     case guildBanRemove(GatewayEventData); #warning("Incomplete")
     
-    /// https://discord.com/developers/docs/topics/gateway-events#guild-emojis-update
+    /// Guild emojis were updated
+    /// > Discord Reference [https://discord.com/developers/docs/topics/gateway-events#guild-emojis-update](https://discord.com/developers/docs/topics/gateway-events#guild-emojis-update)
     case guildEmojisUpdate(GatewayEventData); #warning("Incomplete")
     
-    /// https://discord.com/developers/docs/topics/gateway-events#guild-stickers-update
+    /// Guild stickers were updated
+    /// > Discord Reference [https://discord.com/developers/docs/topics/gateway-events#guild-stickers-update](https://discord.com/developers/docs/topics/gateway-events#guild-stickers-update)
     case guildStickersUpdate(GatewayEventData); #warning("Incomplete")
     
-    /// https://discord.com/developers/docs/topics/gateway-events#guild-integrations-update
+    /// Guild integration was updated
+    /// > Discord Reference [https://discord.com/developers/docs/topics/gateway-events#guild-integrations-update](https://discord.com/developers/docs/topics/gateway-events#guild-integrations-update)
     case guildIntegrationsUpdate(GatewayEventData); #warning("Incomplete")
     
-    /// https://discord.com/developers/docs/topics/gateway-events#guild-member-add
+    /// New user joined a guild
+    /// > Discord Reference [https://discord.com/developers/docs/topics/gateway-events#guild-member-add](https://discord.com/developers/docs/topics/gateway-events#guild-member-add)
     case guildMemberAdd(GatewayEventData); #warning("Incomplete")
     
-    /// https://discord.com/developers/docs/topics/gateway-events#guild-member-remove
+    /// User was removed from a guild
+    /// > Discord Reference [https://discord.com/developers/docs/topics/gateway-events#guild-member-remove](https://discord.com/developers/docs/topics/gateway-events#guild-member-remove)
     case guildMemberRemove(GatewayEventData); #warning("Incomplete")
     
-    /// https://discord.com/developers/docs/topics/gateway-events#guild-member-update
+    /// Guild member was updated
+    /// > Discord Reference [https://discord.com/developers/docs/topics/gateway-events#guild-member-update](https://discord.com/developers/docs/topics/gateway-events#guild-member-update)
     case guildMemberUpdate(GatewayEventData); #warning("Incomplete")
     
-    /// https://discord.com/developers/docs/topics/gateway-events#guild-members-chunk
+    /// Response to Request Guild Members
+    /// > Discord Reference [https://discord.com/developers/docs/topics/gateway-events#guild-members-chunk](https://discord.com/developers/docs/topics/gateway-events#guild-members-chunk)
     case guildMembersChunk(GatewayEventData); #warning("Incomplete")
     
-    /// https://discord.com/developers/docs/topics/gateway-events#guild-role-create
+    /// Guild role was created
+    /// > Discord Reference [https://discord.com/developers/docs/topics/gateway-events#guild-role-create](https://discord.com/developers/docs/topics/gateway-events#guild-role-create)
     case guildRoleCreate(GatewayEventData); #warning("Incomplete")
     
-    /// https://discord.com/developers/docs/topics/gateway-events#guild-role-update
+    /// Guild role was updated
+    /// > Discord Reference [https://discord.com/developers/docs/topics/gateway-events#guild-role-update](https://discord.com/developers/docs/topics/gateway-events#guild-role-update)
     case guildRoleUpdate(GatewayEventData); #warning("Incomplete")
     
-    /// https://discord.com/developers/docs/topics/gateway-events#guild-role-delete
+    /// Guild role was deleted
+    /// > Discord Reference [https://discord.com/developers/docs/topics/gateway-events#guild-role-delete](https://discord.com/developers/docs/topics/gateway-events#guild-role-delete)
     case guildRoleDelete(GatewayEventData); #warning("Incomplete")
     
-    /// https://discord.com/developers/docs/topics/gateway-events#guild-scheduled-event-create
+    /// Guild scheduled event was created
+    /// > Discord Reference [https://discord.com/developers/docs/topics/gateway-events#guild-scheduled-event-create](https://discord.com/developers/docs/topics/gateway-events#guild-scheduled-event-create)
     case guildScheduledEventCreate(ScheduledEvent)
     
-    /// https://discord.com/developers/docs/topics/gateway-events#guild-scheduled-event-update
+    /// Guild scheduled event was updated
+    /// > Discord Reference [https://discord.com/developers/docs/topics/gateway-events#guild-scheduled-event-update](https://discord.com/developers/docs/topics/gateway-events#guild-scheduled-event-update)
     case guildScheduledEventUpdate(ScheduledEvent)
     
-    /// https://discord.com/developers/docs/topics/gateway-events#guild-scheduled-event-delete
+    /// Guild scheduled event was deleted
+    /// > Discord Reference [https://discord.com/developers/docs/topics/gateway-events#guild-scheduled-event-delete](https://discord.com/developers/docs/topics/gateway-events#guild-scheduled-event-delete)
     case guildScheduledEventDelete(ScheduledEvent)
     
-    /// https://discord.com/developers/docs/topics/gateway-events#guild-scheduled-event-user-add
+    /// User subscribed to a guild scheduled event
+    /// > Discord Reference [https://discord.com/developers/docs/topics/gateway-events#guild-scheduled-event-user-add](https://discord.com/developers/docs/topics/gateway-events#guild-scheduled-event-user-add)
     case guildScheduledEventUserAdd(GatewayEventData); #warning("Incomplete")
     
-    /// https://discord.com/developers/docs/topics/gateway-events#guild-scheduled-event-user-remove
+    /// User unsubscribed from a guild scheduled event
+    /// > Discord Reference [https://discord.com/developers/docs/topics/gateway-events#guild-scheduled-event-user-remove](https://discord.com/developers/docs/topics/gateway-events#guild-scheduled-event-user-remove)
     case guildScheduledEventUserRemove(GatewayEventData); #warning("Incomplete")
     
-    /// https://discord.com/developers/docs/topics/gateway-events#integration-create
+    /// Guild integration was created
+    /// > Discord Reference [https://discord.com/developers/docs/topics/gateway-events#integration-create](https://discord.com/developers/docs/topics/gateway-events#integration-create)
     case integrationCreate(GatewayEventData); #warning("Incomplete")
     
-    /// https://discord.com/developers/docs/topics/gateway-events#integration-update
+    /// Guild integration was updated
+    /// > Discord Reference [https://discord.com/developers/docs/topics/gateway-events#integration-update](https://discord.com/developers/docs/topics/gateway-events#integration-update)
     case integrationUpdate(GatewayEventData); #warning("Incomplete")
     
-    /// https://discord.com/developers/docs/topics/gateway-events#integration-delete
+    /// Guild integration was deleted
+    /// > Discord Reference [https://discord.com/developers/docs/topics/gateway-events#integration-delete](https://discord.com/developers/docs/topics/gateway-events#integration-delete)
     case integrationDelete(GatewayEventData); #warning("Incomplete")
     
-    /// https://discord.com/developers/docs/topics/gateway-events#interaction-create
+    /// User used an interaction, such as an Application Command
+    /// > Discord Reference [https://discord.com/developers/docs/topics/gateway-events#interaction-create](https://discord.com/developers/docs/topics/gateway-events#interaction-create)
     case interactionCreate(GatewayEventData); #warning("Incomplete")
     
-    /// https://discord.com/developers/docs/topics/gateway-events#invite-create
+    /// Invite to a channel was created
+    /// > Discord Reference [https://discord.com/developers/docs/topics/gateway-events#invite-create](https://discord.com/developers/docs/topics/gateway-events#invite-create)
     case inviteCreate(GatewayEventData); #warning("Incomplete")
     
-    /// https://discord.com/developers/docs/topics/gateway-events#invite-delete
+    /// Invite to a channel was deleted
+    /// > Discord Reference [https://discord.com/developers/docs/topics/gateway-events#invite-delete](https://discord.com/developers/docs/topics/gateway-events#invite-delete)
     case inviteDelete(GatewayEventData); #warning("Incomplete")
     
-    /// https://discord.com/developers/docs/topics/gateway-events#message-create
+    /// Message was created
+    /// > Discord Reference [https://discord.com/developers/docs/topics/gateway-events#message-create](https://discord.com/developers/docs/topics/gateway-events#message-create)
     case messageCreate(GatewayEventData); #warning("Incomplete")
     
-    /// https://discord.com/developers/docs/topics/gateway-events#message-update
+    /// Message was edited
+    /// > Discord Reference [https://discord.com/developers/docs/topics/gateway-events#message-update](https://discord.com/developers/docs/topics/gateway-events#message-update)
     case messageUpdate(GatewayEventData); #warning("Incomplete")
     
-    /// https://discord.com/developers/docs/topics/gateway-events#message-delete
+    /// Message was deleted
+    /// > Discord Reference [https://discord.com/developers/docs/topics/gateway-events#message-delete](https://discord.com/developers/docs/topics/gateway-events#message-delete)
     case messageDelete(GatewayEventData); #warning("Incomplete")
     
-    /// https://discord.com/developers/docs/topics/gateway-events#message-delete-bulk
+    /// Multiple messages were deleted at once
+    /// > Discord Reference [https://discord.com/developers/docs/topics/gateway-events#message-delete-bulk](https://discord.com/developers/docs/topics/gateway-events#message-delete-bulk)
     case messageDeleteBulk(GatewayEventData); #warning("Incomplete")
     
-    /// https://discord.com/developers/docs/topics/gateway-events#message-reaction-add
+    /// User reacted to a message
+    /// > Discord Reference [https://discord.com/developers/docs/topics/gateway-events#message-reaction-add](https://discord.com/developers/docs/topics/gateway-events#message-reaction-add)
     case messageReactionAdd(GatewayEventData); #warning("Incomplete")
     
-    /// https://discord.com/developers/docs/topics/gateway-events#message-reaction-remove
+    /// User removed a reaction from a message
+    /// > Discord Reference [https://discord.com/developers/docs/topics/gateway-events#message-reaction-remove](https://discord.com/developers/docs/topics/gateway-events#message-reaction-remove)
     case messageReactionRemove(GatewayEventData); #warning("Incomplete")
     
-    /// https://discord.com/developers/docs/topics/gateway-events#message-reaction-remove-all
+    /// All reactions were explicitly removed from a message
+    /// > Discord Reference [https://discord.com/developers/docs/topics/gateway-events#message-reaction-remove-all](https://discord.com/developers/docs/topics/gateway-events#message-reaction-remove-all)
     case messageReactionRemoveAll(GatewayEventData); #warning("Incomplete")
     
-    /// https://discord.com/developers/docs/topics/gateway-events#message-reaction-remove-emoji
+    /// All reactions for a given emoji were explicitly removed from a message
+    /// > Discord Reference [https://discord.com/developers/docs/topics/gateway-events#message-reaction-remove-emoji](https://discord.com/developers/docs/topics/gateway-events#message-reaction-remove-emoji)
     case messageReactionRemoveEmoji(GatewayEventData); #warning("Incomplete")
     
-    /// https://discord.com/developers/docs/topics/gateway-events#presence-update
+    /// User was updated
+    /// > Discord Reference [https://discord.com/developers/docs/topics/gateway-events#presence-update](https://discord.com/developers/docs/topics/gateway-events#presence-update)
     case presenceUpdate(GatewayEventData); #warning("Incomplete")
     
-    /// https://discord.com/developers/docs/topics/gateway-events#stage-instance-create
+    /// Stage instance was created
+    /// > Discord Reference [https://discord.com/developers/docs/topics/gateway-events#stage-instance-create](https://discord.com/developers/docs/topics/gateway-events#stage-instance-create)
     case stageInstanceCreate(StageInstance)
     
-    /// https://discord.com/developers/docs/topics/gateway-events#stage-instance-update
+    /// Stage instance was updated
+    /// > Discord Reference [https://discord.com/developers/docs/topics/gateway-events#stage-instance-update](https://discord.com/developers/docs/topics/gateway-events#stage-instance-update)
     case stageInstanceUpdate(StageInstance)
     
-    /// https://discord.com/developers/docs/topics/gateway-events#stage-instance-delete
+    /// Stage instance was deleted or closed
+    /// > Discord Reference [https://discord.com/developers/docs/topics/gateway-events#stage-instance-delete](https://discord.com/developers/docs/topics/gateway-events#stage-instance-delete)
     case stageInstanceDelete(StageInstance)
     
-    /// https://discord.com/developers/docs/topics/gateway-events#typing-start
+    /// User started typing in a channel
+    /// > Discord Reference [https://discord.com/developers/docs/topics/gateway-events#typing-start](https://discord.com/developers/docs/topics/gateway-events#typing-start)
     case typingStart(GatewayEventData); #warning("Incomplete")
     
-    /// https://discord.com/developers/docs/topics/gateway-events#user-update
+    /// Properties about the user changed
+    /// > Discord Reference [https://discord.com/developers/docs/topics/gateway-events#user-update](https://discord.com/developers/docs/topics/gateway-events#user-update)
     case userUpdate(GatewayEventData); #warning("Incomplete")
     
-    /// https://discord.com/developers/docs/topics/gateway-events#voice-state-update
+    /// Someone joined, left, or moved a voice channel
+    /// > Discord Reference [https://discord.com/developers/docs/topics/gateway-events#voice-state-update](https://discord.com/developers/docs/topics/gateway-events#voice-state-update)
     case voiceStateUpdate(GatewayEventData); #warning("Incomplete")
     
-    /// https://discord.com/developers/docs/topics/gateway-events#voice-server-update
+    /// Guild's voice server was updated
+    /// > Discord Reference [https://discord.com/developers/docs/topics/gateway-events#voice-server-update](https://discord.com/developers/docs/topics/gateway-events#voice-server-update)
     case voiceServerUpdate(GatewayEventData); #warning("Incomplete")
     
-    /// https://discord.com/developers/docs/topics/gateway-events#webhooks-update
+    /// Guild channel webhook was created, update, or deleted
+    /// > Discord Reference [https://discord.com/developers/docs/topics/gateway-events#webhooks-update](https://discord.com/developers/docs/topics/gateway-events#webhooks-update)
     case webhooksUpdate(GatewayEventData); #warning("Incomplete")
     
     public init?(jsonObject: [String: Any]) {

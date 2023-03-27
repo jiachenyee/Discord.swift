@@ -47,7 +47,7 @@ public extension Bot {
     /// Fetches permissions for all commands for your application in a guild.
     /// - Parameter guildId: The guild ID of the target guild.
     /// - Returns: Returns a guild application command permissions object.
-    /// - Tip: Looking for permissions for one specific command? Try  <[doc:getCommandsPermissions](doc:getCommandsPermissions)(in:)>.
+    /// - Tip: Looking for permissions for one specific command? Try ``getCommandsPermissions(in:)``
     /// > Discord Reference: [https://discord.com/developers/docs/interactions/application-commands#get-guild-application-command-permissions](https://discord.com/developers/docs/interactions/application-commands#get-guild-application-command-permissions)
     func getCommandsPermissions(in guildId: Snowflake) async throws -> [Command.Permissions] {
         try await sendRequest([Command.Permissions].self,
