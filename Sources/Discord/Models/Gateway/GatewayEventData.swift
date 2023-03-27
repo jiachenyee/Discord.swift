@@ -20,7 +20,7 @@ public extension GatewayEventData {
             let value = try decoder.decode(Self.self, from: jsonData)
             return value
         } catch {
-            print(jsonData)
+            print(data)
             
             fatalError("Decoding error: \(error.localizedDescription)")
         }
