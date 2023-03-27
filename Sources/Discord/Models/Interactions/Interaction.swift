@@ -12,7 +12,7 @@ public struct Interaction: GatewayEventData {
     public var id: Snowflake
     
     /// ID of the application this interaction is for
-    public var applicationId: Snowflake
+    public var applicationId: Snowflake?
     
     /// Type of interaction
     public var type: InteractionType
