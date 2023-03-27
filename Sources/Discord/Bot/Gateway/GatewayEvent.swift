@@ -295,7 +295,7 @@ public enum GatewayEvent {
         case "GUILD_BAN_REMOVE": self = .guildBanRemove(.decode(data))
         case "GUILD_EMOJIS_UPDATE": self = .guildEmojisUpdate(.decode(data))
         case "GUILD_STICKERS_UPDATE": self = .guildStickersUpdate(.decode(data))
-//        case "GUILD_INTEGRATIONS_UPDATE": self = .guildIntegrationsUpdate(.decode(data))
+        case "GUILD_INTEGRATIONS_UPDATE": self = .guildIntegrationsUpdate(.decode(data))
 //        case "GUILD_MEMBER_ADD": self = .guildMemberAdd(.decode(data))
 //        case "GUILD_MEMBER_REMOVE": self = .guildMemberRemove(.decode(data))
 //        case "GUILD_MEMBER_UPDATE": self = .guildMemberUpdate(.decode(data))
