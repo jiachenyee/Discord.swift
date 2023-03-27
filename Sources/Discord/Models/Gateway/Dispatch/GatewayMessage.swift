@@ -105,5 +105,5 @@ public struct GatewayMessage: GatewayEventData {
     public var guild_id: Snowflake?
     
     /// Member properties for this message's author. Missing for ephemeral messages and messages from webhooks
-    public var member: [GuildMember]?
+    public var member: GuildMember?
 }

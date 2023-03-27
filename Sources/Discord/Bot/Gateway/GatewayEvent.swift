@@ -78,7 +78,7 @@ public enum GatewayEvent {
     
     /// Lazy-load for unavailable guild, guild became available, or user joined a new guild
     /// > Discord Reference [https://discord.com/developers/docs/topics/gateway-events#guild-create](https://discord.com/developers/docs/topics/gateway-events#guild-create)
-    case guildCreate(GatewayGuild) // untested
+    case guildCreate(GatewayGuild)
     
     /// Guild was updated
     /// > Discord Reference [https://discord.com/developers/docs/topics/gateway-events#guild-update](https://discord.com/developers/docs/topics/gateway-events#guild-update)
@@ -90,7 +90,7 @@ public enum GatewayEvent {
     
     /// A guild audit log entry was created
     /// > Discord Reference [https://discord.com/developers/docs/topics/gateway-events#guild-audit-log-entry-create](https://discord.com/developers/docs/topics/gateway-events#guild-audit-log-entry-create)
-    case guildAuditLogEntryCreate(AuditLogEntry) // untested
+    case guildAuditLogEntryCreate(AuditLogEntry)
     
     /// User was banned from a guild
     /// > Discord Reference [https://discord.com/developers/docs/topics/gateway-events#guild-ban-add](https://discord.com/developers/docs/topics/gateway-events#guild-ban-add)
@@ -136,15 +136,15 @@ public enum GatewayEvent {
     
     /// Guild role was created
     /// > Discord Reference [https://discord.com/developers/docs/topics/gateway-events#guild-role-create](https://discord.com/developers/docs/topics/gateway-events#guild-role-create)
-    case guildRoleCreate(GatewayGuildRole) // untested
+    case guildRoleCreate(GatewayGuildRole)
     
     /// Guild role was updated
     /// > Discord Reference [https://discord.com/developers/docs/topics/gateway-events#guild-role-update](https://discord.com/developers/docs/topics/gateway-events#guild-role-update)
-    case guildRoleUpdate(GatewayGuildRole) // untested
+    case guildRoleUpdate(GatewayGuildRole)
     
     /// Guild role was deleted
     /// > Discord Reference [https://discord.com/developers/docs/topics/gateway-events#guild-role-delete](https://discord.com/developers/docs/topics/gateway-events#guild-role-delete)
-    case guildRoleDelete(GatewayGuildRoleDelete) // untested
+    case guildRoleDelete(GatewayGuildRoleDelete)
     
     /// Guild scheduled event was created
     /// > Discord Reference [https://discord.com/developers/docs/topics/gateway-events#guild-scheduled-event-create](https://discord.com/developers/docs/topics/gateway-events#guild-scheduled-event-create)
