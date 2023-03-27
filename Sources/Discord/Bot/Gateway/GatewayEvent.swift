@@ -14,68 +14,181 @@ public enum GatewayEvent {
     /// https://discord.com/developers/docs/topics/gateway-events#resumed
     case resumed(GatewayEventData); #warning("Incomplete")
     
+    /// https://discord.com/developers/docs/topics/gateway-events#application-command-permissions-update
     case applicationCommandPermissionsUpdate(Command.Permissions)
     
+    /// https://discord.com/developers/docs/topics/gateway-events#auto-moderation-rule-create
     case autoModerationRuleCreate(AutoModerationRule)
+    
+    /// https://discord.com/developers/docs/topics/gateway-events#auto-moderation-rule-update
     case autoModerationRuleUpdate(AutoModerationRule)
+    
+    /// https://discord.com/developers/docs/topics/gateway-events#auto-moderation-rule-delete
     case autoModerationRuleDelete(AutoModerationRule)
+    
+    /// https://discord.com/developers/docs/topics/gateway-events#auto-moderation-action-execution
     case autoModerationActionExecution(AutoModerationActionExecution)
+    
+    /// https://discord.com/developers/docs/topics/gateway-events#channel-create
     case channelCreate(Channel)
+    
+    /// https://discord.com/developers/docs/topics/gateway-events#channel-update
     case channelUpdate(Channel)
+    
+    /// https://discord.com/developers/docs/topics/gateway-events#channel-delete
     case channelDelete(Channel)
+    
+    /// https://discord.com/developers/docs/topics/gateway-events#channel-pins-update
     case channelPinsUpdate(ChannelPinsUpdate)
+    
+    /// https://discord.com/developers/docs/topics/gateway-events#thread-create
     case threadCreate(Channel)
+    
+    /// https://discord.com/developers/docs/topics/gateway-events#thread-update
     case threadUpdate(Channel)
+    
+    /// https://discord.com/developers/docs/topics/gateway-events#thread-delete
     case threadDelete(Channel)
     
+    /// https://discord.com/developers/docs/topics/gateway-events#thread-list-sync
     case threadListSync(GatewayEventData); #warning("Incomplete")
+    
+    /// https://discord.com/developers/docs/topics/gateway-events#thread-member-update
     case threadMemberUpdate(GatewayEventData); #warning("Incomplete")
+    
+    /// https://discord.com/developers/docs/topics/gateway-events#thread-members-update
     case threadMembersUpdate(GatewayEventData); #warning("Incomplete")
+    
+    /// https://discord.com/developers/docs/topics/gateway-events#guild-create
     case guildCreate(GatewayEventData); #warning("Incomplete")
     
+    /// https://discord.com/developers/docs/topics/gateway-events#guild-update
     case guildUpdate(Guild)
+    
+    /// https://discord.com/developers/docs/topics/gateway-events#guild-delete
     case guildDelete(UnavailableGuild) // untested
     
-    case guildBanAdd(GatewayEventData); #warning("Incomplete")
-    case guildBanRemove(GatewayEventData); #warning("Incomplete")
-    case guildEmojisUpdate(GatewayEventData); #warning("Incomplete")
-    case guildStickersUpdate(GatewayEventData); #warning("Incomplete")
-    case guildIntegrationsUpdate(GatewayEventData); #warning("Incomplete")
-    case guildMemberAdd(GatewayEventData); #warning("Incomplete")
-    case guildMemberRemove(GatewayEventData); #warning("Incomplete")
-    case guildMemberUpdate(GatewayEventData); #warning("Incomplete")
-    case guildMembersChunk(GatewayEventData); #warning("Incomplete")
-    case guildRoleCreate(GatewayEventData); #warning("Incomplete")
-    case guildRoleUpdate(GatewayEventData); #warning("Incomplete")
-    case guildRoleDelete(GatewayEventData); #warning("Incomplete")
-    case guildScheduledEventCreate(ScheduledEvent) // untested
-    case guildScheduledEventUpdate(ScheduledEvent) // untested
-    case guildScheduledEventDelete(ScheduledEvent) // untested
-    case guildScheduledEventUserAdd(GatewayEventData); #warning("Incomplete")
-    case guildScheduledEventUserRemove(GatewayEventData); #warning("Incomplete")
+    /// https://discord.com/developers/docs/topics/gateway-events#guild-audit-log-entry-create
     case guildAuditLogEntryCreate(GatewayEventData); #warning("Incomplete")
+    
+    /// https://discord.com/developers/docs/topics/gateway-events#guild-ban-add
+    case guildBanAdd(GatewayEventData); #warning("Incomplete")
+    
+    /// https://discord.com/developers/docs/topics/gateway-events#guild-ban-remove
+    case guildBanRemove(GatewayEventData); #warning("Incomplete")
+    
+    /// https://discord.com/developers/docs/topics/gateway-events#guild-emojis-update
+    case guildEmojisUpdate(GatewayEventData); #warning("Incomplete")
+    
+    /// https://discord.com/developers/docs/topics/gateway-events#guild-stickers-update
+    case guildStickersUpdate(GatewayEventData); #warning("Incomplete")
+    
+    /// https://discord.com/developers/docs/topics/gateway-events#guild-integrations-update
+    case guildIntegrationsUpdate(GatewayEventData); #warning("Incomplete")
+    
+    /// https://discord.com/developers/docs/topics/gateway-events#guild-member-add
+    case guildMemberAdd(GatewayEventData); #warning("Incomplete")
+    
+    /// https://discord.com/developers/docs/topics/gateway-events#guild-member-remove
+    case guildMemberRemove(GatewayEventData); #warning("Incomplete")
+    
+    /// https://discord.com/developers/docs/topics/gateway-events#guild-member-update
+    case guildMemberUpdate(GatewayEventData); #warning("Incomplete")
+    
+    /// https://discord.com/developers/docs/topics/gateway-events#guild-members-chunk
+    case guildMembersChunk(GatewayEventData); #warning("Incomplete")
+    
+    /// https://discord.com/developers/docs/topics/gateway-events#guild-role-create
+    case guildRoleCreate(GatewayEventData); #warning("Incomplete")
+    
+    /// https://discord.com/developers/docs/topics/gateway-events#guild-role-update
+    case guildRoleUpdate(GatewayEventData); #warning("Incomplete")
+    
+    /// https://discord.com/developers/docs/topics/gateway-events#guild-role-delete
+    case guildRoleDelete(GatewayEventData); #warning("Incomplete")
+    
+    /// https://discord.com/developers/docs/topics/gateway-events#guild-scheduled-event-create
+    case guildScheduledEventCreate(ScheduledEvent)
+    
+    /// https://discord.com/developers/docs/topics/gateway-events#guild-scheduled-event-update
+    case guildScheduledEventUpdate(ScheduledEvent)
+    
+    /// https://discord.com/developers/docs/topics/gateway-events#guild-scheduled-event-delete
+    case guildScheduledEventDelete(ScheduledEvent)
+    
+    /// https://discord.com/developers/docs/topics/gateway-events#guild-scheduled-event-user-add
+    case guildScheduledEventUserAdd(GatewayEventData); #warning("Incomplete")
+    
+    /// https://discord.com/developers/docs/topics/gateway-events#guild-scheduled-event-user-remove
+    case guildScheduledEventUserRemove(GatewayEventData); #warning("Incomplete")
+    
+    /// https://discord.com/developers/docs/topics/gateway-events#integration-create
     case integrationCreate(GatewayEventData); #warning("Incomplete")
+    
+    /// https://discord.com/developers/docs/topics/gateway-events#integration-update
     case integrationUpdate(GatewayEventData); #warning("Incomplete")
+    
+    /// https://discord.com/developers/docs/topics/gateway-events#integration-delete
     case integrationDelete(GatewayEventData); #warning("Incomplete")
+    
+    /// https://discord.com/developers/docs/topics/gateway-events#interaction-create
     case interactionCreate(GatewayEventData); #warning("Incomplete")
+    
+    /// https://discord.com/developers/docs/topics/gateway-events#invite-create
     case inviteCreate(GatewayEventData); #warning("Incomplete")
+    
+    /// https://discord.com/developers/docs/topics/gateway-events#invite-delete
     case inviteDelete(GatewayEventData); #warning("Incomplete")
+    
+    /// https://discord.com/developers/docs/topics/gateway-events#message-create
     case messageCreate(GatewayEventData); #warning("Incomplete")
+    
+    /// https://discord.com/developers/docs/topics/gateway-events#message-update
     case messageUpdate(GatewayEventData); #warning("Incomplete")
+    
+    /// https://discord.com/developers/docs/topics/gateway-events#message-delete
     case messageDelete(GatewayEventData); #warning("Incomplete")
+    
+    /// https://discord.com/developers/docs/topics/gateway-events#message-delete-bulk
     case messageDeleteBulk(GatewayEventData); #warning("Incomplete")
+    
+    /// https://discord.com/developers/docs/topics/gateway-events#message-reaction-add
     case messageReactionAdd(GatewayEventData); #warning("Incomplete")
+    
+    /// https://discord.com/developers/docs/topics/gateway-events#message-reaction-remove
     case messageReactionRemove(GatewayEventData); #warning("Incomplete")
+    
+    /// https://discord.com/developers/docs/topics/gateway-events#message-reaction-remove-all
     case messageReactionRemoveAll(GatewayEventData); #warning("Incomplete")
+    
+    /// https://discord.com/developers/docs/topics/gateway-events#message-reaction-remove-emoji
     case messageReactionRemoveEmoji(GatewayEventData); #warning("Incomplete")
+    
+    /// https://discord.com/developers/docs/topics/gateway-events#presence-update
     case presenceUpdate(GatewayEventData); #warning("Incomplete")
+    
+    /// https://discord.com/developers/docs/topics/gateway-events#stage-instance-create
     case stageInstanceCreate(StageInstance)
-    case stageInstanceDelete(StageInstance)
+    
+    /// https://discord.com/developers/docs/topics/gateway-events#stage-instance-update
     case stageInstanceUpdate(StageInstance)
+    
+    /// https://discord.com/developers/docs/topics/gateway-events#stage-instance-delete
+    case stageInstanceDelete(StageInstance)
+    
+    /// https://discord.com/developers/docs/topics/gateway-events#typing-start
     case typingStart(GatewayEventData); #warning("Incomplete")
+    
+    /// https://discord.com/developers/docs/topics/gateway-events#user-update
     case userUpdate(GatewayEventData); #warning("Incomplete")
+    
+    /// https://discord.com/developers/docs/topics/gateway-events#voice-state-update
     case voiceStateUpdate(GatewayEventData); #warning("Incomplete")
+    
+    /// https://discord.com/developers/docs/topics/gateway-events#voice-server-update
     case voiceServerUpdate(GatewayEventData); #warning("Incomplete")
+    
+    /// https://discord.com/developers/docs/topics/gateway-events#webhooks-update
     case webhooksUpdate(GatewayEventData); #warning("Incomplete")
     
     public init?(jsonObject: [String: Any]) {

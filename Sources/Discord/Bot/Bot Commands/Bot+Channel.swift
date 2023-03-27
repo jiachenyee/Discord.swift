@@ -120,8 +120,6 @@ public extension Bot {
     ///   - messageId: The message ID of the message to add a reaction to.
     ///   - reaction: The reaction emoji.
     /// - Important: This endpoint requires the `READ_MESSAGE_HISTORY` permission to be present on the current user. Additionally, if nobody else has reacted to the message using this emoji, this endpoint requires the `ADD_REACTIONS` permission to be present on the current user.
-    /// - Warning: The emoji must be URL Encoded or the request will fail with `10014: Unknown Emoji`.
-    /// - Note: To use custom emoji, you must encode it in the format `[name:id](name:id)` with the emoji name and emoji ID.
     /// > Discord Reference: [https://discord.com/developers/docs/resources/channel#create-reaction](https://discord.com/developers/docs/resources/channel#create-reaction)
     func addReaction(inChannel channelId: Snowflake,
                      toMessage messageId: Snowflake,
@@ -135,8 +133,6 @@ public extension Bot {
     ///   - channelId: The channel ID of the target channel.
     ///   - messageId: The message ID of the target message.
     ///   - reaction: The reaction emoji to delete.
-    /// - Warning: The emoji must be URL Encoded or the request will fail with `10014: Unknown Emoji`.
-    /// - Note: To use custom emoji, you must encode it in the format `[name:id](name:id)` with the emoji name and emoji ID.
     /// > Discord Reference: [https://discord.com/developers/docs/resources/channel#delete-own-reaction](https://discord.com/developers/docs/resources/channel#delete-own-reaction)
     func deleteReaction(inChannel channelId: Snowflake,
                         onMessage messageId: Snowflake,
@@ -152,8 +148,6 @@ public extension Bot {
     ///   - user: The user ID of the target user.
     ///   - reaction: The reaction emoji to delete.
     /// - Important: This endpoint requires the `MANAGE_MESSAGES` permission to be present on the current user.
-    /// - Warning: The emoji must be URL Encoded or the request will fail with `10014: Unknown Emoji`.
-    /// - Note: To use custom emoji, you must encode it in the format `[name:id](name:id)` with the emoji name and emoji ID.
     /// > Discord Reference: [https://discord.com/developers/docs/resources/channel#delete-user-reaction](https://discord.com/developers/docs/resources/channel#delete-user-reaction)
     func deleteUserReaction(inChannel channelId: Snowflake,
                             onMessage messageId: Snowflake,
@@ -170,8 +164,6 @@ public extension Bot {
     ///   - reaction: The reaction emoji to check.
     ///   - query: The specifics of the query.
     /// - Returns: Returns an array of user objects on success.
-    /// - Warning: The emoji must be URL Encoded or the request will fail with `10014: Unknown Emoji`.
-    /// - Note: To use custom emoji, you must encode it in the format `[name:id](name:id)` with the emoji name and emoji ID.
     /// > Discord Reference: [https://discord.com/developers/docs/resources/channel#get-reactions](https://discord.com/developers/docs/resources/channel#get-reactions)
     func getReactions(inChannel channelId: Snowflake,
                       onMessage messageId: Snowflake,
@@ -200,8 +192,6 @@ public extension Bot {
     ///   - channelId: The channel ID of the target channel.
     ///   - messageId: The message ID of the target message.
     /// - Important: This endpoint requires the `MANAGE_MESSAGES` permission to be present on the current user.
-    /// - Warning: The emoji must be URL Encoded or the request will fail with `10014: Unknown Emoji`.
-    /// - Note: To use custom emoji, you must encode it in the format `[name:id](name:id)` with the emoji name and emoji ID.
     /// > Discord Reference: [https://discord.com/developers/docs/resources/channel#delete-all-reactions-for-emoji](https://discord.com/developers/docs/resources/channel#delete-all-reactions-for-emoji)
     func deleteAllReactions(forEmoji reaction: ReactionEmoji,
                             inChannel channelId: Snowflake,
