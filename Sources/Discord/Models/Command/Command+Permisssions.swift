@@ -8,7 +8,7 @@
 import Foundation
 
 public extension Command {
-    struct Permissions: Codable {
+    struct Permissions: Codable, GatewayEventData {
         /// ID of the command or the application ID
         public var id: PermissionID
         /// ID of the application the command belongs to

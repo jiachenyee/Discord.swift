@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct AutoModerationRule: Codable {
+public struct AutoModerationRule: Codable, GatewayEventData {
     /// the id of this rule
     public var id: Snowflake
     
