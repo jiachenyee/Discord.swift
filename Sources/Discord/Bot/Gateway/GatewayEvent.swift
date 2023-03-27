@@ -78,7 +78,7 @@ public enum GatewayEvent {
     
     /// Lazy-load for unavailable guild, guild became available, or user joined a new guild
     /// > Discord Reference [https://discord.com/developers/docs/topics/gateway-events#guild-create](https://discord.com/developers/docs/topics/gateway-events#guild-create)
-    case guildCreate(GatewayEventData); #warning("Incomplete")
+    case guildCreate(GatewayGuild) // untested
     
     /// Guild was updated
     /// > Discord Reference [https://discord.com/developers/docs/topics/gateway-events#guild-update](https://discord.com/developers/docs/topics/gateway-events#guild-update)
@@ -90,37 +90,43 @@ public enum GatewayEvent {
     
     /// A guild audit log entry was created
     /// > Discord Reference [https://discord.com/developers/docs/topics/gateway-events#guild-audit-log-entry-create](https://discord.com/developers/docs/topics/gateway-events#guild-audit-log-entry-create)
-    case guildAuditLogEntryCreate(GatewayEventData); #warning("Incomplete")
+    case guildAuditLogEntryCreate(AuditLogEntry) // untested
     
     /// User was banned from a guild
     /// > Discord Reference [https://discord.com/developers/docs/topics/gateway-events#guild-ban-add](https://discord.com/developers/docs/topics/gateway-events#guild-ban-add)
-    case guildBanAdd(GatewayEventData); #warning("Incomplete")
+    case guildBanAdd(GatewayGuildBan) // untested
     
     /// User was unbanned from a guild
     /// > Discord Reference [https://discord.com/developers/docs/topics/gateway-events#guild-ban-remove](https://discord.com/developers/docs/topics/gateway-events#guild-ban-remove)
-    case guildBanRemove(GatewayEventData); #warning("Incomplete")
+    case guildBanRemove(GatewayGuildBan) // untested
     
     /// Guild emojis were updated
     /// > Discord Reference [https://discord.com/developers/docs/topics/gateway-events#guild-emojis-update](https://discord.com/developers/docs/topics/gateway-events#guild-emojis-update)
-    case guildEmojisUpdate(GatewayEventData); #warning("Incomplete")
+    case guildEmojisUpdate(GatewayGuildEmoji) // untested
     
     /// Guild stickers were updated
     /// > Discord Reference [https://discord.com/developers/docs/topics/gateway-events#guild-stickers-update](https://discord.com/developers/docs/topics/gateway-events#guild-stickers-update)
-    case guildStickersUpdate(GatewayEventData); #warning("Incomplete")
+    case guildStickersUpdate(GatewayGuildSticker) // untested
     
     /// Guild integration was updated
     /// > Discord Reference [https://discord.com/developers/docs/topics/gateway-events#guild-integrations-update](https://discord.com/developers/docs/topics/gateway-events#guild-integrations-update)
-    case guildIntegrationsUpdate(GatewayEventData); #warning("Incomplete")
+    case guildIntegrationsUpdate(GatewayGuildIntegration) // untested
     
     /// New user joined a guild
+    /// - Important: If using Gateway Intents, the `GUILD_MEMBERS` intent will be required to receive this event.
+    ///
     /// > Discord Reference [https://discord.com/developers/docs/topics/gateway-events#guild-member-add](https://discord.com/developers/docs/topics/gateway-events#guild-member-add)
     case guildMemberAdd(GatewayEventData); #warning("Incomplete")
     
     /// User was removed from a guild
+    /// - Important: If using Gateway Intents, the `GUILD_MEMBERS` intent will be required to receive this event.
+    ///
     /// > Discord Reference [https://discord.com/developers/docs/topics/gateway-events#guild-member-remove](https://discord.com/developers/docs/topics/gateway-events#guild-member-remove)
     case guildMemberRemove(GatewayEventData); #warning("Incomplete")
     
     /// Guild member was updated
+    /// - Important: If using Gateway Intents, the `GUILD_MEMBERS` intent will be required to receive this event.
+    ///
     /// > Discord Reference [https://discord.com/developers/docs/topics/gateway-events#guild-member-update](https://discord.com/developers/docs/topics/gateway-events#guild-member-update)
     case guildMemberUpdate(GatewayEventData); #warning("Incomplete")
     
@@ -189,6 +195,9 @@ public enum GatewayEvent {
     case messageCreate(GatewayEventData); #warning("Incomplete")
     
     /// Message was edited
+    /// - Important: Unlike creates, message updates may contain only a subset of the full
+    /// message object payload (but will always contain an ID and `channelId`).
+    ///
     /// > Discord Reference [https://discord.com/developers/docs/topics/gateway-events#message-update](https://discord.com/developers/docs/topics/gateway-events#message-update)
     case messageUpdate(GatewayEventData); #warning("Incomplete")
     
@@ -217,6 +226,8 @@ public enum GatewayEvent {
     case messageReactionRemoveEmoji(GatewayEventData); #warning("Incomplete")
     
     /// User was updated
+    /// - Important: If you are using Gateway Intents, you must specify the `GUILD_PRESENCES` intent in order to receive Presence Update events
+    ///
     /// > Discord Reference [https://discord.com/developers/docs/topics/gateway-events#presence-update](https://discord.com/developers/docs/topics/gateway-events#presence-update)
     case presenceUpdate(GatewayEventData); #warning("Incomplete")
     
@@ -277,13 +288,13 @@ public enum GatewayEvent {
         case "THREAD_LIST_SYNC": self = .threadListSync(.decode(data))
         case "THREAD_MEMBER_UPDATE": self = .threadMemberUpdate(.decode(data))
         case "THREAD_MEMBERS_UPDATE": self = .threadMembersUpdate(.decode(data))
-//        case "GUILD_CREATE": self = .guildCreate(.decode(data))
+        case "GUILD_CREATE": self = .guildCreate(.decode(data))
         case "GUILD_UPDATE": self = .guildUpdate(.decode(data))
         case "GUILD_DELETE": self = .guildDelete(.decode(data))
-//        case "GUILD_BAN_ADD": self = .guildBanAdd(.decode(data))
-//        case "GUILD_BAN_REMOVE": self = .guildBanRemove(.decode(data))
-//        case "GUILD_EMOJIS_UPDATE": self = .guildEmojisUpdate(.decode(data))
-//        case "GUILD_STICKERS_UPDATE": self = .guildStickersUpdate(.decode(data))
+        case "GUILD_BAN_ADD": self = .guildBanAdd(.decode(data))
+        case "GUILD_BAN_REMOVE": self = .guildBanRemove(.decode(data))
+        case "GUILD_EMOJIS_UPDATE": self = .guildEmojisUpdate(.decode(data))
+        case "GUILD_STICKERS_UPDATE": self = .guildStickersUpdate(.decode(data))
 //        case "GUILD_INTEGRATIONS_UPDATE": self = .guildIntegrationsUpdate(.decode(data))
 //        case "GUILD_MEMBER_ADD": self = .guildMemberAdd(.decode(data))
 //        case "GUILD_MEMBER_REMOVE": self = .guildMemberRemove(.decode(data))
@@ -297,7 +308,7 @@ public enum GatewayEvent {
         case "GUILD_SCHEDULED_EVENT_DELETE": self = .guildScheduledEventDelete(.decode(data))
 //        case "GUILD_SCHEDULED_EVENT_USER_ADD": self = .guildScheduledEventUserAdd(.decode(data))
 //        case "GUILD_SCHEDULED_EVENT_USER_REMOVE": self = .guildScheduledEventUserRemove(.decode(data))
-//        case "GUILD_AUDIT_LOG_ENTRY_CREATE": self = .guildAuditLogEntryCreate(.decode(data))
+        case "GUILD_AUDIT_LOG_ENTRY_CREATE": self = .guildAuditLogEntryCreate(.decode(data))
 //        case "INTEGRATION_CREATE": self = .integrationCreate(.decode(data))
 //        case "INTEGRATION_UPDATE": self = .integrationUpdate(.decode(data))
 //        case "INTEGRATION_DELETE": self = .integrationDelete(.decode(data))

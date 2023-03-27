@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct AuditLogEntry: Codable {
+public struct AuditLogEntry: Codable, GatewayEventData {
     
     /// ID of the affected entity (webhook, user, role, etc.)
     public var targetId: String?
