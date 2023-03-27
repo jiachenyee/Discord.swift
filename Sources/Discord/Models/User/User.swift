@@ -16,7 +16,7 @@ public struct User: Codable, GatewayEventData {
     public var username: String?
     
     /// the user's 4-digit discord-tag
-    public var discriminator: String
+    public var discriminator: String?
     
     /// the user's avatar hash
     public var avatar: String?
