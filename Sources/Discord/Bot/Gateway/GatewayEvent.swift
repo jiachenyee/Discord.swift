@@ -14,7 +14,7 @@ public enum GatewayEvent {
     
     /// Response to Resume
     /// > Discord Reference: [https://discord.com/developers/docs/topics/gateway-events#resumed](https://discord.com/developers/docs/topics/gateway-events#resumed)
-    case resumed(GatewayEventData); #warning("Incomplete")
+    case resumed(GatewayResume)
     
     /// Application command permission was updated
     /// > Discord Reference: [https://discord.com/developers/docs/topics/gateway-events#application-command-permissions-update](https://discord.com/developers/docs/topics/gateway-events#application-command-permissions-update)
@@ -274,7 +274,7 @@ public enum GatewayEvent {
         
         switch typeCode {
         case "READY": self = .ready(.decode(data))
-            //        case "RESUMED": return .resumed(.decode(data))
+        case "RESUMED": self = .resumed(.decode(data))
         case "APPLICATION_COMMAND_PERMISSIONS_UPDATE": self = .applicationCommandPermissionsUpdate(.decode(data))
         case "AUTO_MODERATION_RULE_CREATE": self = .autoModerationRuleCreate(.decode(data))
         case "AUTO_MODERATION_RULE_UPDATE": self = .autoModerationRuleUpdate(.decode(data))
