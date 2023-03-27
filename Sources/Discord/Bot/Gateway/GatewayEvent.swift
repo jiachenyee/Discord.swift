@@ -192,18 +192,18 @@ public enum GatewayEvent {
     
     /// Message was created
     /// > Discord Reference [https://discord.com/developers/docs/topics/gateway-events#message-create](https://discord.com/developers/docs/topics/gateway-events#message-create)
-    case messageCreate(GatewayMessage) // untested
+    case messageCreate(GatewayMessage)
     
     /// Message was edited
     /// - Important: Unlike creates, message updates may contain only a subset of the full
     /// message object payload (but will always contain an ID and `channelId`).
     ///
     /// > Discord Reference [https://discord.com/developers/docs/topics/gateway-events#message-update](https://discord.com/developers/docs/topics/gateway-events#message-update)
-    case messageUpdate(GatewayMessage) // untested
+    case messageUpdate(GatewayMessage)
     
     /// Message was deleted
     /// > Discord Reference [https://discord.com/developers/docs/topics/gateway-events#message-delete](https://discord.com/developers/docs/topics/gateway-events#message-delete)
-    case messageDelete(GatewayMessageDelete) // untested
+    case messageDelete(GatewayMessageDelete)
     
     /// Multiple messages were deleted at once
     /// > Discord Reference [https://discord.com/developers/docs/topics/gateway-events#message-delete-bulk](https://discord.com/developers/docs/topics/gateway-events#message-delete-bulk)
@@ -211,15 +211,15 @@ public enum GatewayEvent {
     
     /// User reacted to a message
     /// > Discord Reference [https://discord.com/developers/docs/topics/gateway-events#message-reaction-add](https://discord.com/developers/docs/topics/gateway-events#message-reaction-add)
-    case messageReactionAdd(GatewayMessageReactionAdd) // untested
+    case messageReactionAdd(GatewayMessageReactionAdd)
     
     /// User removed a reaction from a message
     /// > Discord Reference [https://discord.com/developers/docs/topics/gateway-events#message-reaction-remove](https://discord.com/developers/docs/topics/gateway-events#message-reaction-remove)
-    case messageReactionRemove(GatewayMessageReactionRemove) // untested
+    case messageReactionRemove(GatewayMessageReactionRemove)
     
     /// All reactions were explicitly removed from a message
     /// > Discord Reference [https://discord.com/developers/docs/topics/gateway-events#message-reaction-remove-all](https://discord.com/developers/docs/topics/gateway-events#message-reaction-remove-all)
-    case messageReactionRemoveAll(GatewayMessageReactionRemoveAll) // untested
+    case messageReactionRemoveAll(GatewayMessageReactionRemoveAll)
     
     /// All reactions for a given emoji were explicitly removed from a message
     /// > Discord Reference [https://discord.com/developers/docs/topics/gateway-events#message-reaction-remove-emoji](https://discord.com/developers/docs/topics/gateway-events#message-reaction-remove-emoji)

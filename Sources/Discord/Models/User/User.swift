@@ -13,7 +13,7 @@ public struct User: Codable, GatewayEventData {
     public var id: Snowflake
     
     /// the user's username, not unique across the platform
-    public var username: String
+    public var username: String?
     
     /// the user's 4-digit discord-tag
     public var discriminator: String
