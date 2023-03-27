@@ -65,7 +65,7 @@ public enum InteractionCallbackData: Codable {
 
 public struct InteractionMessage: Codable {
     /// is the response TTS
-    public var tts: Bool
+    public var tts: Bool?
     
     /// message content
     public var content: String?
@@ -77,15 +77,15 @@ public struct InteractionMessage: Codable {
     public var allowed_mentions: [AllowedMention]?
     
     /// message flags combined as a bitfield (only SUPPRESS_EMBEDS and EPHEMERAL can be set)
-    public var flags: MessageFlags
+    public var flags: MessageFlags?
     
     /// message components
-    public var components: [Component]
+    public var components: [Component]?
     
     /// attachment objects with filename and description
-    public var attachments: [Attachment]
+    public var attachments: [Attachment]?
     
-    public init(tts: Bool, content: String? = nil, embeds: [Embed]? = nil, allowed_mentions: [AllowedMention]? = nil, flags: MessageFlags, components: [Component], attachments: [Attachment]) {
+    public init(tts: Bool? = nil, content: String? = nil, embeds: [Embed]? = nil, allowed_mentions: [AllowedMention]? = nil, flags: MessageFlags? = nil, components: [Component]? = nil, attachments: [Attachment]? = nil) {
         self.tts = tts
         self.content = content
         self.embeds = embeds

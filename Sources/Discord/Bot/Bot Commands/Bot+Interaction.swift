@@ -8,12 +8,19 @@
 import Foundation
 
 public extension Bot {
-    func createInteractionResponse(interaction interactionId: Snowflake,
+    func createInteractionResponse(id interactionId: Snowflake,
                                    token: String,
                                    interactionResponse: InteractionResponse) async throws {
         try await sendRequest(endpoint: "interactions/\(interactionId)/\(token)/callback",
                               method: .post,
                               data: interactionResponse)
+    }
+    
+    func createInteractionResponse(interaction: Interaction,
+                                   response: InteractionResponse) async throws {
+        try await sendRequest(endpoint: "interactions/\(interaction.id)/\(interaction.token)/callback",
+                              method: .post,
+                              data: response)
     }
     
     func getOriginalInteractionResponse(token: String) async throws -> Message {
