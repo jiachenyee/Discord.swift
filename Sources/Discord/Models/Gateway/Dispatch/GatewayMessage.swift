@@ -2,12 +2,12 @@
 //  File.swift
 //  
 //
-//  Created by Jia Chen Yee on 23/3/23.
+//  Created by Jia Chen Yee on 27/3/23.
 //
 
 import Foundation
 
-public struct Message: Codable {
+public struct GatewayMessage: GatewayEventData {
     /// id of the message
     public var id: Snowflake
     
@@ -80,9 +80,8 @@ public struct Message: Codable {
     /// the message associated with the message_reference
     public var referenced_message: ReferencedMessage?
     
-    #warning("message interaction")
     /// sent if the message is a response to an Interaction
-//    public var interaction: Interaction?
+    public var interaction: Interaction?
     
     /// the thread that was started from this message, includes thread member object
     public var thread: Channel?
@@ -101,4 +100,10 @@ public struct Message: Codable {
     
     /// data of the role subscription purchase or renewal that prompted this ROLE_SUBSCRIPTION_PURCHASE message
     public var role_subscription_data: RoleSubscriptionData?
+    
+    /// ID of the guild the message was sent in - unless it is an ephemeral message
+    public var guild_id: Snowflake?
+    
+    /// Member properties for this message's author. Missing for ephemeral messages and messages from webhooks
+    public var member: [GuildMember]?
 }

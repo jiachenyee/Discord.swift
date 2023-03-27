@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct User: Codable {
+public struct User: Codable, GatewayEventData {
     
     /// the user's id
     public var id: Snowflake

@@ -18,19 +18,6 @@ public struct Activity: Codable {
     /// Stream URL
     public var url: String?
     
-    public enum ActivityType: Int, Codable {
-        /// Playing {name}    "Playing Rocket League"
-        case game = 0
-        /// Streaming {details}    "Streaming Rocket League"
-        case streaming = 1
-        /// Listening to {name}    "Listening to Spotify"
-        case listening = 2
-        /// Watching {name}    "Watching YouTube Together"
-        case watching = 3
-        /// Competing in {name}    "Competing in Arena World Champions"
-        case competing = 5
-    }
-    
     public init(name: String, type: ActivityType, url: String? = nil) {
         self.name = name
         self.type = type

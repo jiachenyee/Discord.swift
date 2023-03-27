@@ -160,76 +160,76 @@ public enum GatewayEvent {
     
     /// User subscribed to a guild scheduled event
     /// > Discord Reference [https://discord.com/developers/docs/topics/gateway-events#guild-scheduled-event-user-add](https://discord.com/developers/docs/topics/gateway-events#guild-scheduled-event-user-add)
-    case guildScheduledEventUserAdd(GatewayEventData); #warning("Incomplete")
+    case guildScheduledEventUserAdd(GatewayScheduledEventUser) // untested
     
     /// User unsubscribed from a guild scheduled event
     /// > Discord Reference [https://discord.com/developers/docs/topics/gateway-events#guild-scheduled-event-user-remove](https://discord.com/developers/docs/topics/gateway-events#guild-scheduled-event-user-remove)
-    case guildScheduledEventUserRemove(GatewayEventData); #warning("Incomplete")
+    case guildScheduledEventUserRemove(GatewayScheduledEventUser) // untested
     
     /// Guild integration was created
     /// > Discord Reference [https://discord.com/developers/docs/topics/gateway-events#integration-create](https://discord.com/developers/docs/topics/gateway-events#integration-create)
-    case integrationCreate(GatewayEventData); #warning("Incomplete")
+    case integrationCreate(GatewayIntegration) // untested
     
     /// Guild integration was updated
     /// > Discord Reference [https://discord.com/developers/docs/topics/gateway-events#integration-update](https://discord.com/developers/docs/topics/gateway-events#integration-update)
-    case integrationUpdate(GatewayEventData); #warning("Incomplete")
+    case integrationUpdate(GatewayIntegration) // untested
     
     /// Guild integration was deleted
     /// > Discord Reference [https://discord.com/developers/docs/topics/gateway-events#integration-delete](https://discord.com/developers/docs/topics/gateway-events#integration-delete)
-    case integrationDelete(GatewayEventData); #warning("Incomplete")
+    case integrationDelete(GatewayIntegrationDelete) // untested
     
     /// User used an interaction, such as an Application Command
     /// > Discord Reference [https://discord.com/developers/docs/topics/gateway-events#interaction-create](https://discord.com/developers/docs/topics/gateway-events#interaction-create)
-    case interactionCreate(GatewayEventData); #warning("Incomplete")
+    case interactionCreate(Interaction) // untested
     
     /// Invite to a channel was created
     /// > Discord Reference [https://discord.com/developers/docs/topics/gateway-events#invite-create](https://discord.com/developers/docs/topics/gateway-events#invite-create)
-    case inviteCreate(GatewayEventData); #warning("Incomplete")
+    case inviteCreate(GatewayInvite) // untested
     
     /// Invite to a channel was deleted
     /// > Discord Reference [https://discord.com/developers/docs/topics/gateway-events#invite-delete](https://discord.com/developers/docs/topics/gateway-events#invite-delete)
-    case inviteDelete(GatewayEventData); #warning("Incomplete")
+    case inviteDelete(GatewayInviteDelete); // untested
     
     /// Message was created
     /// > Discord Reference [https://discord.com/developers/docs/topics/gateway-events#message-create](https://discord.com/developers/docs/topics/gateway-events#message-create)
-    case messageCreate(GatewayEventData); #warning("Incomplete")
+    case messageCreate(GatewayMessage) // untested
     
     /// Message was edited
     /// - Important: Unlike creates, message updates may contain only a subset of the full
     /// message object payload (but will always contain an ID and `channelId`).
     ///
     /// > Discord Reference [https://discord.com/developers/docs/topics/gateway-events#message-update](https://discord.com/developers/docs/topics/gateway-events#message-update)
-    case messageUpdate(GatewayEventData); #warning("Incomplete")
+    case messageUpdate(GatewayMessage) // untested
     
     /// Message was deleted
     /// > Discord Reference [https://discord.com/developers/docs/topics/gateway-events#message-delete](https://discord.com/developers/docs/topics/gateway-events#message-delete)
-    case messageDelete(GatewayEventData); #warning("Incomplete")
+    case messageDelete(GatewayMessageDelete) // untested
     
     /// Multiple messages were deleted at once
     /// > Discord Reference [https://discord.com/developers/docs/topics/gateway-events#message-delete-bulk](https://discord.com/developers/docs/topics/gateway-events#message-delete-bulk)
-    case messageDeleteBulk(GatewayEventData); #warning("Incomplete")
+    case messageDeleteBulk(GatewayMessageDeleteBulk) // untested
     
     /// User reacted to a message
     /// > Discord Reference [https://discord.com/developers/docs/topics/gateway-events#message-reaction-add](https://discord.com/developers/docs/topics/gateway-events#message-reaction-add)
-    case messageReactionAdd(GatewayEventData); #warning("Incomplete")
+    case messageReactionAdd(GatewayMessageReactionAdd) // untested
     
     /// User removed a reaction from a message
     /// > Discord Reference [https://discord.com/developers/docs/topics/gateway-events#message-reaction-remove](https://discord.com/developers/docs/topics/gateway-events#message-reaction-remove)
-    case messageReactionRemove(GatewayEventData); #warning("Incomplete")
+    case messageReactionRemove(GatewayMessageReactionRemove) // untested
     
     /// All reactions were explicitly removed from a message
     /// > Discord Reference [https://discord.com/developers/docs/topics/gateway-events#message-reaction-remove-all](https://discord.com/developers/docs/topics/gateway-events#message-reaction-remove-all)
-    case messageReactionRemoveAll(GatewayEventData); #warning("Incomplete")
+    case messageReactionRemoveAll(GatewayMessageReactionRemoveAll) // untested
     
     /// All reactions for a given emoji were explicitly removed from a message
     /// > Discord Reference [https://discord.com/developers/docs/topics/gateway-events#message-reaction-remove-emoji](https://discord.com/developers/docs/topics/gateway-events#message-reaction-remove-emoji)
-    case messageReactionRemoveEmoji(GatewayEventData); #warning("Incomplete")
+    case messageReactionRemoveEmoji(MessageReactionRemoveEmoji) // untested
     
     /// User was updated
     /// - Important: If you are using Gateway Intents, you must specify the `GUILD_PRESENCES` intent in order to receive Presence Update events
     ///
     /// > Discord Reference [https://discord.com/developers/docs/topics/gateway-events#presence-update](https://discord.com/developers/docs/topics/gateway-events#presence-update)
-    case presenceUpdate(GatewayEventData); #warning("Incomplete")
+    case presenceUpdate(GatewayPresence) // untested
     
     /// Stage instance was created
     /// > Discord Reference [https://discord.com/developers/docs/topics/gateway-events#stage-instance-create](https://discord.com/developers/docs/topics/gateway-events#stage-instance-create)
@@ -245,15 +245,15 @@ public enum GatewayEvent {
     
     /// User started typing in a channel
     /// > Discord Reference [https://discord.com/developers/docs/topics/gateway-events#typing-start](https://discord.com/developers/docs/topics/gateway-events#typing-start)
-    case typingStart(GatewayEventData); #warning("Incomplete")
+    case typingStart(GatewayTypingStart) // untested
     
     /// Properties about the user changed
     /// > Discord Reference [https://discord.com/developers/docs/topics/gateway-events#user-update](https://discord.com/developers/docs/topics/gateway-events#user-update)
-    case userUpdate(GatewayEventData); #warning("Incomplete")
+    case userUpdate(User) // untested
     
     /// Someone joined, left, or moved a voice channel
     /// > Discord Reference [https://discord.com/developers/docs/topics/gateway-events#voice-state-update](https://discord.com/developers/docs/topics/gateway-events#voice-state-update)
-    case voiceStateUpdate(GatewayEventData); #warning("Incomplete")
+    case voiceStateUpdate(VoiceState) // untested
     
     /// Guild's voice server was updated
     /// > Discord Reference [https://discord.com/developers/docs/topics/gateway-events#voice-server-update](https://discord.com/developers/docs/topics/gateway-events#voice-server-update)
@@ -308,30 +308,30 @@ public enum GatewayEvent {
         case "GUILD_SCHEDULED_EVENT_CREATE": self = .guildScheduledEventCreate(.decode(data))
         case "GUILD_SCHEDULED_EVENT_UPDATE": self = .guildScheduledEventUpdate(.decode(data))
         case "GUILD_SCHEDULED_EVENT_DELETE": self = .guildScheduledEventDelete(.decode(data))
-//        case "GUILD_SCHEDULED_EVENT_USER_ADD": self = .guildScheduledEventUserAdd(.decode(data))
-//        case "GUILD_SCHEDULED_EVENT_USER_REMOVE": self = .guildScheduledEventUserRemove(.decode(data))
+        case "GUILD_SCHEDULED_EVENT_USER_ADD": self = .guildScheduledEventUserAdd(.decode(data))
+        case "GUILD_SCHEDULED_EVENT_USER_REMOVE": self = .guildScheduledEventUserRemove(.decode(data))
         case "GUILD_AUDIT_LOG_ENTRY_CREATE": self = .guildAuditLogEntryCreate(.decode(data))
-//        case "INTEGRATION_CREATE": self = .integrationCreate(.decode(data))
-//        case "INTEGRATION_UPDATE": self = .integrationUpdate(.decode(data))
-//        case "INTEGRATION_DELETE": self = .integrationDelete(.decode(data))
-//        case "INTERACTION_CREATE": self = .interactionCreate(.decode(data))
-//        case "INVITE_CREATE": self = .inviteCreate(.decode(data))
-//        case "INVITE_DELETE": self = .inviteDelete(.decode(data))
-//        case "MESSAGE_CREATE": self = .messageCreate(.decode(data))
-//        case "MESSAGE_UPDATE": self = .messageUpdate(.decode(data))
-//        case "MESSAGE_DELETE": self = .messageDelete(.decode(data))
-//        case "MESSAGE_DELETE_BULK": self = .messageDeleteBulk(.decode(data))
-//        case "MESSAGE_REACTION_ADD": self = .messageReactionAdd(.decode(data))
-//        case "MESSAGE_REACTION_REMOVE": self = .messageReactionRemove(.decode(data))
-//        case "MESSAGE_REACTION_REMOVE_ALL": self = .messageReactionRemoveAll(.decode(data))
-//        case "MESSAGE_REACTION_REMOVE_EMOJI": self = .messageReactionRemoveEmoji(.decode(data))
-//        case "PRESENCE_UPDATE": self = .presenceUpdate(.decode(data))
+        case "INTEGRATION_CREATE": self = .integrationCreate(.decode(data))
+        case "INTEGRATION_UPDATE": self = .integrationUpdate(.decode(data))
+        case "INTEGRATION_DELETE": self = .integrationDelete(.decode(data))
+        case "INTERACTION_CREATE": self = .interactionCreate(.decode(data))
+        case "INVITE_CREATE": self = .inviteCreate(.decode(data))
+        case "INVITE_DELETE": self = .inviteDelete(.decode(data))
+        case "MESSAGE_CREATE": self = .messageCreate(.decode(data))
+        case "MESSAGE_UPDATE": self = .messageUpdate(.decode(data))
+        case "MESSAGE_DELETE": self = .messageDelete(.decode(data))
+        case "MESSAGE_DELETE_BULK": self = .messageDeleteBulk(.decode(data))
+        case "MESSAGE_REACTION_ADD": self = .messageReactionAdd(.decode(data))
+        case "MESSAGE_REACTION_REMOVE": self = .messageReactionRemove(.decode(data))
+        case "MESSAGE_REACTION_REMOVE_ALL": self = .messageReactionRemoveAll(.decode(data))
+        case "MESSAGE_REACTION_REMOVE_EMOJI": self = .messageReactionRemoveEmoji(.decode(data))
+        case "PRESENCE_UPDATE": self = .presenceUpdate(.decode(data))
         case "STAGE_INSTANCE_CREATE": self = .stageInstanceCreate(.decode(data))
         case "STAGE_INSTANCE_DELETE": self = .stageInstanceDelete(.decode(data))
         case "STAGE_INSTANCE_UPDATE": self = .stageInstanceUpdate(.decode(data))
-//        case "TYPING_START": self = .typingStart(.decode(data))
-//        case "USER_UPDATE": self = .userUpdate(.decode(data))
-//        case "VOICE_STATE_UPDATE": self = .voiceStateUpdate(.decode(data))
+        case "TYPING_START": self = .typingStart(.decode(data))
+        case "USER_UPDATE": self = .userUpdate(.decode(data))
+        case "VOICE_STATE_UPDATE": self = .voiceStateUpdate(.decode(data))
         case "VOICE_SERVER_UPDATE": self = .voiceServerUpdate(.decode(data))
         case "WEBHOOKS_UPDATE": self = .webhooksUpdate(.decode(data))
         default:
