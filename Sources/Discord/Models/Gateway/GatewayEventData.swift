@@ -16,13 +16,7 @@ public extension GatewayEventData {
         let decoder = JSONDecoder()
         guard let jsonData = try? JSONSerialization.data(withJSONObject: data) else { fatalError("Could not decode/encode") }
         
-        do {
-            let value = try decoder.decode(Self.self, from: jsonData)
-            return value
-        } catch {
-            print(data)
-            
-            fatalError("Decoding error: \(error.localizedDescription)")
-        }
+        let value = try! decoder.decode(Self.self, from: jsonData)
+        return value
     }
 }
