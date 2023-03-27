@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct UnavailableGuild: Codable {
+public struct UnavailableGuild: Codable, GatewayEventData {
     public var id: Snowflake
     public var unavailable: Bool
 }

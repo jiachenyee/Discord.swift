@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct Guild: Codable {
+public struct Guild: Codable, GatewayEventData {
     /// guild id
     public var id: Snowflake
     /// guild name (2-100 characters, excluding trailing and leading whitespace)

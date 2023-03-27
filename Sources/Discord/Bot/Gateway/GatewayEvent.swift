@@ -19,22 +19,26 @@ public enum GatewayEvent {
     case autoModerationRuleCreate(AutoModerationRule)
     case autoModerationRuleUpdate(AutoModerationRule)
     case autoModerationRuleDelete(AutoModerationRule)
-    
-    case autoModerationActionExecution(AutoModerationActionExecution)
+    case autoModerationActionExecution(AutoModerationActionExecution) // untested
     case channelCreate(Channel)
     case channelUpdate(Channel)
     case channelDelete(Channel)
     
-    case channelPinsUpdate(GatewayEventData); #warning("Incomplete")
-    case threadCreate(GatewayEventData); #warning("Incomplete")
-    case threadUpdate(GatewayEventData); #warning("Incomplete")
-    case threadDelete(GatewayEventData); #warning("Incomplete")
+    case channelPinsUpdate(ChannelPinsUpdate) // untested
+    case threadCreate(Channel) // untested
+    case threadUpdate(Channel) // untested
+    case threadDelete(Channel) // untested
+    
     case threadListSync(GatewayEventData); #warning("Incomplete")
+    
     case threadMemberUpdate(GatewayEventData); #warning("Incomplete")
     case threadMembersUpdate(GatewayEventData); #warning("Incomplete")
+    
     case guildCreate(GatewayEventData); #warning("Incomplete")
-    case guildUpdate(GatewayEventData); #warning("Incomplete")
-    case guildDelete(GatewayEventData); #warning("Incomplete")
+    
+    case guildUpdate(Guild) // untested
+    case guildDelete(UnavailableGuild) // untested
+    
     case guildBanAdd(GatewayEventData); #warning("Incomplete")
     case guildBanRemove(GatewayEventData); #warning("Incomplete")
     case guildEmojisUpdate(GatewayEventData); #warning("Incomplete")
@@ -47,9 +51,9 @@ public enum GatewayEvent {
     case guildRoleCreate(GatewayEventData); #warning("Incomplete")
     case guildRoleUpdate(GatewayEventData); #warning("Incomplete")
     case guildRoleDelete(GatewayEventData); #warning("Incomplete")
-    case guildScheduledEventCreate(GatewayEventData); #warning("Incomplete")
-    case guildScheduledEventUpdate(GatewayEventData); #warning("Incomplete")
-    case guildScheduledEventDelete(GatewayEventData); #warning("Incomplete")
+    case guildScheduledEventCreate(ScheduledEvent) // untested
+    case guildScheduledEventUpdate(ScheduledEvent) // untested
+    case guildScheduledEventDelete(ScheduledEvent) // untested
     case guildScheduledEventUserAdd(GatewayEventData); #warning("Incomplete")
     case guildScheduledEventUserRemove(GatewayEventData); #warning("Incomplete")
     case guildAuditLogEntryCreate(GatewayEventData); #warning("Incomplete")
@@ -68,9 +72,9 @@ public enum GatewayEvent {
     case messageReactionRemoveAll(GatewayEventData); #warning("Incomplete")
     case messageReactionRemoveEmoji(GatewayEventData); #warning("Incomplete")
     case presenceUpdate(GatewayEventData); #warning("Incomplete")
-    case stageInstanceCreate(GatewayEventData); #warning("Incomplete")
-    case stageInstanceDelete(GatewayEventData); #warning("Incomplete")
-    case stageInstanceUpdate(GatewayEventData); #warning("Incomplete")
+    case stageInstanceCreate(StageInstance) // untested
+    case stageInstanceDelete(StageInstance) // untested
+    case stageInstanceUpdate(StageInstance) // untested
     case typingStart(GatewayEventData); #warning("Incomplete")
     case userUpdate(GatewayEventData); #warning("Incomplete")
     case voiceStateUpdate(GatewayEventData); #warning("Incomplete")
@@ -95,16 +99,16 @@ public enum GatewayEvent {
         case "CHANNEL_CREATE": self = .channelCreate(.decode(data))
         case "CHANNEL_UPDATE": self = .channelUpdate(.decode(data))
         case "CHANNEL_DELETE": self = .channelDelete(.decode(data))
-//        case "CHANNEL_PINS_UPDATE": self = .channelPinsUpdate(.decode(data))
-//        case "THREAD_CREATE": self = .threadCreate(.decode(data))
-//        case "THREAD_UPDATE": self = .threadUpdate(.decode(data))
-//        case "THREAD_DELETE": self = .threadDelete(.decode(data))
+        case "CHANNEL_PINS_UPDATE": self = .channelPinsUpdate(.decode(data))
+        case "THREAD_CREATE": self = .threadCreate(.decode(data))
+        case "THREAD_UPDATE": self = .threadUpdate(.decode(data))
+        case "THREAD_DELETE": self = .threadDelete(.decode(data))
 //        case "THREAD_LIST_SYNC": self = .threadListSync(.decode(data))
 //        case "THREAD_MEMBER_UPDATE": self = .threadMemberUpdate(.decode(data))
 //        case "THREAD_MEMBERS_UPDATE": self = .threadMembersUpdate(.decode(data))
 //        case "GUILD_CREATE": self = .guildCreate(.decode(data))
-//        case "GUILD_UPDATE": self = .guildUpdate(.decode(data))
-//        case "GUILD_DELETE": self = .guildDelete(.decode(data))
+        case "GUILD_UPDATE": self = .guildUpdate(.decode(data))
+        case "GUILD_DELETE": self = .guildDelete(.decode(data))
 //        case "GUILD_BAN_ADD": self = .guildBanAdd(.decode(data))
 //        case "GUILD_BAN_REMOVE": self = .guildBanRemove(.decode(data))
 //        case "GUILD_EMOJIS_UPDATE": self = .guildEmojisUpdate(.decode(data))
@@ -138,9 +142,9 @@ public enum GatewayEvent {
 //        case "MESSAGE_REACTION_REMOVE_ALL": self = .messageReactionRemoveAll(.decode(data))
 //        case "MESSAGE_REACTION_REMOVE_EMOJI": self = .messageReactionRemoveEmoji(.decode(data))
 //        case "PRESENCE_UPDATE": self = .presenceUpdate(.decode(data))
-//        case "STAGE_INSTANCE_CREATE": self = .stageInstanceCreate(.decode(data))
-//        case "STAGE_INSTANCE_DELETE": self = .stageInstanceDelete(.decode(data))
-//        case "STAGE_INSTANCE_UPDATE": self = .stageInstanceUpdate(.decode(data))
+        case "STAGE_INSTANCE_CREATE": self = .stageInstanceCreate(.decode(data))
+        case "STAGE_INSTANCE_DELETE": self = .stageInstanceDelete(.decode(data))
+        case "STAGE_INSTANCE_UPDATE": self = .stageInstanceUpdate(.decode(data))
 //        case "TYPING_START": self = .typingStart(.decode(data))
 //        case "USER_UPDATE": self = .userUpdate(.decode(data))
 //        case "VOICE_STATE_UPDATE": self = .voiceStateUpdate(.decode(data))
@@ -150,19 +154,5 @@ public enum GatewayEvent {
             print("Unrecognised case")
             return nil
         }
-    }
-}
-
-public protocol GatewayEventData: Codable {
-    static func decode(_ data: Any) -> Self
-}
-
-public extension GatewayEventData {
-    static func decode(_ data: Any) -> Self {
-        let decoder = JSONDecoder()
-        guard let jsonData = try? JSONSerialization.data(withJSONObject: data),
-              let value = try? decoder.decode(Self.self, from: jsonData) else { fatalError("Could not decode/encode") }
-
-        return value
     }
 }
