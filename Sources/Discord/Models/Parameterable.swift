@@ -15,7 +15,9 @@ protocol Parameterable: Codable {
 extension Parameterable {
     func toParameters() -> Parameters {
         guard let jsonData = try? JSONEncoder().encode(self),
-              let serializedData = try? JSONSerialization.jsonObject(with: jsonData) as? [String: Any] else { fatalError("Could not convert to JSON") }
+              let serializedData = try? JSONSerialization.jsonObject(with: jsonData) as? [String: Any] else {
+            fatalError("Could not convert to JSON")
+        }
         
         return serializedData
     }

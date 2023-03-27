@@ -21,14 +21,11 @@ public struct MessageEdit: Codable {
     public var allowedMentions: [AllowedMention]?
     
     /// Components to include with the message
-    #warning("incomplete implementation")
-//    public var components: array of message component
+    public var components: [Component]?
     
-    /// Contents of the file being sent/edited. See Uploading Files
-//    public var files[n]: file contents
-    
-    /// JSON-encoded body of non-file params (multipart/form-data only). See Uploading Files
-//    public var payload_json: string
+#warning("incomplete implementation")
+//    public var files[n]: file contents    Contents of the file being sent/edited. See Uploading Files
+//    public var payload_json: string    JSON-encoded body of non-file params (multipart/form-data only). See Uploading Files
     
     /// Attached files to keep and possible descriptions for new files. See Uploading Files
     public var attachments: [Attachment]?
@@ -38,14 +35,21 @@ public struct MessageEdit: Codable {
         case embeds = "embeds"
         case flags = "flags"
         case allowedMentions = "allowed_mentions"
+        case components = "components"
         case attachments = "attachments"
     }
-    
-    public init(content: String? = nil, embeds: [Embed]? = nil, flags: MessageFlags? = nil, allowedMentions: [AllowedMention]? = nil, attachments: [Attachment]? = nil) {
+
+    init(content: String? = nil,
+         embeds: [Embed]? = nil,
+         flags: MessageFlags? = nil,
+         allowedMentions: [AllowedMention]? = nil,
+         components: [Component]? = nil,
+         attachments: [Attachment]? = nil) {
         self.content = content
         self.embeds = embeds
         self.flags = flags
         self.allowedMentions = allowedMentions
+        self.components = components
         self.attachments = attachments
     }
     
@@ -53,11 +57,13 @@ public struct MessageEdit: Codable {
                             embeds: [Embed]? = nil,
                             flags: MessageFlags? = nil,
                             allowedMentions: [AllowedMention]? = nil,
+                            components: [Component]? = nil,
                             attachments: [Attachment]? = nil) -> Self {
         Self(content: content,
              embeds: embeds,
              flags: flags,
              allowedMentions: allowedMentions,
+             components: components,
              attachments: attachments)
     }
 }

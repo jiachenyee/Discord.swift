@@ -8,23 +8,23 @@
 import Foundation
 
 public enum ConnectionService: String, Codable {
-    case battlenet = "battlenet"
-    case ebay = "ebay"
-    case epicgames = "epicgames"
-    case facebook = "facebook"
-    case github = "github"
-    case instagram = "instagram"
-    case leagueoflegends = "leagueoflegends"
-    case paypal = "paypal"
-    case playstation = "playstation"
-    case reddit = "reddit"
-    case riotgames = "riotgames"
-    case spotify = "spotify"
-    case skype = "skype"
-    case steam = "steam"
-    case tiktok = "tiktok"
-    case twitch = "twitch"
-    case twitter = "twitter"
-    case xbox = "xbox"
-    case youtube = "youtube"
+    case battlenet
+    case ebay
+    case epicgames
+    case facebook
+    case github
+    case instagram
+    case leagueoflegends
+    case paypal
+    case playstation
+    case reddit
+    case riotgames
+    case spotify
+    case skype
+    case steam
+    case tiktok
+    case twitch
+    case twitter
+    case xbox
+    case youtube
 }

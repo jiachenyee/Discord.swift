@@ -14,7 +14,6 @@ public struct PruneFilter: Parameterable {
     /// comma-delimited array of snowflakes    role(s) to include    none
     public var includeRoles: String?
     
-    
     public init(days: Int? = nil,
                 includeRoles: String? = nil) {
         self.days = days

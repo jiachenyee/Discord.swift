@@ -1,0 +1,18 @@
+line_length:
+  ignores_interpolated_strings: true
+  ignores_comments: true
+
+disabled_rules:
+- trailing_whitespace
+- cyclomatic_complexity
+- function_body_length
+- file_length
+- identifier_name
+
+identifier_name:
+  excluded:
+    - x
+    - y
+    - id
+    - os
+    - me

@@ -67,7 +67,8 @@ public extension Bot {
     }
     
     func updateUserApplicationRoleConnection(_ appId: Snowflake,
-                                             updating updates: UserApplicationRoleConnectionRequest) async throws -> ApplicationRoleConnection {
+                                             updating updates: UserApplicationRoleConnectionRequest)
+    async throws -> ApplicationRoleConnection {
         try await sendRequest(ApplicationRoleConnection.self,
                               endpoint: "users/@me/applications/\(appId)/role-connection",
                               method: .patch,

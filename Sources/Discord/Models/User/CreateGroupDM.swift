@@ -24,7 +24,8 @@ public struct CreateGroupDM: Codable {
         self.nicks = nicks
     }
     
-    public static func create(accessTokens: [String], nicks: [Snowflake: String]) -> Self{
+    public static func create(accessTokens: [String],
+                              nicks: [Snowflake: String]) -> Self {
         Self(accessTokens: accessTokens,
              nicks: nicks)
     }

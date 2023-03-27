@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct VoiceState: Codable {
+public struct VoiceState: Codable, GatewayEventData {
     /// the guild id this voice state is for
     public var guildId: Snowflake?
     

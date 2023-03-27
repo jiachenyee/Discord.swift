@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct StageInstance: Codable {
+public struct StageInstance: Codable, GatewayEventData {
     /// The id of this Stage instance
     public var id: Snowflake
     

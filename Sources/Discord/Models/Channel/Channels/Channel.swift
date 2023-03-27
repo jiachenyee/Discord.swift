@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct Channel: Codable {
+public struct Channel: Codable, GatewayEventData {
     /// the id of this channel
     public var id: Snowflake
     /// the type of channel

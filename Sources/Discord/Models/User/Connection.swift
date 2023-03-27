@@ -27,14 +27,27 @@ public struct Connection: Codable {
     public var verified: Bool
     
     /// whether friend sync is enabled for this connection
-    public var friend_sync: Bool
+    public var friendSync: Bool
     
     /// whether activities related to this connection will be shown in presence updates
-    public var show_activity: Bool
+    public var showActivity: Bool
     
     /// whether this connection has a corresponding third party OAuth2 token
-    public var two_way_link: Bool
+    public var twoWayLink: Bool
     
     /// visibility of this connection
     public var visibility: Bool
+    
+    enum CodingKeys: String, CodingKey {
+        case id = "id"
+        case name = "name"
+        case type = "type"
+        case revoked = "revoked"
+        case integrations = "integrations"
+        case verified = "verified"
+        case friendSync = "friend_sync"
+        case showActivity = "show_activity"
+        case twoWayLink = "two_way_link"
+        case visibility = "visibility"
+    }
 }

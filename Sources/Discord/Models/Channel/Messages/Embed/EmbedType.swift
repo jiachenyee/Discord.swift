@@ -9,15 +9,15 @@ import Foundation
 
 public enum EmbedType: String, Codable {
     /// generic embed rendered from embed attributes
-    case rich = "rich"
+    case rich
     /// image embed
-    case image = "image"
+    case image
     /// video embed
-    case video = "video"
+    case video
     /// animated gif image embed rendered as a video embed
-    case gifv = "gifv"
+    case gifv
     /// article embed
-    case article = "article"
+    case article
     /// link embed
-    case link = "link"
+    case link 
 }

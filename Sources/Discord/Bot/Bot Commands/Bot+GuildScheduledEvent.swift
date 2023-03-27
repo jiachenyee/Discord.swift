@@ -50,7 +50,8 @@ public extension Bot {
     
     func getScheduledEventUsers(forGuild guildId: Snowflake,
                                 event eventId: Snowflake,
-                                filtering filters: ScheduledEventUsersFilter = .using()) async throws -> [ScheduledEventUser] {
+                                filtering filters: ScheduledEventUsersFilter = .using())
+    async throws -> [ScheduledEventUser] {
         try await sendRequest([ScheduledEventUser].self,
                               endpoint: "guilds/\(guildId)/scheduled-events/\(eventId)/users",
                               parameters: filters.toParameters())

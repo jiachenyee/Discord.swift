@@ -7,16 +7,16 @@
 
 import Foundation
 
-public struct User: Codable {
+public struct User: Codable, GatewayEventData {
     
     /// the user's id
     public var id: Snowflake
     
     /// the user's username, not unique across the platform
-    public var username: String
+    public var username: String?
     
     /// the user's 4-digit discord-tag
-    public var discriminator: String
+    public var discriminator: String?
     
     /// the user's avatar hash
     public var avatar: String?

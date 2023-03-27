@@ -31,7 +31,11 @@ public struct TriggerMetadata: Codable {
         case mentionTotalLimit = "mention_total_limit"
     }
     
-    init(keywordFilter: [String]? = nil, regexPatterns: [String]? = nil, presets: [KeywordPresetType]? = nil, allowList: [String]? = nil, mentionTotalLimit: Int? = nil) {
+    public init(keywordFilter: [String]? = nil,
+                regexPatterns: [String]? = nil,
+                presets: [KeywordPresetType]? = nil,
+                allowList: [String]? = nil,
+                mentionTotalLimit: Int? = nil) {
         self.keywordFilter = keywordFilter
         self.regexPatterns = regexPatterns
         self.presets = presets

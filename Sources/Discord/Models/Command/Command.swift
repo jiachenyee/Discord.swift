@@ -11,7 +11,7 @@ public struct Command: Codable {
     public var id: Snowflake?
     public var type: CommandType
     
-    public var applicationId: Snowflake??
+    public var applicationId: Snowflake?
     
     public var guildId: Snowflake?
     
@@ -21,9 +21,9 @@ public struct Command: Codable {
     public var description: String
     public var descriptionLocalizations: [DiscordLocale: String]?
     
-    public var options: [Option]?
+    public var options: [CommandOption]?
     
-    public var defaultMemberPermissions: Permissions?
+    public var defaultMemberPermissions: CommandPermissions?
     public var dmPermission: Bool?
     public var nsfw = false
     public var version: String?
@@ -34,8 +34,8 @@ public struct Command: Codable {
                 description: String,
                 descriptionLocalizations: [DiscordLocale: String]? = nil,
                 guildId: Snowflake? = nil,
-                options: [Option]? = nil,
-                defaultMemberPermissions: Permissions? = nil,
+                options: [CommandOption]? = nil,
+                defaultMemberPermissions: CommandPermissions? = nil,
                 dmPermission: Bool? = nil,
                 nsfw: Bool = false) {
         self.type = type
@@ -77,8 +77,8 @@ public struct Command: Codable {
                                  guildId: Snowflake? = nil,
                                  description: String,
                                  descriptionLocalizations: [DiscordLocale: String]? = nil,
-                                 options: [Option]? = nil,
-                                 defaultMemberPermissions: Permissions? = nil,
+                                 options: [CommandOption]? = nil,
+                                 defaultMemberPermissions: CommandPermissions? = nil,
                                  dmPermission: Bool? = nil,
                                  nsfw: Bool = false) -> Self {
         Self(type: .chatInput,
@@ -98,8 +98,8 @@ public struct Command: Codable {
                             description: String,
                             descriptionLocalizations: [DiscordLocale: String]? = nil,
                             guildId: Snowflake? = nil,
-                            options: [Option]? = nil,
-                            defaultMemberPermissions: Permissions? = nil,
+                            options: [CommandOption]? = nil,
+                            defaultMemberPermissions: CommandPermissions? = nil,
                             dmPermission: Bool? = nil,
                             nsfw: Bool = false) -> Self {
         Self(type: .user,
@@ -119,8 +119,8 @@ public struct Command: Codable {
                                description: String,
                                descriptionLocalizations: [DiscordLocale: String]? = nil,
                                guildId: Snowflake? = nil,
-                               options: [Option]? = nil,
-                               defaultMemberPermissions: Permissions? = nil,
+                               options: [CommandOption]? = nil,
+                               defaultMemberPermissions: CommandPermissions? = nil,
                                dmPermission: Bool? = nil,
                                nsfw: Bool = false) -> Self {
         Self(type: .message,

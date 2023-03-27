@@ -18,7 +18,7 @@ public struct Presence: Codable {
     public var status: Status
     
     /// Whether or not the client is afk
-    public var afk: Bool
+    public var afk: Bool?
     
     public enum Status: String, Codable {
         case online = "online"

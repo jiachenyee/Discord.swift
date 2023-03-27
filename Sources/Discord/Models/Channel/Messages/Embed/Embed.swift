@@ -47,7 +47,19 @@ public struct Embed: Codable {
     /// fields information
     public var fields: [EmbedField]?
     
-    init(title: String? = nil, type: EmbedType? = .rich, description: String? = nil, url: String? = nil, timestamp: ISO8601Timestamp? = nil, color: Int? = nil, footer: EmbedFooter? = nil, image: EmbedImage? = nil, thumbnail: EmbedThumbnail? = nil, video: EmbedVideo? = nil, provider: EmbedProvider? = nil, author: EmbedAuthor? = nil, fields: [EmbedField]? = nil) {
+    init(title: String? = nil,
+         type: EmbedType? = .rich,
+         description: String? = nil,
+         url: String? = nil,
+         timestamp: ISO8601Timestamp? = nil,
+         color: Int? = nil,
+         footer: EmbedFooter? = nil,
+         image: EmbedImage? = nil,
+         thumbnail: EmbedThumbnail? = nil,
+         video: EmbedVideo? = nil,
+         provider: EmbedProvider? = nil,
+         author: EmbedAuthor? = nil,
+         fields: [EmbedField]? = nil) {
         self.title = title
         self.type = type
         self.description = description

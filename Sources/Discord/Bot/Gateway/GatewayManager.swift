@@ -25,21 +25,20 @@ class GatewayManager {
         
         Task.detached {
             while true {
-                await self.receive()
+                if await !self.receive() { break }
             }
         }
     }
     
-    func receive() async {
-        let message = try! await task.receive()
+    func receive() async -> Bool {
+        guard let message = try? await task.receive() else { return false }
         switch message {
         case .string(let text):
-            print("Received message: \(text)")
             let data = Data(text.utf8)
             
             guard let jsonObject = try? JSONSerialization.jsonObject(with: data) as? [String: Any],
                   let code = jsonObject["op"] as? Int,
-                  let operation = GatewayOpCode(rawValue: code) else { return }
+                  let operation = GatewayOpCode(rawValue: code) else { return true }
             
             if let sequence = jsonObject["s"] as? Int {
                 self.sequence = sequence
@@ -47,7 +46,7 @@ class GatewayManager {
             
             switch operation {
             case .dispatch:
-                print("Dispatch")
+                handleDispatch(jsonObject: jsonObject)
             case .heartbeat:
                 try? await sendHeartbeatMessage()
             case .reconnect:
@@ -62,6 +61,8 @@ class GatewayManager {
             }
         default: break
         }
+        
+        return true
     }
     
     func sendIdentifyMessage(task: URLSessionWebSocketTask) async {

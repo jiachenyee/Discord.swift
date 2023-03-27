@@ -11,7 +11,7 @@ public enum ChannelType: Int, Codable {
     /// a text channel within a server
     case guildText = 0
     /// a direct message between users
-    case dm = 1
+    case directMessage = 1
     /// a voice channel within a server
     case guildVoice = 2
     /// a direct message between multiple users

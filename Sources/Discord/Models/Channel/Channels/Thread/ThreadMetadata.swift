@@ -35,7 +35,12 @@ public struct ThreadMetadata: Codable {
         case createTimestamp = "create_timestamp"
     }
     
-    public init(archived: Bool, autoArchiveDuration: Int, archiveTimestamp: ISO8601Timestamp, locked: Bool, invitable: Bool? = nil, createTimestamp: ISO8601Timestamp? = nil) {
+    public init(archived: Bool,
+                autoArchiveDuration: Int,
+                archiveTimestamp: ISO8601Timestamp,
+                locked: Bool,
+                invitable: Bool? = nil,
+                createTimestamp: ISO8601Timestamp? = nil) {
         self.archived = archived
         self.autoArchiveDuration = autoArchiveDuration
         self.archiveTimestamp = archiveTimestamp

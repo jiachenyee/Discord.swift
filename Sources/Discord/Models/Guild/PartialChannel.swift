@@ -114,7 +114,36 @@ public struct PartialChannel: Codable {
         case defaultForumLayout = "default_forum_layout"
     }
     
-    public init(id: String? = nil, type: ChannelType, position: Int? = nil, permissionOverwrites: [Overwrite]? = nil, name: String? = nil, topic: String? = nil, nsfw: Bool? = nil, lastMessageId: Snowflake? = nil, bitrate: Int? = nil, userLimit: Int? = nil, rateLimitPerUser: Int? = nil, recipients: [User]? = nil, icon: String? = nil, ownerId: Snowflake? = nil, applicationId: Snowflake? = nil, managed: Bool? = nil, parentId: Snowflake? = nil, lastPinTimestamp: ISO8601Timestamp? = nil, rtcRegion: String? = nil, videoQualityMode: VideoQualityTag? = nil, messageCount: Int? = nil, memberCount: Int? = nil, threadMetadata: ThreadMetadata? = nil, member: ThreadMember? = nil, defaultAutoArchiveDuration: Int? = nil, permissions: String? = nil, flags: ChannelFlags? = nil, totalMessageSent: Int? = nil, availableTags: [ForumTag]? = nil, appliedTags: [Snowflake]? = nil, defaultReactionEmoji: DefaultReaction? = nil, defaultThreadRateLimitPerUser: Int? = nil, defaultSortOrder: ForumSortOrder? = nil, defaultForumLayout: ForumLayoutTypes? = nil) {
+    public init(id: String? = nil,
+                type: ChannelType,
+                position: Int? = nil,
+                permissionOverwrites: [Overwrite]? = nil,
+                name: String? = nil, topic: String? = nil,
+                nsfw: Bool? = nil,
+                lastMessageId: Snowflake? = nil,
+                bitrate: Int? = nil,
+                userLimit: Int? = nil,
+                rateLimitPerUser: Int? = nil,
+                recipients: [User]? = nil,
+                icon: String? = nil,
+                ownerId: Snowflake? = nil,
+                applicationId: Snowflake? = nil,
+                managed: Bool? = nil,
+                parentId: Snowflake? = nil,
+                lastPinTimestamp: ISO8601Timestamp? = nil,
+                rtcRegion: String? = nil, videoQualityMode: VideoQualityTag? = nil,
+                messageCount: Int? = nil, memberCount: Int? = nil,
+                threadMetadata: ThreadMetadata? = nil,
+                member: ThreadMember? = nil,
+                defaultAutoArchiveDuration: Int? = nil,
+                permissions: String? = nil,
+                flags: ChannelFlags? = nil,
+                totalMessageSent: Int? = nil,
+                availableTags: [ForumTag]? = nil,
+                appliedTags: [Snowflake]? = nil, defaultReactionEmoji: DefaultReaction? = nil,
+                defaultThreadRateLimitPerUser: Int? = nil,
+                defaultSortOrder: ForumSortOrder? = nil,
+                defaultForumLayout: ForumLayoutTypes? = nil) {
         self.id = id
         self.type = type
         self.position = position

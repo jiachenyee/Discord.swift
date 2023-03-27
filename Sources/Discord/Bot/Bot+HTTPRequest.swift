@@ -77,6 +77,14 @@ public extension Bot {
         
         let value = try await request.serializingData().value
         
+        if value.count != 0 {
+            let errorValue = try JSONSerialization.jsonObject(with: value) as? [String: Any]
+            
+            if let errorValue, errorValue["errors"] != nil {
+                throw DiscordError.apiError(value: errorValue)
+            }
+        }
+        
         return value
     }
     

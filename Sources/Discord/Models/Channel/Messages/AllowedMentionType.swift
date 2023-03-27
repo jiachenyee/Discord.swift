@@ -9,11 +9,11 @@ import Foundation
 
 public enum AllowedMentionType: String, Codable {
     /// Controls role mentions
-    case roles = "roles"
+    case roles
     
     /// Controls user mentions
-    case users = "users"
+    case users
     
     /// Controls @everyone and @here mentions
-    case everyone = "everyone"
+    case everyone
 }

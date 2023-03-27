@@ -9,16 +9,16 @@ import Foundation
 
 public struct AuditLog: Codable {
     /// List of application commands referenced in the audit log
-    public var application_commands: [Command]
+    public var applicationCommands: [Command]
     
     /// List of audit log entries, sorted from most to least recent
-    public var audit_log_entries: [AuditLogEntry]
+    public var auditLogEntries: [AuditLogEntry]
     
     /// List of auto moderation rules referenced in the audit log
-    public var auto_moderation_rules: [AutoModerationRule]
+    public var autoModerationRules: [AutoModerationRule]
     
     /// List of guild scheduled events referenced in the audit log
-    public var guild_scheduled_events: [ScheduledEvent]
+    public var guildScheduledEvents: [ScheduledEvent]
     
     /// List of partial integration objects
     public var integrations: [Integration]
@@ -31,4 +31,15 @@ public struct AuditLog: Codable {
     
     /// List of webhooks referenced in the audit log
     public var webhooks: [Webhook]
+    
+    enum CodingKeys: String, CodingKey {
+        case applicationCommands = "application_commands"
+        case auditLogEntries = "audit_log_entries"
+        case autoModerationRules = "auto_moderation_rules"
+        case guildScheduledEvents = "guild_scheduled_events"
+        case integrations = "integrations"
+        case threads = "threads"
+        case users = "users"
+        case webhooks = "webhooks"
+    }
 }
