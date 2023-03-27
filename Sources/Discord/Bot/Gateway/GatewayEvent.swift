@@ -136,15 +136,15 @@ public enum GatewayEvent {
     
     /// Guild role was created
     /// > Discord Reference [https://discord.com/developers/docs/topics/gateway-events#guild-role-create](https://discord.com/developers/docs/topics/gateway-events#guild-role-create)
-    case guildRoleCreate(GatewayEventData); #warning("Incomplete")
+    case guildRoleCreate(GatewayGuildRole) // untested
     
     /// Guild role was updated
     /// > Discord Reference [https://discord.com/developers/docs/topics/gateway-events#guild-role-update](https://discord.com/developers/docs/topics/gateway-events#guild-role-update)
-    case guildRoleUpdate(GatewayEventData); #warning("Incomplete")
+    case guildRoleUpdate(GatewayGuildRole) // untested
     
     /// Guild role was deleted
     /// > Discord Reference [https://discord.com/developers/docs/topics/gateway-events#guild-role-delete](https://discord.com/developers/docs/topics/gateway-events#guild-role-delete)
-    case guildRoleDelete(GatewayEventData); #warning("Incomplete")
+    case guildRoleDelete(GatewayGuildRoleDelete) // untested
     
     /// Guild scheduled event was created
     /// > Discord Reference [https://discord.com/developers/docs/topics/gateway-events#guild-scheduled-event-create](https://discord.com/developers/docs/topics/gateway-events#guild-scheduled-event-create)
@@ -302,9 +302,9 @@ public enum GatewayEvent {
         case "GUILD_MEMBER_REMOVE": self = .guildMemberRemove(.decode(data))
         case "GUILD_MEMBER_UPDATE": self = .guildMemberUpdate(.decode(data))
         case "GUILD_MEMBERS_CHUNK": self = .guildMembersChunk(.decode(data))
-//        case "GUILD_ROLE_CREATE": self = .guildRoleCreate(.decode(data))
-//        case "GUILD_ROLE_UPDATE": self = .guildRoleUpdate(.decode(data))
-//        case "GUILD_ROLE_DELETE": self = .guildRoleDelete(.decode(data))
+        case "GUILD_ROLE_CREATE": self = .guildRoleCreate(.decode(data))
+        case "GUILD_ROLE_UPDATE": self = .guildRoleUpdate(.decode(data))
+        case "GUILD_ROLE_DELETE": self = .guildRoleDelete(.decode(data))
         case "GUILD_SCHEDULED_EVENT_CREATE": self = .guildScheduledEventCreate(.decode(data))
         case "GUILD_SCHEDULED_EVENT_UPDATE": self = .guildScheduledEventUpdate(.decode(data))
         case "GUILD_SCHEDULED_EVENT_DELETE": self = .guildScheduledEventDelete(.decode(data))
@@ -338,5 +338,29 @@ public enum GatewayEvent {
             print("Unrecognised case")
             return nil
         }
+    }
+}
+
+public struct GatewayGuildRole: GatewayEventData {
+    /// ID of the guild
+    public var guildId: Snowflake
+    /// Role that was created
+    public var role: Role
+    
+    enum CodingKeys: String, CodingKey {
+        case guildId = "guild_id"
+        case role = "role"
+    }
+}
+
+public struct GatewayGuildRoleDelete: GatewayEventData {
+    /// ID of the guild
+    public var guildId: Snowflake
+    /// ID of the role
+    public var roleId: Snowflake
+    
+    enum CodingKeys: String, CodingKey {
+        case guildId = "guild_id"
+        case roleId = "role_id"
     }
 }
