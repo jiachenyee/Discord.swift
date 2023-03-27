@@ -115,7 +115,11 @@ public struct Modal: Codable {
     /// between 1 and 5 (inclusive) components that make up the modal
     public var components: [Component]
     
-    public init(custom_id: String, title: String, components: [Component]) {
+    public init(custom_id: String, title: String, textInputs: [Component]) {
+        let components = textInputs.map {
+            Component.actionRow(components: [$0])
+        }
+        
         self.custom_id = custom_id
         self.title = title
         self.components = components
