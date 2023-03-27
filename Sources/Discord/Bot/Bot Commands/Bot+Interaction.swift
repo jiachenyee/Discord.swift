@@ -18,7 +18,7 @@ public extension Bot {
     
     func createInteractionResponse(interaction: Interaction,
                                    response: InteractionResponse) async throws {
-        try await sendRequest(endpoint: "interactions/\(interaction.id)/\(interaction.token)/callback",
+        try await sendRequest(endpoint: "interactions/\(interaction.id)/\(interaction.token!)/callback",
                               method: .post,
                               data: response)
     }
