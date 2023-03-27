@@ -11,7 +11,7 @@ public struct Command: Codable {
     public var id: Snowflake?
     public var type: CommandType
     
-    public var applicationId: Snowflake??
+    public var applicationId: Snowflake?
     
     public var guildId: Snowflake?
     
