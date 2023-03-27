@@ -142,9 +142,8 @@ public enum GatewayEvent {
 //        case "WEBHOOKS_UPDATE": return .webhooksUpdate(.decode(data))
         default:
             print("Unrecognised case")
+            return nil
         }
-        
-        return nil
     }
 }
 
