@@ -33,7 +33,7 @@ public struct Interaction: GatewayEventData {
     public var user: User?
     
     /// Continuation token for responding to the interaction
-    public var token: String
+    public var token: String?
     
     /// Read-only property, always 1
     public var version: Int
