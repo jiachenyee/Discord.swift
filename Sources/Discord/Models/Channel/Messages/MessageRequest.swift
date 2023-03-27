@@ -22,16 +22,16 @@ public struct MessageRequest: Codable {
     public var embeds: [Embed]?
     
     /// Allowed mentions for the message
-    public var allowed_mentions: [AllowedMention]?
+    public var allowedMentions: [AllowedMention]?
      
     /// Include to make your message a reply
-    public var message_reference: MessageReference?
+    public var messageReference: MessageReference?
      
     /// Components to include with the message
     public var components: [Component]?
     
     /// IDs of up to 3 stickers in the server to send in the message
-    public var sticker_ids: [Snowflake]?
+    public var stickerIds: [Snowflake]?
     
 #warning("Incomplete implementation")
 //     public var files[n]?*    file contents    Contents of the file being sent. See Uploading Files
@@ -40,27 +40,27 @@ public struct MessageRequest: Codable {
     /// Attachment objects with filename and description. See Uploading Files
     public var attachments: [Attachment]?
     
-    /// Message flags combined as a bitfield (only SUPPRESS_EMBEDS and SUPPRESS_NOTIFICATIONS can be set)
+    /// Message flags combined as a bitfield (only `SUPPRESS_EMBEDS` and `SUPPRESS_NOTIFICATIONS` can be set)
     public var flags: MessageFlags?
     
     public init(content: String? = nil,
                 nonce: Nonce? = nil,
                 tts: Bool? = nil,
                 embeds: [Embed]? = nil,
-                allowed_mentions: [AllowedMention]? = nil,
-                message_reference: MessageReference? = nil,
+                allowedMentions: [AllowedMention]? = nil,
+                messageReference: MessageReference? = nil,
                 components: [Component]? = nil,
-                sticker_ids: [Snowflake]? = nil,
+                stickerIds: [Snowflake]? = nil,
                 attachments: [Attachment]? = nil,
                 flags: MessageFlags? = nil) {
         self.content = content
         self.nonce = nonce
         self.tts = tts
         self.embeds = embeds
-        self.allowed_mentions = allowed_mentions
-        self.message_reference = message_reference
+        self.allowedMentions = allowedMentions
+        self.messageReference = messageReference
         self.components = components
-        self.sticker_ids = sticker_ids
+        self.stickerIds = stickerIds
         self.attachments = attachments
         self.flags = flags
     }
@@ -69,21 +69,34 @@ public struct MessageRequest: Codable {
                               nonce: Nonce? = nil,
                               tts: Bool? = nil,
                               embeds: [Embed]? = nil,
-                              allowed_mentions: [AllowedMention]? = nil,
-                              message_reference: MessageReference? = nil,
+                              allowedMentions: [AllowedMention]? = nil,
+                              messageReference: MessageReference? = nil,
                               components: [Component]? = nil,
-                              sticker_ids: [Snowflake]? = nil,
+                              stickerIds: [Snowflake]? = nil,
                               attachments: [Attachment]? = nil,
                               flags: MessageFlags? = nil) -> Self {
         Self(content: content,
              nonce: nonce,
              tts: tts,
              embeds: embeds,
-             allowed_mentions: allowed_mentions,
-             message_reference: message_reference,
+             allowedMentions: allowedMentions,
+             messageReference: messageReference,
              components: components,
-             sticker_ids: sticker_ids,
+             stickerIds: stickerIds,
              attachments: attachments,
              flags: flags)
+    }
+    
+    enum CodingKeys: String, CodingKey {
+        case content = "content"
+        case nonce = "nonce"
+        case tts = "tts"
+        case embeds = "embeds"
+        case allowedMentions = "allowed_mentions"
+        case messageReference = "message_reference"
+        case components = "components"
+        case stickerIds = "sticker_ids"
+        case attachments = "attachments"
+        case flags = "flags"
     }
 }

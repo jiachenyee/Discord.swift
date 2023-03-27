@@ -43,10 +43,4 @@ public struct Activity: Codable {
     public static func competing(in name: String) -> Self {
         Self(name: name, type: .competing)
     }
-    
-    enum CodingKeys: String, CodingKey {
-        case name = "name"
-        case type = "type"
-        case url = "url"
-    }
 }

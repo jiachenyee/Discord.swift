@@ -21,7 +21,7 @@ public struct Emoji: Codable {
     public var user: User?
     
     /// whether this emoji must be wrapped in colons
-    public var require_colons: Bool?
+    public var requireColons: Bool?
     
     /// whether this emoji is managed
     public var managed: Bool?
@@ -34,5 +34,16 @@ public struct Emoji: Codable {
     
     public static func emoji(_ emoji: String) -> Self {
         Self(name: emoji)
+    }
+    
+    enum CodingKeys: String, CodingKey {
+        case id = "id"
+        case name = "name"
+        case roles = "roles"
+        case user = "user"
+        case requireColons = "require_colons"
+        case managed = "managed"
+        case animated = "animated"
+        case available = "available"
     }
 }

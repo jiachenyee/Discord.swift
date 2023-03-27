@@ -308,7 +308,6 @@ public extension Bot {
                               data: channelInvite)
     }
     
-    
     /// Follow an Announcement Channel to send messages to a target channel.
     /// - Parameters:
     ///   - channelId: The channel ID of the target channel.

@@ -87,7 +87,25 @@ public struct ModifyGuildRequest: Codable {
         case premiumProgressBarEnabled = "premium_progress_bar_enabled"
     }
     
-    public init(name: String? = nil, verificationLevel: Int? = nil, defaultMessageNotifications: DefaultMessageNotificationLevel? = nil, explicitContentFilter: ExplicitContentFilterLevel? = nil, afkChannelId: Snowflake? = nil, afkTimeout: AFKTimeout? = nil, icon: Data? = nil, ownerId: Snowflake? = nil, splash: Data? = nil, discoverySplash: Data? = nil, banner: Data? = nil, systemChannelId: Snowflake? = nil, systemChannelFlags: SystemChannelFlags? = nil, rulesChannelId: Snowflake? = nil, publicUpdatesChannelId: Snowflake? = nil, preferredLocale: DiscordLocale? = nil, features: [GuildFeature]? = nil, description: String? = nil, premiumProgressBarEnabled: Bool? = nil) {
+    public init(name: String? = nil,
+                verificationLevel: Int? = nil,
+                defaultMessageNotifications: DefaultMessageNotificationLevel? = nil,
+                explicitContentFilter: ExplicitContentFilterLevel? = nil,
+                afkChannelId: Snowflake? = nil,
+                afkTimeout: AFKTimeout? = nil,
+                icon: Data? = nil,
+                ownerId: Snowflake? = nil,
+                splash: Data? = nil,
+                discoverySplash: Data? = nil,
+                banner: Data? = nil,
+                systemChannelId: Snowflake? = nil,
+                systemChannelFlags: SystemChannelFlags? = nil,
+                rulesChannelId: Snowflake? = nil,
+                publicUpdatesChannelId: Snowflake? = nil,
+                preferredLocale: DiscordLocale? = nil,
+                features: [GuildFeature]? = nil,
+                description: String? = nil,
+                premiumProgressBarEnabled: Bool? = nil) {
         self.name = name
         self.verificationLevel = verificationLevel
         self.defaultMessageNotifications = defaultMessageNotifications

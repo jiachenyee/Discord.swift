@@ -8,13 +8,14 @@
 import Foundation
 
 public extension Bot {
-    func getApplicationRoleConnectionMetadataRecords(application applicationId: Snowflake) async throws -> [ApplicationRoleConnectionMetadata] {
+    func getRoleConnectionMetadataRecords(application applicationId: Snowflake)
+    async throws -> [ApplicationRoleConnectionMetadata] {
         try await sendRequest([ApplicationRoleConnectionMetadata].self,
                               endpoint: "applications/\(applicationId)/role-connections/metadata")
     }
     
     @discardableResult
-    func updateApplicationRoleConnectionMetadataRecords() async throws -> [ApplicationRoleConnectionMetadata] {
+    func updateRoleConnectionMetadataRecords() async throws -> [ApplicationRoleConnectionMetadata] {
         try await sendRequest([ApplicationRoleConnectionMetadata].self,
                               endpoint: "applications/\(applicationId)/role-connections/metadata",
                               method: .put)

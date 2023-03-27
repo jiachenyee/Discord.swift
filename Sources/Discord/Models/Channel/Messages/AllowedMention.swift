@@ -18,12 +18,19 @@ public struct AllowedMention: Codable {
     public var users: [Snowflake]
     
     /// For replies, whether to mention the author of the message being replied to (default false)
-    public var replied_user: Bool = false
+    public var repliedUser: Bool = false
     
-    public init(parse: [AllowedMentionType], roles: [Snowflake], users: [Snowflake], replied_user: Bool) {
+    public init(parse: [AllowedMentionType], roles: [Snowflake], users: [Snowflake], repliedUser: Bool) {
         self.parse = parse
         self.roles = roles
         self.users = users
-        self.replied_user = replied_user
+        self.repliedUser = repliedUser
+    }
+    
+    enum CodingKeys: String, CodingKey {
+        case parse = "parse"
+        case roles = "roles"
+        case users = "users"
+        case repliedUser = "replied_user"
     }
 }

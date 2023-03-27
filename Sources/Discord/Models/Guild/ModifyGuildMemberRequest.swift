@@ -47,7 +47,13 @@ public struct ModifyGuildMemberRequest: Codable {
         case flags = "flags"
     }
     
-    public init(nick: String? = nil, roles: [Snowflake]? = nil, mute: Bool? = nil, deaf: Bool? = nil, channelId: Snowflake? = nil, communicationDisabledUntil: ISO8601Timestamp? = nil, flags: GuildMemberFlags? = nil) {
+    public init(nick: String? = nil,
+                roles: [Snowflake]? = nil,
+                mute: Bool? = nil,
+                deaf: Bool? = nil,
+                channelId: Snowflake? = nil,
+                communicationDisabledUntil: ISO8601Timestamp? = nil,
+                flags: GuildMemberFlags? = nil) {
         self.nick = nick
         self.roles = roles
         self.mute = mute

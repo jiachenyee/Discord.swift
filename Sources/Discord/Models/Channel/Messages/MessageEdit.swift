@@ -21,14 +21,11 @@ public struct MessageEdit: Codable {
     public var allowedMentions: [AllowedMention]?
     
     /// Components to include with the message
-    #warning("incomplete implementation")
     public var components: [Component]?
     
-    /// Contents of the file being sent/edited. See Uploading Files
-//    public var files[n]: file contents
-    
-    /// JSON-encoded body of non-file params (multipart/form-data only). See Uploading Files
-//    public var payload_json: string
+#warning("incomplete implementation")
+//    public var files[n]: file contents    Contents of the file being sent/edited. See Uploading Files
+//    public var payload_json: string    JSON-encoded body of non-file params (multipart/form-data only). See Uploading Files
     
     /// Attached files to keep and possible descriptions for new files. See Uploading Files
     public var attachments: [Attachment]?

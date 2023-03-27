@@ -18,7 +18,7 @@ public enum GatewayEvent {
     
     /// Application command permission was updated
     /// > Discord Reference: [https://discord.com/developers/docs/topics/gateway-events#application-command-permissions-update](https://discord.com/developers/docs/topics/gateway-events#application-command-permissions-update)
-    case applicationCommandPermissionsUpdate(Command.Permissions)
+    case applicationCommandPermissionsUpdate(CommandPermissions)
     
     /// Auto Moderation rule was created
     /// > Discord Reference: [https://discord.com/developers/docs/topics/gateway-events#auto-moderation-rule-create](https://discord.com/developers/docs/topics/gateway-events#auto-moderation-rule-create)
@@ -269,8 +269,6 @@ public enum GatewayEvent {
             print("Unrecognised Event:", jsonObject["t"] ?? "")
             return nil
         }
-        
-        print(typeCode)
         
         switch typeCode {
         case "READY": self = .ready(.decode(data))

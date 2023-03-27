@@ -21,10 +21,10 @@ public struct GuildMember: Codable {
     public var roles: [Snowflake]
     
     /// when the user joined the guild
-    public var joined_at: ISO8601Timestamp
+    public var joinedAt: ISO8601Timestamp
     
     /// when the user started boosting the guild
-    public var premium_since: ISO8601Timestamp?
+    public var premiumSince: ISO8601Timestamp?
     
     /// whether the user is deafened in voice channels
     public var deaf: Bool
@@ -42,5 +42,20 @@ public struct GuildMember: Codable {
     public var permissions: String?
     
     /// when the user's timeout will expire and the user will be able to communicate in the guild again, null or a time in the past if the user is not timed out
-    public var communication_disabled_until: ISO8601Timestamp?
+    public var communicationDisabledUntil: ISO8601Timestamp?
+    
+    enum CodingKeys: String, CodingKey {
+        case user = "user"
+        case nick = "nick"
+        case avatar = "avatar"
+        case roles = "roles"
+        case joinedAt = "joined_at"
+        case premiumSince = "premium_since"
+        case deaf = "deaf"
+        case mute = "mute"
+        case flags = "flags"
+        case pending = "pending"
+        case permissions = "permissions"
+        case communicationDisabledUntil = "communication_disabled_until"
+    }
 }

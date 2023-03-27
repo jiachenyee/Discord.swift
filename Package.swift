@@ -14,7 +14,8 @@ let package = Package(
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
-        .package(url: "https://github.com/Alamofire/Alamofire.git", .upToNextMajor(from: "5.6.4"))
+        .package(url: "https://github.com/Alamofire/Alamofire.git", .upToNextMajor(from: "5.6.4")),
+        .package(url: "https://github.com/realm/SwiftLint", branch: "main")
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
@@ -23,7 +24,8 @@ let package = Package(
             name: "Discord",
             dependencies: [
                 .byNameItem(name: "Alamofire", condition: nil)
-            ]),
+            ],
+            plugins: [.plugin(name: "SwiftLintPlugin", package: "SwiftLint")]),
         .testTarget(
             name: "Discord.swiftTests",
             dependencies: ["Discord"]),

@@ -47,7 +47,14 @@ public struct CreateGuildScheduledEvent: Codable {
         case image = "image"
     }
     
-    public init(channelId: Snowflake? = nil, entityMetadata: EventEntityMetadata? = nil, name: String, privacyLevel: EventPrivacyLevel, scheduledStartTime: ISO8601Timestamp, scheduledEndTime: ISO8601Timestamp? = nil, description: String? = nil, entityType: GuildScheduledEventEntityType, image: Data? = nil) {
+    public init(channelId: Snowflake? = nil,
+                entityMetadata: EventEntityMetadata? = nil,
+                name: String, privacyLevel: EventPrivacyLevel,
+                scheduledStartTime: ISO8601Timestamp,
+                scheduledEndTime: ISO8601Timestamp? = nil,
+                description: String? = nil,
+                entityType: GuildScheduledEventEntityType,
+                image: Data? = nil) {
         self.channelId = channelId
         self.entityMetadata = entityMetadata
         self.name = name

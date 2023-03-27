@@ -74,7 +74,7 @@ public struct InteractionMessage: Codable {
     public var embeds: [Embed]?
     
     /// allowed mentions object
-    public var allowed_mentions: [AllowedMention]?
+    public var allowedMentions: [AllowedMention]?
     
     /// message flags combined as a bitfield (only SUPPRESS_EMBEDS and EPHEMERAL can be set)
     public var flags: MessageFlags?
@@ -85,29 +85,45 @@ public struct InteractionMessage: Codable {
     /// attachment objects with filename and description
     public var attachments: [Attachment]?
     
-    public init(tts: Bool? = nil, content: String? = nil, embeds: [Embed]? = nil, allowed_mentions: [AllowedMention]? = nil, flags: MessageFlags? = nil, components: [Component]? = nil, attachments: [Attachment]? = nil) {
+    public init(tts: Bool? = nil,
+                content: String? = nil,
+                embeds: [Embed]? = nil,
+                allowedMentions: [AllowedMention]? = nil,
+                flags: MessageFlags? = nil,
+                components: [Component]? = nil,
+                attachments: [Attachment]? = nil) {
         self.tts = tts
         self.content = content
         self.embeds = embeds
-        self.allowed_mentions = allowed_mentions
+        self.allowedMentions = allowedMentions
         self.flags = flags
         self.components = components
         self.attachments = attachments
+    }
+    
+    enum CodingKeys: String, CodingKey {
+        case tts = "tts"
+        case content = "content"
+        case embeds = "embeds"
+        case allowedMentions = "allowed_mentions"
+        case flags = "flags"
+        case components = "components"
+        case attachments = "attachments"
     }
 }
 
 public struct Autocomplete: Codable {
     /// autocomplete choices (max of 25 choices)
-    public var choices: [Command.OptionChoice]
+    public var choices: [OptionChoice]
     
-    public init(choices: [Command.OptionChoice]) {
+    public init(choices: [OptionChoice]) {
         self.choices = choices
     }
 }
 
 public struct Modal: Codable {
     /// a developer-defined identifier for the modal, max 100 characters
-    public var custom_id: String
+    public var customId: String
     
     /// the title of the popup modal, max 45 characters
     public var title: String
@@ -115,13 +131,19 @@ public struct Modal: Codable {
     /// between 1 and 5 (inclusive) components that make up the modal
     public var components: [Component]
     
-    public init(custom_id: String, title: String, textInputs: [Component]) {
+    public init(customId: String, title: String, textInputs: [Component]) {
         let components = textInputs.map {
             Component.actionRow(components: [$0])
         }
         
-        self.custom_id = custom_id
+        self.customId = customId
         self.title = title
         self.components = components
+    }
+    
+    enum CodingKeys: String, CodingKey {
+        case customId = "custom_id"
+        case title = "title"
+        case components = "components"
     }
 }

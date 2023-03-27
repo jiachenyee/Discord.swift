@@ -49,8 +49,8 @@ public extension Bot {
     /// - Returns: Returns a guild application command permissions object.
     /// - Tip: Looking for permissions for one specific command? Try ``getCommandsPermissions(in:)``
     /// > Discord Reference: [https://discord.com/developers/docs/interactions/application-commands#get-guild-application-command-permissions](https://discord.com/developers/docs/interactions/application-commands#get-guild-application-command-permissions)
-    func getCommandsPermissions(in guildId: Snowflake) async throws -> [Command.Permissions] {
-        try await sendRequest([Command.Permissions].self,
+    func getCommandsPermissions(in guildId: Snowflake) async throws -> [CommandPermissions] {
+        try await sendRequest([CommandPermissions].self,
                               endpoint: "/applications/\(applicationId)/guilds/\(guildId)/commands/permissions",
                               method: .get)
     }
@@ -62,8 +62,8 @@ public extension Bot {
     /// - Returns: Returns a guild application command permissions object.
     /// > Discord Reference: [https://discord.com/developers/docs/interactions/application-commands#get-application-command-permissions](https://discord.com/developers/docs/interactions/application-commands#get-application-command-permissions)
     func getCommandPermissions(forCommand commandId: Snowflake,
-                               in guildId: Snowflake) async throws -> Command.Permissions {
-        try await sendRequest(Command.Permissions.self,
+                               in guildId: Snowflake) async throws -> CommandPermissions {
+        try await sendRequest(CommandPermissions.self,
                               endpoint: "/applications/\(applicationId)/guilds/\(guildId)/commands/\(commandId)/permissions",
                               method: .get)
     }

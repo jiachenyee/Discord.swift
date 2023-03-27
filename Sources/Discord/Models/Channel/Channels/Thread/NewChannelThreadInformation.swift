@@ -31,7 +31,11 @@ public struct NewChannelThreadInformation: Codable {
         case rateLimitPerUser = "rate_limit_per_user"
     }
     
-    public init(name: String, autoArchiveDuration: AutoArchiveDuration? = nil, type: ThreadType = .publicThread, invitable: Bool? = nil, rateLimitPerUser: Int? = nil) {
+    public init(name: String,
+                autoArchiveDuration: AutoArchiveDuration? = nil,
+                type: ThreadType = .publicThread,
+                invitable: Bool? = nil,
+                rateLimitPerUser: Int? = nil) {
         self.name = name
         self.autoArchiveDuration = autoArchiveDuration
         self.type = type

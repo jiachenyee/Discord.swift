@@ -14,9 +14,11 @@ public protocol GatewayEventData: Codable {
 public extension GatewayEventData {
     static func decode(_ data: Any) -> Self {
         let decoder = JSONDecoder()
-        guard let jsonData = try? JSONSerialization.data(withJSONObject: data) else { fatalError("Could not decode/encode") }
+        guard let jsonData = try? JSONSerialization.data(withJSONObject: data),
+              let value = try? decoder.decode(Self.self, from: jsonData) else {
+            fatalError("Could not encode/decode to JSON")
+        }
         
-        let value = try! decoder.decode(Self.self, from: jsonData)
         return value
     }
 }

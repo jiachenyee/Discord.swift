@@ -51,7 +51,11 @@ public struct Attachment: Codable {
         case ephemeral = "ephemeral"
     }
     
-    public init(id: Snowflake, filename: String, description: String? = nil, contentType: String? = nil, size: Int, url: String, proxyURL: String, height: Int? = nil, width: Int? = nil, ephemeral: Bool? = nil) {
+    public init(id: Snowflake, filename: String, description: String? = nil,
+                contentType: String? = nil,
+                size: Int, url: String,
+                proxyURL: String, height: Int? = nil,
+                width: Int? = nil, ephemeral: Bool? = nil) {
         self.id = id
         self.filename = filename
         self.description = description

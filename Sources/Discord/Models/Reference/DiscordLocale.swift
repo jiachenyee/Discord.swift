@@ -5,6 +5,7 @@
 //  Created by Jia Chen Yee on 21/3/23.
 //
 
+// swiftlint:disable identifier_name
 /// https://discord.com/developers/docs/reference#locales
 public enum DiscordLocale: String, Codable {
     /// Indonesian
@@ -70,3 +71,4 @@ public enum DiscordLocale: String, Codable {
     /// Korean
     case ko = "ko"
 }
+// swiftlint:enable identifier_name

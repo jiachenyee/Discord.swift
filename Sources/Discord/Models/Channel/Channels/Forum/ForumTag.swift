@@ -31,7 +31,11 @@ public struct ForumTag: Codable {
         case emojiName = "emoji_name"
     }
     
-    public init(id: Snowflake? = nil, name: String, moderated: Bool, emojiId: Snowflake? = nil, emojiName: String? = nil) {
+    public init(id: Snowflake? = nil,
+                name: String,
+                moderated: Bool,
+                emojiId: Snowflake? = nil,
+                emojiName: String? = nil) {
         self.id = id
         self.name = name
         self.moderated = moderated

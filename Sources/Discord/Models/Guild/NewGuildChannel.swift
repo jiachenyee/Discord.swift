@@ -75,7 +75,16 @@ public struct NewGuildChannel: Codable {
         case defaultSortOrder = "default_sort_order"
     }
     
-    init(name: String, type: ChannelType, topic: String? = nil, bitrate: Int? = nil, userLimit: Int? = nil, rateLimitPerUser: Int? = nil, position: Int? = nil, permissionOverwrites: [Overwrite]? = nil, parentId: Snowflake? = nil, nsfw: Bool? = nil, rtcRegion: String? = nil, videoQualityMode: VideoQualityTag? = nil, defaultAutoArchiveDuration: Int? = nil, defaultReactionEmoji: DefaultReaction? = nil, availableTags: [ForumTag]? = nil, defaultSortOrder: ForumSortOrder? = nil) {
+    init(name: String, type: ChannelType,
+         topic: String? = nil, bitrate: Int? = nil,
+         userLimit: Int? = nil, rateLimitPerUser: Int? = nil,
+         position: Int? = nil, permissionOverwrites: [Overwrite]? = nil,
+         parentId: Snowflake? = nil, nsfw: Bool? = nil,
+         rtcRegion: String? = nil, videoQualityMode: VideoQualityTag? = nil,
+         defaultAutoArchiveDuration: Int? = nil,
+         defaultReactionEmoji: DefaultReaction? = nil,
+         availableTags: [ForumTag]? = nil,
+         defaultSortOrder: ForumSortOrder? = nil) {
         self.name = name
         self.type = type
         self.topic = topic

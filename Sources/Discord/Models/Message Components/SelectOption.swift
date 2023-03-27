@@ -31,7 +31,11 @@ public struct SelectOption: Codable {
         case defaultValue = "default"
     }
     
-    public init(label: String, value: String, description: String? = nil, emoji: Emoji? = nil, defaultValue: Bool? = nil) {
+    public init(label: String,
+                value: String,
+                description: String? = nil,
+                emoji: Emoji? = nil,
+                defaultValue: Bool? = nil) {
         self.label = label
         self.value = value
         self.description = description

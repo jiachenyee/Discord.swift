@@ -24,16 +24,16 @@ public struct GatewayIntegration: GatewayEventData {
     public var syncing: Bool?
     
     /// id that this integration uses for "subscribers"
-    public var role_id: Snowflake?
+    public var roleId: Snowflake?
     
     /// whether emoticons should be synced for this integration (twitch only currently)
-    public var enable_emoticons: Bool?
+    public var enableEmoticons: Bool?
     
     /// the behavior of expiring subscribers
-    public var expire_behavior: IntegrationExpireBehaviour?
+    public var expireBehavior: IntegrationExpireBehaviour?
     
     /// the grace period (in days) before expiring subscribers
-    public var expire_grace_period: Int?
+    public var expireGracePeriod: Int?
     
     /// user for this integration
     public var user: User?
@@ -42,10 +42,10 @@ public struct GatewayIntegration: GatewayEventData {
     public var account: IntegrationAccount
     
     /// when this integration was last synced
-    public var synced_at: ISO8601Timestamp?
+    public var syncedAt: ISO8601Timestamp?
     
     /// how many subscribers this integration has
-    public var subscriber_count: Int?
+    public var subscriberCount: Int?
     
     /// has this integration been revoked
     public var revoked: Bool?
@@ -54,9 +54,28 @@ public struct GatewayIntegration: GatewayEventData {
     public var application: IntegrationApplication?
     
     /// the scopes the application has been authorized for
-    //    public var scopes?    array of OAuth2 scopes
-#warning("oauth2 scopes missing")
+    public var scopes: [OAuth2Scope]?
     
     /// ID of the guild
-    public var guild_id: Snowflake
+    public var guildId: Snowflake
+    
+    enum CodingKeys: String, CodingKey {
+        case id = "id"
+        case name = "name"
+        case type = "type"
+        case enabled = "enabled"
+        case syncing = "syncing"
+        case roleId = "role_id"
+        case enableEmoticons = "enable_emoticons"
+        case expireBehavior = "expire_behavior"
+        case expireGracePeriod = "expire_grace_period"
+        case user = "user"
+        case account = "account"
+        case syncedAt = "synced_at"
+        case subscriberCount = "subscriber_count"
+        case revoked = "revoked"
+        case application = "application"
+        case scopes = "scopes"
+        case guildId = "guild_id"
+    }
 }

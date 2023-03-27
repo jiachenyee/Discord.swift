@@ -2,12 +2,12 @@
 //  File.swift
 //  
 //
-//  Created by Jia Chen Yee on 27/3/23.
+//  Created by Jia Chen Yee on 28/3/23.
 //
 
 import Foundation
 
-public struct Interaction: GatewayEventData {
+public struct MessageInteraction: GatewayEventData {
     /// ID of the interaction
     public var id: Snowflake
     
@@ -38,18 +38,6 @@ public struct Interaction: GatewayEventData {
     /// Read-only property, always 1
     public var version: Int?
     
-    /// For components, the message they were attached to
-    public var message: Message?
-    
-    /// Bitwise set of permissions the app or bot has within the channel the interaction was sent from
-    public var appPermissions: String?
-    
-    /// Selected language of the invoking user
-    public var locale: DiscordLocale?
-    
-    /// Guild's preferred locale, if invoked in a guild
-    public var guildLocale: DiscordLocale?
-    
     enum CodingKeys: String, CodingKey {
         case id = "id"
         case applicationId = "application_id"
@@ -61,10 +49,6 @@ public struct Interaction: GatewayEventData {
         case user = "user"
         case token = "token"
         case version = "version"
-        case message = "message"
-        case appPermissions = "app_permissions"
-        case locale = "locale"
-        case guildLocale = "guild_locale"
     }
     
     public init(from decoder: Decoder) throws {
@@ -84,46 +68,5 @@ public struct Interaction: GatewayEventData {
         self.user = try container.decodeIfPresent(User.self, forKey: .user)
         self.token = try container.decodeIfPresent(String.self, forKey: .token)
         self.version = try container.decodeIfPresent(Int.self, forKey: .version)
-        self.message = try container.decodeIfPresent(Message.self, forKey: .message)
-        self.appPermissions = try container.decodeIfPresent(String.self, forKey: .appPermissions)
-        self.locale = try container.decodeIfPresent(DiscordLocale.self, forKey: .locale)
-        self.guildLocale = try container.decodeIfPresent(DiscordLocale.self, forKey: .guildLocale)
     }
-}
-
-public struct ResolvedData: GatewayEventData {
-    /// the ids and User objects
-    public var users: [Snowflake: User]?
-    
-    /// the ids and partial Member objects
-    public var members: [Snowflake: GuildMember]?
-    
-    /// the ids and Role objects
-    public var roles: [Snowflake: Role]?
-    
-    /// the ids and partial Channel objects
-    public var channels: [Snowflake: PartialChannel]?
-    
-    /// the ids and partial Message objects
-    public var messages: [Snowflake: Message]?
-    
-    /// the ids and attachment objects
-    public var attachments: [Snowflake: Attachment]?
-}
-
-public struct ApplicationCommandInteractionDataOption: Codable {
-    /// Name of the parameter
-    public var name: String
-    
-    /// Value of application command option type
-    public var type: CommandOption.OptionType
-    
-    /// Value of the option resulting from user input
-    public var value: Mixed?
-    
-    /// Present if this option is a group or subcommand
-    public var options: [Self]?
-    
-    /// true if this option is the currently focused option for autocomplete
-    public var focused: Bool?
 }

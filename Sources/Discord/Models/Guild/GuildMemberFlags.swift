@@ -14,16 +14,16 @@ public struct GuildMemberFlags: OptionSet, Codable {
         self.rawValue = rawValue
     }
     
-    ///Member has left and rejoined the guild    false
+    /// Member has left and rejoined the guild
     public static let didRejoin = Self(rawValue: 1 << 0)
     
-    ///Member has completed onboarding    false
+    /// Member has completed onboarding
     public static let completedOnboarding = Self(rawValue: 1 << 1)
     
-    ///Member is exempt from guild verification requirements    true
+    /// Member is exempt from guild verification requirements
     public static let bypassesVerification = Self(rawValue: 1 << 2)
     
-    ///Member has started onboarding    false
+    /// Member has started onboarding
     public static let startedOnboarding = Self(rawValue: 1 << 3)
     
     public func encode(to encoder: Encoder) throws {
