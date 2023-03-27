@@ -80,7 +80,7 @@ public extension Bot {
         if value.count != 0 {
             let errorValue = try JSONSerialization.jsonObject(with: value) as? [String: Any]
             
-            if let errorValue {
+            if let errorValue, errorValue["errors"] != nil {
                 throw DiscordError.apiError(value: errorValue)
             }
         }
