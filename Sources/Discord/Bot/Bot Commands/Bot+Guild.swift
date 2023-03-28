@@ -35,11 +35,13 @@ public extension Bot {
     
     @discardableResult
     func modifyGuild(_ guildId: Snowflake,
-                     modify modifyRequest: ModifyGuildRequest) async throws -> Guild {
+                     modify modifyRequest: ModifyGuildRequest,
+                     reason: String? = nil) async throws -> Guild {
         try await sendRequest(Guild.self,
                               endpoint: "/guilds/\(guildId)",
                               method: .patch,
-                              data: modifyRequest)
+                              data: modifyRequest,
+                              reason: reason)
     }
     
     func deleteGuild(_ guildId: Snowflake) async throws {
@@ -96,40 +98,50 @@ public extension Bot {
     @discardableResult
     func modifyGuildMember(guild guildId: Snowflake,
                            user userId: Snowflake,
-                           modifications: ModifyGuildMemberRequest) async throws -> GuildMember {
+                           modifications: ModifyGuildMemberRequest,
+                           reason: String? = nil) async throws -> GuildMember {
         try await sendRequest(GuildMember.self,
                               endpoint: "/guilds/\(guildId)/members/\(userId)",
                               method: .patch,
-                              data: modifications)
+                              data: modifications,
+                              reason: reason)
     }
     
     @discardableResult
     func modifyCurrentMember(guild guildId: Snowflake,
-                             modifications: ModifyCurrentMemberRequest) async throws -> GuildMember {
+                             modifications: ModifyCurrentMemberRequest,
+                             reason: String? = nil) async throws -> GuildMember {
         try await sendRequest(GuildMember.self,
                               endpoint: "/guilds/\(guildId)/members/@me",
                               method: .patch,
-                              data: modifications)
+                              data: modifications,
+                              reason: reason)
     }
     
     func addGuildMemberRole(guild guildId: Snowflake,
                             user userId: Snowflake,
-                            role roleId: Snowflake) async throws {
+                            role roleId: Snowflake,
+                            reason: String? = nil) async throws {
         try await sendRequest(endpoint: "/guilds/\(guildId)/members/\(userId)/roles/\(roleId)",
-                              method: .put)
+                              method: .put,
+                              reason: reason)
     }
     
     func removeGuildMemberRole(guild guildId: Snowflake,
                                user userId: Snowflake,
-                               role roleId: Snowflake) async throws {
+                               role roleId: Snowflake,
+                               reason: String? = nil) async throws {
         try await sendRequest(endpoint: "/guilds/\(guildId)/members/\(userId)/roles/\(roleId)",
-                              method: .delete)
+                              method: .delete,
+                              reason: reason)
     }
     
     func removeGuildMember(guild guildId: Snowflake,
-                           user userId: Snowflake) async throws {
+                           user userId: Snowflake,
+                           reason: String? = nil) async throws {
         try await sendRequest(endpoint: "/guilds/\(guildId)/members/\(userId)",
-                              method: .delete)
+                              method: .delete,
+                              reason: reason)
     }
     
     func getGuildBans(guild guildId: Snowflake,
@@ -147,16 +159,20 @@ public extension Bot {
     
     func createGuildBan(guild guildId: Snowflake,
                         user userId: Snowflake,
-                        preferences: GuildBanPreferences = .init()) async throws {
+                        preferences: GuildBanPreferences = .init(),
+                        reason: String? = nil) async throws {
         try await sendRequest(endpoint: "/guilds/\(guildId)/bans/\(userId)",
                               method: .put,
-                              data: preferences)
+                              data: preferences,
+                              reason: reason)
     }
     
     func removeGuildBan(guild guildId: Snowflake,
-                        user userId: Snowflake) async throws {
+                        user userId: Snowflake,
+                        reason: String? = nil) async throws {
         try await sendRequest(endpoint: "/guilds/\(guildId)/bans/\(userId)",
-                              method: .delete)
+                              method: .delete,
+                              reason: reason)
     }
     
     func getGuildRoles(guild guildId: Snowflake) async throws -> [Role] {
@@ -166,41 +182,48 @@ public extension Bot {
     
     @discardableResult
     func createGuildRole(guild guildId: Snowflake,
-                         role: NewRole) async throws -> Role {
+                         role: NewRole,
+                         reason: String? = nil) async throws -> Role {
         try await sendRequest(Role.self,
                               endpoint: "/guilds/\(guildId)/roles", method: .post,
-                              data: role)
+                              data: role, reason: reason)
     }
     
     @discardableResult
     func modifyGuildRolePositions(guild guildId: Snowflake,
-                                  requests: [ModifyGuildRolePositionRequest]) async throws -> [Role] {
+                                  requests: [ModifyGuildRolePositionRequest],
+                                  reason: String? = nil) async throws -> [Role] {
         try await sendRequest([Role].self,
                               endpoint: "/guilds/\(guildId)/roles", method: .patch,
-                              data: requests)
+                              data: requests, reason: reason)
     }
     
     @discardableResult
     func modifyGuildRole(guild guildId: Snowflake,
                          role roleId: Snowflake,
-                         withModifications modifications: ModifyGuildRoleRequest) async throws -> Role {
+                         withModifications modifications: ModifyGuildRoleRequest,
+                         reason: String? = nil) async throws -> Role {
         try await sendRequest(Role.self,
                               endpoint: "/guilds/\(guildId)/roles/\(roleId)", method: .patch,
-                              data: modifications)
+                              data: modifications,
+                              reason: reason)
     }
     
     @discardableResult
     func modifyGuildMFALevel(guild guildId: Snowflake,
-                             withModifications modifications: ModifyGuildMFARequest) async throws -> MFALevel {
+                             withModifications modifications: ModifyGuildMFARequest,
+                             reason: String? = nil) async throws -> MFALevel {
         try await sendRequest(MFALevel.self,
                               endpoint: "/guilds/\(guildId)/mfa", method: .post,
-                              data: modifications)
+                              data: modifications,
+                              reason: reason)
     }
     
     func deleteGuildRole(guild guildId: Snowflake,
-                         role roleId: Snowflake) async throws {
+                         role roleId: Snowflake,
+                         reason: String? = nil) async throws {
         try await sendRequest(endpoint: "/guilds/\(guildId)/roles/\(roleId)",
-                              method: .delete)
+                              method: .delete, reason: reason)
     }
     
     func getGuildPruneCount(guild guildId: Snowflake,
@@ -212,11 +235,13 @@ public extension Bot {
     
     @discardableResult
     func beginGuildPrune(guild guildId: Snowflake,
-                         request: PruneRequest) async throws -> Prune {
+                         request: PruneRequest,
+                         reason: String? = nil) async throws -> Prune {
         try await sendRequest(Prune.self,
                               endpoint: "/guilds/\(guildId)/prune",
                               method: .post,
-                              data: request)
+                              data: request,
+                              reason: reason)
     }
     
     func getGuildVoiceRegions(guild guildId: Snowflake) async throws -> [VoiceRegion] {
@@ -235,9 +260,11 @@ public extension Bot {
     }
     
     func deleteGuildIntegrations(guild guildId: Snowflake,
-                                 integration integrationId: Snowflake) async throws {
+                                 integration integrationId: Snowflake,
+                                 reason: String? = nil) async throws {
         try await sendRequest(endpoint: "guilds/\(guildId)/integrations/\(integrationId)",
-                              method: .delete)
+                              method: .delete,
+                              reason: reason)
     }
     
     func getGuildWidgetSettings(guild guildId: Snowflake) async throws -> GuildWidgetSettings {
@@ -247,11 +274,12 @@ public extension Bot {
     
     @discardableResult
     func modifyGuildWidget(guild guildId: Snowflake,
-                           widgetSettings: GuildWidgetSettings) async throws -> GuildWidgetSettings {
+                           widgetSettings: GuildWidgetSettings,
+                           reason: String? = nil) async throws -> GuildWidgetSettings {
         try await sendRequest(GuildWidgetSettings.self,
                               endpoint: "guilds/\(guildId)/widget",
                               method: .patch,
-                              data: widgetSettings)
+                              data: widgetSettings, reason: reason)
     }
     
     func getGuildWidget(guild guildId: Snowflake) async throws -> GuildWidget {
@@ -277,11 +305,13 @@ public extension Bot {
     
     @discardableResult
     func modifyGuildWelcomeScreen(guild guildId: Snowflake,
-                                  modifications: ModifyWelcomeScreen) async throws -> WelcomeScreen {
+                                  modifications: ModifyWelcomeScreen,
+                                  reason: String? = nil) async throws -> WelcomeScreen {
         try await sendRequest(WelcomeScreen.self,
                               endpoint: "guilds/\(guildId)/welcome-screen",
                               method: .patch,
-                              data: modifications)
+                              data: modifications,
+                              reason: reason)
     }
     
     func modifyCurrentUserVoiceState(guild guildId: Snowflake,
@@ -293,9 +323,11 @@ public extension Bot {
     
     func modifyUserVoiceState(guild guildId: Snowflake,
                               user userId: Snowflake,
-                              modifications: ModifyUserVoiceState) async throws {
+                              modifications: ModifyUserVoiceState,
+                              reason: String? = nil) async throws {
         try await sendRequest(endpoint: "guilds/\(guildId)/voice-states/\(userId)",
                               method: .patch,
-                              data: modifications)
+                              data: modifications,
+                              reason: reason)
     }
 }

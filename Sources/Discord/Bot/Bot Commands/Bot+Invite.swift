@@ -28,9 +28,11 @@ public extension Bot {
     /// - Returns: Returns an `Invite` object on success. Fires an Invite Delete Gateway event.
     /// > Discord Reference: [https://discord.com/developers/docs/resources/invite#delete-invite](https://discord.com/developers/docs/resources/invite#delete-invite)
     @discardableResult
-    func deleteInvite(withCode inviteCode: String) async throws -> Invite {
+    func deleteInvite(withCode inviteCode: String,
+                      reason: String? = nil) async throws -> Invite {
         try await sendRequest(Invite.self,
                               endpoint: "invites/\(inviteCode)",
-                              method: .delete)
+                              method: .delete,
+                              reason: reason)
     }
 }

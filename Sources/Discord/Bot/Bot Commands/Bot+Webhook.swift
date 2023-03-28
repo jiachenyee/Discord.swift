@@ -9,11 +9,13 @@ import Foundation
 
 public extension Bot {
     func createWebhook(channel channelId: Snowflake,
-                       webhook: CreateWebhookRequest) async throws -> Webhook {
+                       webhook: CreateWebhookRequest,
+                       reason: String? = nil) async throws -> Webhook {
         try await sendRequest(Webhook.self,
                               endpoint: "channels/\(channelId)/webhooks",
                               method: .post,
-                              data: webhook)
+                              data: webhook,
+                              reason: reason)
     }
     
     func getChannelWebhook(channel channelId: Snowflake) async throws -> [Webhook] {
@@ -32,15 +34,19 @@ public extension Bot {
     }
     
     func modifyWebhook(_ webhookId: Snowflake,
-                       modifications: ModifyWebhook) async throws -> Webhook {
+                       modifications: ModifyWebhook,
+                       reason: String? = nil) async throws -> Webhook {
         try await sendRequest(Webhook.self,
                               endpoint: "webhooks/\(webhookId)",
                               method: .patch,
-                              data: modifications)
+                              data: modifications,
+                              reason: reason)
     }
     
-    func deleteWebhook(_ webhookId: Snowflake) async throws {
+    func deleteWebhook(_ webhookId: Snowflake,
+                       reason: String? = nil) async throws {
         try await sendRequest(endpoint: "webhooks/\(webhookId)",
-                              method: .delete)
+                              method: .delete,
+                              reason: reason)
     }
 }

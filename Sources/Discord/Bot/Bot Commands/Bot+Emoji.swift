@@ -46,11 +46,13 @@ public extension Bot {
     @discardableResult
     func modifyGuildEmoji(guild guildId: Snowflake,
                           emoji emojiId: Snowflake,
-                          modifications: ModifyEmojiRequest) async throws -> Emoji {
+                          modifications: ModifyEmojiRequest,
+                          reason: String? = nil) async throws -> Emoji {
         try await sendRequest(Emoji.self,
                               endpoint: "/guilds/\(guildId)/emojis/\(emojiId)",
                               method: .patch,
-                              data: modifications)
+                              data: modifications,
+                              reason: reason)
     }
     
     /// Delete a specific guild emoji.
@@ -59,8 +61,10 @@ public extension Bot {
     ///   - emojiId: The emoji ID of the target emoji. 
     /// > Discord Reference: [https://discord.com/developers/docs/resources/emoji#delete-guild-emoji](https://discord.com/developers/docs/resources/emoji#delete-guild-emoji)
     func deleteGuildEmoji(guild guildId: Snowflake,
-                          emoji emojiId: Snowflake) async throws {
+                          emoji emojiId: Snowflake,
+                          reason: String? = nil) async throws {
         try await sendRequest(endpoint: "/guilds/\(guildId)/emojis/\(emojiId)",
-                              method: .delete)
+                              method: .delete,
+                              reason: reason)
     }
 }

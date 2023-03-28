@@ -55,11 +55,13 @@ public extension Bot {
     /// > Discord Reference: https://discord.com/developers/docs/resources/sticker#create-guild-sticker
     @discardableResult
     func createGuildSticker(guild guildId: Snowflake,
-                            sticker: CreateGuildSticker) async throws -> Sticker {
+                            sticker: CreateGuildSticker,
+                            reason: String? = nil) async throws -> Sticker {
         try await sendRequest(Sticker.self,
                               endpoint: "guilds/\(guildId)/stickers",
                               method: .post,
-                              data: sticker)
+                              data: sticker,
+                              reason: reason)
     }
     
     /// Modify the given sticker.
@@ -74,11 +76,12 @@ public extension Bot {
     @discardableResult
     func modifyGuildSticker(guild guildId: Snowflake,
                             sticker stickerId: Snowflake,
-                            modifications: ModifyGuildStickerRequest) async throws -> Sticker {
+                            modifications: ModifyGuildStickerRequest,
+                            reason: String? = nil) async throws -> Sticker {
         try await sendRequest(Sticker.self,
                               endpoint: "guilds/\(guildId)/stickers/\(stickerId)",
                               method: .patch,
-                              data: modifications)
+                              data: modifications, reason: reason)
     }
     
     /// Delete the given sticker.
@@ -88,8 +91,10 @@ public extension Bot {
     ///   - stickerId: Target sticker ID
     /// > Discord Reference: https://discord.com/developers/docs/resources/sticker#delete-guild-sticker
     func deleteGuildSticker(guild guildId: Snowflake,
-                            sticker stickerId: Snowflake) async throws {
+                            sticker stickerId: Snowflake,
+                            reason: String? = nil) async throws {
         try await sendRequest(endpoint: "guilds/\(guildId)/stickers/\(stickerId)",
-                              method: .delete)
+                              method: .delete,
+                              reason: reason)
     }
 }
