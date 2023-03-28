@@ -25,11 +25,13 @@ public extension Bot {
     /// > Discord Reference: [https://discord.com/developers/docs/resources/channel#modify-channel](https://discord.com/developers/docs/resources/channel#modify-channel)
     @discardableResult
     func modifyChannel(_ channelId: Snowflake,
-                       updatedProperties: ChannelUpdateRequest) async throws -> Channel {
+                       updatedProperties: ChannelUpdateRequest,
+                       reason: String? = nil) async throws -> Channel {
         try await sendRequest(Channel.self,
                               endpoint: "/channels/\(channelId)",
                               method: .patch,
-                              data: updatedProperties)
+                              data: updatedProperties,
+                              reason: reason)
     }
     
     /// Delete a channel, or close a private message.
@@ -40,9 +42,11 @@ public extension Bot {
     /// - Warning: Deleting a guild channel cannot be undone. Use this with caution, as it is impossible to undo this action when performed on a guild channel. In contrast, when used with a private message, it is possible to undo the action by opening a private message with the recipient again.
     /// - Note: For Community guilds, the Rules or Guidelines channel and the Community Updates channel cannot be deleted.
     /// > Discord Reference: [https://discord.com/developers/docs/resources/channel#deleteclose-channel](https://discord.com/developers/docs/resources/channel#deleteclose-channel)
-    func deleteChannel(_ channelId: Snowflake) async throws {
+    func deleteChannel(_ channelId: Snowflake,
+                       reason: String? = nil) async throws {
         try await sendRequest(endpoint: "/channels/\(channelId)",
-                              method: .delete)
+                              method: .delete,
+                              reason: reason)
     }
     
     /// Retrieves the messages in a channel.
@@ -228,9 +232,11 @@ public extension Bot {
     /// - Note: If operating on a guild channel and trying to delete a message that was not sent by the current user, this endpoint requires the `MANAGE_MESSAGES` permission.
     /// > Discord Reference: [https://discord.com/developers/docs/resources/channel#delete-message](https://discord.com/developers/docs/resources/channel#delete-message)
     func deleteMessage(channel channelId: Snowflake,
-                       message messageId: Snowflake) async throws {
+                       message messageId: Snowflake,
+                       reason: String? = nil) async throws {
         try await sendRequest(endpoint: "/channels/\(channelId)/messages/\(messageId)",
-                              method: .delete)
+                              method: .delete,
+                              reason: reason)
     }
     
     /// Delete multiple messages in a single request.
@@ -242,10 +248,12 @@ public extension Bot {
     /// - Important: This endpoint can only be used on guild channels and requires the `MANAGE_MESSAGES` permission. It will not delete messages older than 2 weeks, and will fail with a 400 BAD REQUEST if any message provided is older than that or if any duplicate message IDs are provided.
     /// > Discord Reference: [https://discord.com/developers/docs/resources/channel#bulk-delete-messages](https://discord.com/developers/docs/resources/channel#bulk-delete-messages)
     func bulkDeleteMessages(channel channelId: Snowflake,
-                            bulkDelete bulkDeleteMessages: BulkDeleteMessages) async throws {
+                            bulkDelete bulkDeleteMessages: BulkDeleteMessages,
+                            reason: String? = nil) async throws {
         try await sendRequest(endpoint: "/channels/\(channelId)/messages/bulk-delete",
                               method: .post,
-                              data: bulkDeleteMessages)
+                              data: bulkDeleteMessages,
+                              reason: reason)
     }
     
     /// Edit the channel permission overwrites for a user or role in a channel.
@@ -259,10 +267,12 @@ public extension Bot {
     /// > Disord Reference: [https://discord.com/developers/docs/resources/channel#edit-channel-permissions](https://discord.com/developers/docs/resources/channel#edit-channel-permissions)
     func editChannelPermission(channel channelId: Snowflake,
                                overwrite overwriteId: Snowflake,
-                               permission: ChannelPermission) async throws {
+                               permission: ChannelPermission,
+                               reason: String? = nil) async throws {
         try await sendRequest(endpoint: "/channels/\(channelId)/permissions/\(overwriteId)",
                               method: .put,
-                              data: permission)
+                              data: permission,
+                              reason: reason)
     }
     
     /// Delete a channel permission overwrite for a user or role in a channel.
@@ -274,9 +284,11 @@ public extension Bot {
     /// - Important: Requires the `MANAGE_ROLES` permission.
     /// > Discord Reference: [https://discord.com/developers/docs/resources/channel#delete-channel-permission](https://discord.com/developers/docs/resources/channel#delete-channel-permission)
     func deleteChannelPermission(channel channelId: Snowflake,
-                                 overwrite overwriteId: Snowflake) async throws {
+                                 overwrite overwriteId: Snowflake,
+                                 reason: String? = nil) async throws {
         try await sendRequest(endpoint: "/channels/\(channelId)/permissions/\(overwriteId)",
-                              method: .delete)
+                              method: .delete,
+                              reason: reason)
     }
     
     /// Returns a list of invite objects (with invite metadata) for the channel.
@@ -302,10 +314,12 @@ public extension Bot {
     /// > Discord Reference: [https://discord.com/developers/docs/resources/channel#create-channel-invite](https://discord.com/developers/docs/resources/channel#create-channel-invite)
     @discardableResult
     func createChannelInvite(channel channelId: Snowflake,
-                             invite channelInvite: ChannelInvite) async throws -> Invite {
+                             invite channelInvite: ChannelInvite,
+                             reason: String? = nil) async throws -> Invite {
         try await sendRequest(Invite.self,
                               endpoint: "/channels/\(channelId)/invites", method: .post,
-                              data: channelInvite)
+                              data: channelInvite,
+                              reason: reason)
     }
     
     /// Follow an Announcement Channel to send messages to a target channel.
@@ -351,9 +365,11 @@ public extension Bot {
     /// - Important: Requires the `MANAGE_MESSAGES` permission. The maximum amount of pinned messages in a channel is 50.
     /// > Discord Reference: [https://discord.com/developers/docs/resources/channel#pin-message](https://discord.com/developers/docs/resources/channel#pin-message)
     func pinMessage(channel channelId: Snowflake,
-                    message messageId: Snowflake) async throws {
+                    message messageId: Snowflake,
+                    reason: String? = nil) async throws {
         try await sendRequest(endpoint: "/channels/\(channelId)/pins/\(messageId)",
-                              method: .put)
+                              method: .put,
+                              reason: reason)
     }
     
     /// Unpin a message in the channel.
@@ -363,9 +379,11 @@ public extension Bot {
     /// - Important: Requires the `MANAGE_MESSAGES` permission.
     /// > Discord Reference: [https://discord.com/developers/docs/resources/channel#unpin-message](https://discord.com/developers/docs/resources/channel#unpin-message)
     func unpinMessage(channel channelId: Snowflake,
-                      message messageId: Snowflake) async throws {
+                      message messageId: Snowflake,
+                      reason: String? = nil) async throws {
         try await sendRequest(endpoint: "/channels/\(channelId)/pins/\(messageId)",
-                              method: .delete)
+                              method: .delete,
+                              reason: reason)
     }
     
     /// Adds a recipient to a Group DM using their access token.
@@ -405,7 +423,8 @@ public extension Bot {
     @discardableResult
     func startThread(channel channelId: Snowflake,
                      message messageId: Snowflake,
-                     threadInfo: NewThreadInformation) async throws -> Channel {
+                     threadInfo: NewThreadInformation,
+                     reason: String? = nil) async throws -> Channel {
         try await sendRequest(Channel.self,
                               endpoint: "/channels/\(channelId)/messages/\(messageId)/threads",
                               method: .post,
@@ -420,11 +439,13 @@ public extension Bot {
     /// > Discord Reference: [https://discord.com/developers/docs/resources/channel#start-thread-without-message](https://discord.com/developers/docs/resources/channel#start-thread-without-message)
     @discardableResult
     func startThread(channel channelId: Snowflake,
-                     threadInfo: NewChannelThreadInformation) async throws -> Channel {
+                     threadInfo: NewChannelThreadInformation,
+                     reason: String? = nil) async throws -> Channel {
         try await sendRequest(Channel.self,
                               endpoint: "/channels/\(channelId)/threads",
                               method: .post,
-                              data: threadInfo)
+                              data: threadInfo,
+                              reason: reason)
     }
     
     /// Creates a new thread in a forum channel, and sends a message within the created thread.
@@ -437,11 +458,13 @@ public extension Bot {
     /// > Discord Reference: [https://discord.com/developers/docs/resources/channel#start-thread-in-forum-channel](https://discord.com/developers/docs/resources/channel#start-thread-in-forum-channel)
     @discardableResult
     func startForumThread(channel channelId: Snowflake,
-                          postInfo: NewForumThread) async throws -> Channel {
+                          postInfo: NewForumThread,
+                          reason: String? = nil) async throws -> Channel {
         try await sendRequest(Channel.self,
                               endpoint: "/channels/\(channelId)/threads",
                               method: .post,
-                              data: postInfo)
+                              data: postInfo,
+                              reason: reason)
     }
     
     /// Adds the current user to a thread.

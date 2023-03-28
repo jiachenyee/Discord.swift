@@ -14,11 +14,13 @@ public extension Bot {
     /// - Returns: Returns `Stage` instance. Fires a Stage Instance Create Gateway event.
     /// > Discord Reference: [https://discord.com/developers/docs/resources/stage-instance#create-stage-instance](https://discord.com/developers/docs/resources/stage-instance#create-stage-instance)
     @discardableResult
-    func createStageInstance(_ stageInstance: NewStageInstance) async throws -> StageInstance {
+    func createStageInstance(_ stageInstance: NewStageInstance,
+                             reason: String? = nil) async throws -> StageInstance {
         try await sendRequest(StageInstance.self,
                               endpoint: "stage-instances",
                               method: .post,
-                              data: stageInstance)
+                              data: stageInstance,
+                              reason: reason)
     }
     
     /// Gets the stage instance associated with the Stage channel, if it exists.
@@ -39,11 +41,13 @@ public extension Bot {
     /// > Discord Reference: [https://discord.com/developers/docs/resources/stage-instance#modify-stage-instance](https://discord.com/developers/docs/resources/stage-instance#modify-stage-instance)
     @discardableResult
     func modifyStageInstance(channel channelId: Snowflake,
-                             modifications: ModifyStageInstanceRequest) async throws -> StageInstance {
+                             modifications: ModifyStageInstanceRequest,
+                             reason: String? = nil) async throws -> StageInstance {
         try await sendRequest(StageInstance.self,
                               endpoint: "stage-instances/\(channelId)",
                               method: .patch,
-                              data: modifications)
+                              data: modifications,
+                              reason: reason)
     }
     
     /// Deletes the Stage instance.
@@ -51,8 +55,9 @@ public extension Bot {
     /// Fires a Stage Instance Delete Gateway event.
     /// - Parameter channelId: Stage channel ID
     /// > Discord Reference: [https://discord.com/developers/docs/resources/stage-instance#delete-stage-instance](https://discord.com/developers/docs/resources/stage-instance#delete-stage-instance)
-    func deleteStageInstance(channel channelId: Snowflake) async throws {
+    func deleteStageInstance(channel channelId: Snowflake,
+                             reason: String? = nil) async throws {
         try await sendRequest(endpoint: "stage-instances/\(channelId)",
-                              method: .delete)
+                              method: .delete, reason: reason)
     }
 }

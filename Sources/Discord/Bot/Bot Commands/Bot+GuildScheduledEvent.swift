@@ -17,11 +17,13 @@ public extension Bot {
     
     @discardableResult
     func createScheduledEvent(guild guildId: Snowflake,
-                              scheduledEvent: CreateGuildScheduledEvent) async throws -> ScheduledEvent {
+                              scheduledEvent: CreateGuildScheduledEvent,
+                              reason: String? = nil) async throws -> ScheduledEvent {
         try await sendRequest(ScheduledEvent.self,
                               endpoint: "guilds/\(guildId)/scheduled-events",
                               method: .post,
-                              data: scheduledEvent)
+                              data: scheduledEvent,
+                              reason: reason)
     }
     
     func getScheduledEvent(forGuild guildId: Snowflake,
@@ -35,11 +37,13 @@ public extension Bot {
     @discardableResult
     func modifyScheduledEvent(guild guildId: Snowflake,
                               event eventId: Snowflake,
-                              modifying modifications: ModifyGuildScheduledRequest) async throws -> ScheduledEvent {
+                              modifying modifications: ModifyGuildScheduledRequest,
+                              reason: String? = nil) async throws -> ScheduledEvent {
         try await sendRequest(ScheduledEvent.self,
                               endpoint: "guilds/\(guildId)/scheduled-events/\(eventId)",
                               method: .patch,
-                              data: modifications)
+                              data: modifications,
+                              reason: reason)
     }
     
     func deleteScheduledEvent(guild guildId: Snowflake,

@@ -41,11 +41,13 @@ public extension Bot {
     /// > Discord Reference: [https://discord.com/developers/docs/resources/auto-moderation#create-auto-moderation-rule](https://discord.com/developers/docs/resources/auto-moderation#create-auto-moderation-rule)
     @discardableResult
     func createAutoModerationRule(forGuild guildId: Snowflake,
-                                  rule: AutoModerationRuleRequest) async throws -> AutoModerationRule {
+                                  rule: AutoModerationRuleRequest,
+                                  reason: String? = nil) async throws -> AutoModerationRule {
         try await sendRequest(AutoModerationRule.self,
                               endpoint: "/guilds/\(guildId)/auto-moderation/rules",
                               method: .post,
-                              data: rule)
+                              data: rule,
+                              reason: reason)
     }
     
     /// Modify an existing auto-moderation rule.
@@ -59,11 +61,13 @@ public extension Bot {
     @discardableResult
     func updateAutoModerationRule(forGuild guildId: Snowflake,
                                   ruleId: Snowflake,
-                                  rule: AutoModerationRuleUpdateRequest) async throws -> AutoModerationRule {
+                                  rule: AutoModerationRuleUpdateRequest,
+                                  reason: String? = nil) async throws -> AutoModerationRule {
         try await sendRequest(AutoModerationRule.self,
                               endpoint: "/guilds/\(guildId)/auto-moderation/rules/\(ruleId)",
                               method: .patch,
-                              data: rule)
+                              data: rule,
+                              reason: reason)
     }
     
     /// Delete an auto-moderation rule.
@@ -73,8 +77,10 @@ public extension Bot {
     /// - Important: This endpoint requires the `MANAGE_GUILD` permission.
     /// > Discord Reference: [https://discord.com/developers/docs/resources/auto-moderation#delete-auto-moderation-rule](https://discord.com/developers/docs/resources/auto-moderation#delete-auto-moderation-rule)
     func deleteAutoModerationRule(forGuild guildId: Snowflake,
-                                  ruleId: Snowflake) async throws {
+                                  ruleId: Snowflake,
+                                  reason: String? = nil) async throws {
         try await sendRequest(endpoint: "/guilds/\(guildId)/auto-moderation/rules/\(ruleId)",
-                              method: .delete)
+                              method: .delete,
+                              reason: reason)
     }
 }

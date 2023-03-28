@@ -9,16 +9,64 @@ import Foundation
 import Alamofire
 
 public extension Bot {
+    fileprivate func getRequest<T: Encodable>(endpoint: String,
+                                              method: HTTPMethod,
+                                              data: T,
+                                              reason: String? = nil) -> DataRequest {
+        var headers: HTTPHeaders = [
+            .authorization("Bot \(token)"),
+            .userAgent("DiscordBot (https://github.com/jiachenyee/Discord.swift, 0)"),
+            .contentType("application/json")
+        ]
+        
+        if let reason {
+            headers.add(name: "X-Audit-Log-Reason", value: reason)
+        }
+        
+        let endpointURL = "https://discord.com/api/v10/\(endpoint)"
+        
+        return AF.request(endpointURL,
+                          method: method,
+                          parameters: data,
+                          encoder: .json,
+                          headers: headers)
+    }
+    
+    fileprivate func getRequest(endpoint: String,
+                                method: HTTPMethod,
+                                parameters: Parameters? = nil,
+                                reason: String? = nil) -> DataRequest {
+        var headers: HTTPHeaders = [
+            .authorization("Bot \(token)"),
+            .userAgent("DiscordBot (https://github.com/jiachenyee/Discord.swift, 0)"),
+            .contentType("application/json")
+        ]
+        
+        if let reason {
+            headers.add(name: "X-Audit-Log-Reason", value: reason)
+        }
+        
+        let endpointURL = "https://discord.com/api/v10/\(endpoint)"
+        
+        if let parameters {
+            return AF.request(endpointURL,
+                              method: method,
+                              parameters: parameters,
+                              headers: headers)
+        } else {
+            return AF.request(endpointURL,
+                              method: method,
+                              headers: headers)
+        }
+    }
+    
     @discardableResult
     internal func sendRequest(endpoint: String,
-                              method: HTTPMethod) async throws -> Data {
-        let request = AF.request("https://discord.com/api/v10/\(endpoint)",
+                              method: HTTPMethod,
+                              reason: String? = nil) async throws -> Data {
+        let request = getRequest(endpoint: endpoint,
                                  method: method,
-                                 headers: [
-                                    .authorization("Bot \(token)"),
-                                    .userAgent("DiscordBot (https://github.com/jiachenyee/Discord.swift, 0)"),
-                                    .contentType("application/json")
-                                 ])
+                                 reason: reason)
         
         let value = try await request.serializingData().value
         
@@ -27,15 +75,13 @@ public extension Bot {
     
     @discardableResult
     internal func sendRequest(endpoint: String,
-                              parameters: Parameters? = nil) async throws -> Data {
-        let request = AF.request("https://discord.com/api/v10/\(endpoint)",
+                              parameters: Parameters? = nil,
+                              reason: String? = nil) async throws -> Data {
+        
+        let request = getRequest(endpoint: endpoint,
                                  method: .get,
                                  parameters: parameters,
-                                 headers: [
-                                    .authorization("Bot \(token)"),
-                                    .userAgent("DiscordBot (https://github.com/jiachenyee/Discord.swift, 0)"),
-                                    .contentType("application/json")
-                                 ])
+                                 reason: reason)
         
         let value = try await request.serializingData().value
         
@@ -45,8 +91,11 @@ public extension Bot {
     @discardableResult
     internal func sendRequest<D: Decodable>(_ type: D.Type,
                                             endpoint: String,
-                                            parameters: Parameters? = nil) async throws -> D {
-        let data = try await sendRequest(endpoint: endpoint, parameters: parameters)
+                                            parameters: Parameters? = nil,
+                                            reason: String? = nil) async throws -> D {
+        let data = try await sendRequest(endpoint: endpoint,
+                                         parameters: parameters,
+                                         reason: reason)
         
         if let decodedValue = try? JSONDecoder().decode(D.self, from: data) {
             return decodedValue
@@ -64,16 +113,12 @@ public extension Bot {
     @discardableResult
     internal func sendRequest<T: Encodable>(endpoint: String,
                                             method: HTTPMethod,
-                                            data: T) async throws -> Data {
-        let request = AF.request("https://discord.com/api/v10/\(endpoint)",
-                                 method: method,
-                                 parameters: data,
-                                 encoder: .json,
-                                 headers: [
-                                    .authorization("Bot \(token)"),
-                                    .userAgent("DiscordBot (https://github.com/jiachenyee/Discord.swift, 0)"),
-                                    .contentType("application/json")
-                                 ])
+                                            data: T,
+                                            reason: String? = nil) async throws -> Data {
+        
+        let request = getRequest(endpoint: endpoint, method: method,
+                                 data: data,
+                                 reason: reason)
         
         let value = try await request.serializingData().value
         
@@ -91,9 +136,13 @@ public extension Bot {
     internal func sendRequest<T: Encodable, D: Decodable>(_ type: D.Type,
                                                           endpoint: String,
                                                           method: HTTPMethod,
-                                                          data: T) async throws -> D {
+                                                          data: T,
+                                                          reason: String? = nil) async throws -> D {
         
-        let data = try await sendRequest(endpoint: endpoint, method: method, data: data)
+        let data = try await sendRequest(endpoint: endpoint,
+                                         method: method,
+                                         data: data,
+                                         reason: reason)
         
         if let decodedValue = try? JSONDecoder().decode(D.self, from: data) {
             return decodedValue
@@ -110,9 +159,11 @@ public extension Bot {
     
     internal func sendRequest<D: Decodable>(_ type: D.Type,
                                             endpoint: String,
-                                            method: HTTPMethod) async throws -> D {
+                                            method: HTTPMethod,
+                                            reason: String? = nil) async throws -> D {
         
-        let data = try await sendRequest(endpoint: endpoint, method: method)
+        let data = try await sendRequest(endpoint: endpoint, method: method,
+                                         reason: reason)
         
         if let decodedValue = try? JSONDecoder().decode(D.self, from: data) {
             return decodedValue
