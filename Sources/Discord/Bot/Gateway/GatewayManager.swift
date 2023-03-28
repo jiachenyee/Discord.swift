@@ -57,7 +57,8 @@ class GatewayManager {
                 await handleHello(jsonObject: jsonObject)
             case .heartbeatACK:
                 break
-            default: break
+            default:
+                print("Unhandled event")
             }
         default: break
         }

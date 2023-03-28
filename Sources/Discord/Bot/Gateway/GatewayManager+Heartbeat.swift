@@ -15,7 +15,7 @@ extension GatewayManager {
                 
                 let jitter = Double.random(in: 0..<1)
                 let nextHeartbeatIntervalMS = Int(Double(heartbeatInterval) * jitter)
-                
+                print("heartbeat at", Date.now)
                 try await Task.sleep(for: .milliseconds(nextHeartbeatIntervalMS))
             }
         }
