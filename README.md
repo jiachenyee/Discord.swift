@@ -24,11 +24,6 @@ bot.connect { event in
 
 ### Functions Missing
 - [Create Guild Emoji](https://discord.com/developers/docs/resources/emoji#create-guild-emoji)
-- [Edit Original Interaction Response](https://discord.com/developers/docs/interactions/receiving-and-responding#edit-original-interaction-response)
-- [Create Followup Message](https://discord.com/developers/docs/interactions/receiving-and-responding#create-followup-message)
-- [Get Followup Message](https://discord.com/developers/docs/interactions/receiving-and-responding#get-followup-message)
-- [Edit Followup Message](https://discord.com/developers/docs/interactions/receiving-and-responding#edit-followup-message)
-- [Delete Followup Message](https://discord.com/developers/docs/interactions/receiving-and-responding#delete-followup-message)
 
 ### Docs Missing
 - ApplicationRoleConnection
