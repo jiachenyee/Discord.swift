@@ -15,7 +15,7 @@ public struct TextInput: Codable {
     public var customId: String
     
     /// The Text Input Style
-    public var style: TextInputStyle
+    public var style: TextInputStyle?
     
     /// Label for this component; max 45 characters
     public var label: String
