@@ -16,6 +16,9 @@ public enum ActivityType: Int, Codable {
     case listening = 2
     /// Watching {name}    "Watching YouTube Together"
     case watching = 3
+    
+    case custom = 4
+    
     /// Competing in {name}    "Competing in Arena World Champions"
     case competing = 5
 }
