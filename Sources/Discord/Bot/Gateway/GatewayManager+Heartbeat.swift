@@ -9,17 +9,15 @@ import Foundation
 
 extension GatewayManager {
     func startHeartbeatLoop(heartbeatInterval: Int) {
-        Task.detached {
-            while true {
-                try await self.sendHeartbeatMessage()
-                
-                let jitter = Double.random(in: 0..<1)
-                let nextHeartbeatIntervalMS = Int(Double(heartbeatInterval) * jitter)
-                print("heartbeat at", Date.now)
-//                try await Task.sleep(for: .milliseconds(nextHeartbeatIntervalMS))
-                
-                try await Task.sleep(until: .now + .milliseconds(nextHeartbeatIntervalMS), clock: .continuous)
-            }
+        Task {
+            try await self.sendHeartbeatMessage()
+            
+            let jitter = Double.random(in: 0..<1)
+            let nextHeartbeatIntervalMS = Int(Double(heartbeatInterval) * jitter)
+            print("heartbeat at", Date.now)
+            try await Task.sleep(for: .milliseconds(nextHeartbeatIntervalMS))
+            
+            startHeartbeatLoop(heartbeatInterval: heartbeatInterval)
         }
     }
     
