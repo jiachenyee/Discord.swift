@@ -14,7 +14,7 @@ public enum GatewayEvent {
     
     /// Response to Resume
     /// > Discord Reference: [https://discord.com/developers/docs/topics/gateway-events#resumed](https://discord.com/developers/docs/topics/gateway-events#resumed)
-    case resumed(GatewayResume)
+    case resumed(ResumePayload)
     
     /// Application command permission was updated
     /// > Discord Reference: [https://discord.com/developers/docs/topics/gateway-events#application-command-permissions-update](https://discord.com/developers/docs/topics/gateway-events#application-command-permissions-update)

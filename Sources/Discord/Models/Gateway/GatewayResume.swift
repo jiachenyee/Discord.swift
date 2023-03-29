@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct GatewayResume: Codable {
+public struct GatewayResume: Codable {
     var operation = GatewayOpCode.resume
     var data: ResumePayload
     
