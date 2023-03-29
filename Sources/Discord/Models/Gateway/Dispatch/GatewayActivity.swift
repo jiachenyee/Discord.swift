@@ -94,7 +94,7 @@ public struct ActivityParty: GatewayEventData {
     public var id: String?
     
     /// (`current_size`, `max_size`)    Used to show the party's current and maximum size
-    public var size: [Int]
+    public var size: [Int]?
 }
 
 public struct ActivityAssets: GatewayEventData {
