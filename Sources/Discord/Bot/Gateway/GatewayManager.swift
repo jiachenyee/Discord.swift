@@ -11,6 +11,8 @@ class GatewayManager {
     let gatewayURL = URL(string: "wss://gateway.discord.gg/?v=10&encoding=json")!
     var sequence: Int?
     
+    var ready: GatewayReady?
+    
     var bot: Bot
     
     var task: URLSessionWebSocketTask!
@@ -20,7 +22,9 @@ class GatewayManager {
     }
     
     func connect() {
-        task = URLSession.shared.webSocketTask(with: gatewayURL)
+        let url = URL(string: ready?.resumeGatewayURL ?? "wss://gateway.discord.gg/?v=10&encoding=json") ?? gatewayURL
+        
+        task = URLSession.shared.webSocketTask(with: url)
         task.resume()
         
         Task.detached {
@@ -50,7 +54,7 @@ class GatewayManager {
             case .heartbeat:
                 try? await sendHeartbeatMessage()
             case .reconnect:
-                print("Reconnect")
+                handleReconnect()
             case .invalidSession:
                 print("Invalid")
             case .hello:
@@ -64,6 +68,27 @@ class GatewayManager {
         }
         
         return true
+    }
+    
+    func handleReconnect() {
+        guard let ready else { return }
+        
+        print("Reconnect")
+        
+        let resume = GatewayResume(data: .init(token: bot.token,
+                                               sessionId: ready.sessionId,
+                                               sequence: sequence!))
+        
+        task.cancel()
+        
+        connect()
+        
+        let jsonEncoder = JSONEncoder()
+        guard let data = try? jsonEncoder.encode(resume) else { return }
+        
+        Task {
+            try? await task.send(.data(data))
+        }
     }
     
     func sendIdentifyMessage(task: URLSessionWebSocketTask) async {

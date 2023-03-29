@@ -7,7 +7,17 @@
 
 import Foundation
 
-public struct GatewayResume: GatewayEventData {
+struct GatewayResume: Codable {
+    var operation = GatewayOpCode.resume
+    var data: ResumePayload
+    
+    enum CodingKeys: String, CodingKey {
+        case operation = "op"
+        case data = "d"
+    }
+}
+
+public struct ResumePayload: GatewayEventData {
     /// Session token
     public var token: String
     /// Session ID

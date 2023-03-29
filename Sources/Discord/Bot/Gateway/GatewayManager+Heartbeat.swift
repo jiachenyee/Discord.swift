@@ -17,7 +17,9 @@ extension GatewayManager {
             print("heartbeat at", Date.now)
             try await Task.sleep(for: .milliseconds(nextHeartbeatIntervalMS))
             
-            startHeartbeatLoop(heartbeatInterval: heartbeatInterval)
+            if !task.progress.isCancelled {
+                startHeartbeatLoop(heartbeatInterval: heartbeatInterval)
+            }
         }
     }
     

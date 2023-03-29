@@ -14,6 +14,12 @@ extension GatewayManager {
             return
         }
         
+        switch event {
+        case .ready(let ready):
+            self.ready = ready
+        default: break
+        }
+        
         bot.eventHandler?(event)
     }
 }
