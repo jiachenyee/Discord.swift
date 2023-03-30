@@ -30,7 +30,7 @@ public struct Role: Codable {
     public var position: Int
     
     /// permission bit set
-    public var permissions: Permissions
+    public var permissions: Permissions?
     
     /// whether this role is managed by an integration
     public var managed: Bool
