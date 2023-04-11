@@ -28,6 +28,10 @@ public struct Permissions: OptionSet, Codable {
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
         
-        rawValue = Int(try container.decode(String.self))!
+        if let intRawValue = try? container.decode(Int.self) {
+            rawValue = intRawValue
+        } else {
+            rawValue = Int(try container.decode(String.self))!
+        }
     }
 }
