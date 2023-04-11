@@ -35,9 +35,6 @@ class GatewayManager {
                 
                 self.task.cancel()
                 
-                self.task = URLSession.shared.webSocketTask(with: url)
-                self.task.resume()
-                
                 self.handleReconnect()
             }
         }
