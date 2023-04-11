@@ -29,7 +29,16 @@ class GatewayManager {
         
         Task.detached {
             while true {
-                if await !self.receive() { break }
+                while true {
+                    if await !self.receive() { break }
+                }
+                
+                self.task.cancel()
+                
+                self.task = URLSession.shared.webSocketTask(with: url)
+                self.task.resume()
+                
+                self.handleReconnect()
             }
         }
     }
