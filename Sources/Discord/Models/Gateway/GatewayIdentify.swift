@@ -20,7 +20,7 @@ struct GatewayIdentify: Codable {
 
 struct IdentifyPayload: Codable {
     /// Authentication token
-    var token: String
+    var token: String?
     
     /// Connection properties    -
     var properties: Property
