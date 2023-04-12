@@ -17,6 +17,10 @@ class GatewayManager {
     
     var task: URLSessionWebSocketTask!
     
+    var previousIdentify: Date?
+    
+    var isHeartbeatLoopRunning = false
+    
     init(bot: Bot) {
         self.bot = bot
     }
@@ -98,6 +102,8 @@ class GatewayManager {
     }
     
     func sendIdentifyMessage(task: URLSessionWebSocketTask) async {
+        guard abs((previousIdentify ?? .distantPast).timeIntervalSinceNow) > 20 else { return }
+        
         let identifyPayload = GatewayIdentify(identify: .init(token: bot.token,
                                                               compress: false,
                                                               presence: bot.presence,

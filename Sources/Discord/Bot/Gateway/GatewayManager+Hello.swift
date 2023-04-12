@@ -12,7 +12,10 @@ extension GatewayManager {
         guard let data = jsonObject["d"] as? [String: Any],
               let heartbeatInterval = data["heartbeat_interval"] as? Int else { return }
         
-        startHeartbeatLoop(heartbeatInterval: heartbeatInterval)
+        if !isHeartbeatLoopRunning {
+            isHeartbeatLoopRunning = true
+            startHeartbeatLoop(heartbeatInterval: heartbeatInterval)
+        }
         
         await sendIdentifyMessage(task: task)
     }
