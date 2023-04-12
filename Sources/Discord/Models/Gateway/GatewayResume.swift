@@ -19,7 +19,7 @@ public struct GatewayResume: Codable {
 
 public struct ResumePayload: GatewayEventData {
     /// Session token
-    public var token: String
+    public var token: String?
     /// Session ID
     public var sessionId: String
     /// Last sequence number received

@@ -9,7 +9,7 @@ import Foundation
 
 public struct GatewayVoiceServerUpdate: GatewayEventData {
     /// Voice connection token
-    public var token: String
+    public var token: String?
     /// Guild this voice server update is for
     public var guildId: Snowflake
     /// Voice server host
