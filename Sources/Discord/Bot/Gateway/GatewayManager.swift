@@ -62,7 +62,7 @@ class GatewayManager {
             case .reconnect:
                 handleReconnect()
             case .invalidSession:
-                print("Invalid")
+                handleReconnect()
             case .hello:
                 await handleHello(jsonObject: jsonObject)
             case .heartbeatACK:
@@ -102,6 +102,8 @@ class GatewayManager {
                                                               compress: false,
                                                               presence: bot.presence,
                                                               intents: bot.intents))
+        
+        print("identify")
         
         let jsonEncoder = JSONEncoder()
         guard let data = try? jsonEncoder.encode(identifyPayload) else { return }
