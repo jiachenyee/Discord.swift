@@ -30,5 +30,5 @@ let package = Package(
             name: "Discord.swiftTests",
             dependencies: ["Discord"]),
     ],
-    swiftLanguageVersions: [.version("5.5")]
+    swiftLanguageVersions: [.v5]
 )
