@@ -46,7 +46,9 @@ class GatewayManager {
     }
     
     func receive() async -> Bool {
-        guard let message = try? await task.receive() else { return false }
+        // swiftlint:disable force_try
+        let message = try! await task.receive() 
+        // swiftlint:enable force_try
         switch message {
         case .string(let text):
             let data = Data(text.utf8)
