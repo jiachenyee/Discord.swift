@@ -90,4 +90,5 @@ public enum GuildFeature: String, Codable {
     case onboardingEverEnabled = "GUILD_ONBOARDING_EVER_ENABLED"
     case guildOnboarding = "GUILD_ONBOARDING"
     case threeDayThreadArchive = "THREE_DAY_THREAD_ARCHIVE"
+    case serverGUide = "GUILD_SERVER_GUIDE"
 }
