@@ -20,10 +20,12 @@ public struct GatewayResume: Codable {
 public struct ResumePayload: GatewayEventData {
     /// Session token
     public var token: String?
+    
     /// Session ID
-    public var sessionId: String
+    public var sessionId: String?
+    
     /// Last sequence number received
-    public var sequence: Int
+    public var sequence: Int?
     
     enum CodingKeys: String, CodingKey {
         case token = "token"
