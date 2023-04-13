@@ -15,29 +15,40 @@ class GatewayManager {
     
     var bot: Bot
     
-    var task: URLSessionWebSocketTask!
+    var task: URLSessionWebSocketTask?
     
     var previousIdentify: Date?
     
     var isHeartbeatLoopRunning = false
+    
+    var heartbeatTask: Task<Void, Error>?
+    var websocketTask: Task<Void, Error>?
     
     init(bot: Bot) {
         self.bot = bot
     }
     
     func connect() {
+        
+        // reset
+        heartbeatTask?.cancel()
+        websocketTask?.cancel()
+        task?.cancel()
+        
+        task = nil
+        heartbeatTask = nil
+        websocketTask = nil
+        
         let url = URL(string: ready?.resumeGatewayURL ?? "wss://gateway.discord.gg/?v=10&encoding=json") ?? gatewayURL
         
         task = URLSession.shared.webSocketTask(with: url)
-        task.resume()
+        task?.resume()
         
-        Task.detached {
+        websocketTask = Task.detached {
             while true {
                 while true {
                     if await !self.receive() { break }
                 }
-                
-                self.task.cancel()
                 
                 self.handleReconnect()
                 print("Task failed")
@@ -46,9 +57,9 @@ class GatewayManager {
     }
     
     func receive() async -> Bool {
-        // swiftlint:disable force_try
-        let message = try! await task.receive() 
-        // swiftlint:enable force_try
+        
+        guard let message = try? await task?.receive() else { return false }
+        
         switch message {
         case .string(let text):
             let data = Data(text.utf8)
@@ -86,24 +97,26 @@ class GatewayManager {
     }
     
     func handleReconnect() {
-        guard let ready else { return }
-        
-        print("Reconnect")
-        
-        let resume = GatewayResume(data: .init(token: bot.token,
-                                               sessionId: ready.sessionId,
-                                               sequence: sequence!))
-        
-        task.cancel()
-        
         connect()
         
-        let jsonEncoder = JSONEncoder()
-        guard let data = try? jsonEncoder.encode(resume) else { return }
-        
-        Task {
-            try? await task.send(.data(data))
-        }
+//        guard let ready else { return }
+//        
+//        print("Reconnect")
+//        
+//        let resume = GatewayResume(data: .init(token: bot.token,
+//                                               sessionId: ready.sessionId,
+//                                               sequence: sequence!))
+//        
+//        task?.cancel()
+//        
+//        connect()
+//        
+//        let jsonEncoder = JSONEncoder()
+//        guard let data = try? jsonEncoder.encode(resume) else { return }
+//        
+//        Task {
+//            try? await task?.send(.data(data))
+//        }
     }
     
     func sendIdentifyMessage(task: URLSessionWebSocketTask) async {

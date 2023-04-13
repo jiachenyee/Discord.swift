@@ -17,6 +17,8 @@ extension GatewayManager {
             startHeartbeatLoop(heartbeatInterval: heartbeatInterval)
         }
         
-        await sendIdentifyMessage(task: task)
+        if let task {
+            await sendIdentifyMessage(task: task)
+        }
     }
 }

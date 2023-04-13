@@ -9,7 +9,7 @@ import Foundation
 
 extension GatewayManager {
     func startHeartbeatLoop(heartbeatInterval: Int) {
-        Task {
+        heartbeatTask = Task {
             try await self.sendHeartbeatMessage()
             
             let jitter = Double.random(in: 0..<1)
@@ -17,7 +17,7 @@ extension GatewayManager {
             print("heartbeat at", Date.now)
             try await Task.sleep(for: .milliseconds(nextHeartbeatIntervalMS))
             
-            if !task.progress.isCancelled {
+            if !(task?.progress.isCancelled ?? true) {
                 startHeartbeatLoop(heartbeatInterval: heartbeatInterval)
             }
         }
@@ -27,6 +27,6 @@ extension GatewayManager {
         let jsonEncoder = JSONEncoder()
         let heartbeat = try jsonEncoder.encode(GatewayHeartbeat(sequence: self.sequence))
         
-        try await task.send(.data(heartbeat))
+        try await task?.send(.data(heartbeat))
     }
 }
