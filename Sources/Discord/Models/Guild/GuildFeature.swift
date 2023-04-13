@@ -87,4 +87,7 @@ public enum GuildFeature: String, Codable {
     case welcomeScreenEnabled = "WELCOME_SCREEN_ENABLED"
     
     case onboardingHasPrompts = "GUILD_ONBOARDING_HAS_PROMPTS"
+    case onboardingEverEnabled = "GUILD_ONBOARDING_EVER_ENABLED"
+    case guildOnboarding = "GUILD_ONBOARDING"
+    case threeDayThreadArchive = "THREE_DAY_THREAD_ARCHIVE"
 }
