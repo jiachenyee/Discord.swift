@@ -40,6 +40,7 @@ class GatewayManager {
                 self.task.cancel()
                 
                 self.handleReconnect()
+                print("Task failed")
             }
         }
     }
@@ -65,8 +66,10 @@ class GatewayManager {
                 try? await sendHeartbeatMessage()
             case .reconnect:
                 handleReconnect()
+                print("Received reconnect req")
             case .invalidSession:
                 handleReconnect()
+                print("Invalid session")
             case .hello:
                 await handleHello(jsonObject: jsonObject)
             case .heartbeatACK:
