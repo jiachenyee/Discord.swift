@@ -50,8 +50,13 @@ class GatewayManager {
                     if await !self.receive() { break }
                 }
                 
-                self.handleReconnect()
+                if let closeReason = self.task?.closeReason,
+                   let string = String(data: closeReason, encoding: .utf8) {
+                    print(string)
+                }
+                
                 print("Task failed")
+                self.handleReconnect()
             }
         }
     }
@@ -97,7 +102,11 @@ class GatewayManager {
     }
     
     func handleReconnect() {
-        connect()
+        task?.cancel()
+        
+        Timer.scheduledTimer(withTimeInterval: 0.1, repeats: false) { _ in
+            self.connect()
+        }
         
 //        guard let ready else { return }
 //        
