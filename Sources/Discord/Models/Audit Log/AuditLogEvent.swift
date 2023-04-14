@@ -116,4 +116,6 @@ public enum AuditLogEvent: Int, Codable {
     case autoModerationFlagToChannel = 144
     /// Member was timed out by Auto Moderation
     case autoModerationUserCommunicationDisabled = 145
+    /// Server guide updated
+    case serverGuideUpdated = 191
 }
