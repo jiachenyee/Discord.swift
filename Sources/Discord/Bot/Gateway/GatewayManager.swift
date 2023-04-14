@@ -30,15 +30,6 @@ class GatewayManager {
     
     func connect() {
         
-        // reset
-        heartbeatTask?.cancel()
-        websocketTask?.cancel()
-        task?.cancel()
-        
-        task = nil
-        heartbeatTask = nil
-        websocketTask = nil
-        
         let url = URL(string: ready?.resumeGatewayURL ?? "wss://gateway.discord.gg/?v=10&encoding=json") ?? gatewayURL
         
         task = URLSession.shared.webSocketTask(with: url)
@@ -46,24 +37,29 @@ class GatewayManager {
         
         websocketTask = Task.detached {
             while true {
-                while true {
-                    if await !self.receive() { break }
+                do {
+                    if try await !self.receive() { break }
+                } catch {
+                    print("ERROR:", error.localizedDescription)
+                    break
                 }
-                
-                if let closeReason = self.task?.closeReason,
-                   let string = String(data: closeReason, encoding: .utf8) {
-                    print(string)
-                }
-                
-                print("Task failed")
-                self.handleReconnect()
             }
+            
+            if let closeReason = self.task?.closeReason,
+               let string = String(data: closeReason, encoding: .utf8) {
+                print(string)
+            } else {
+                print("no close reason")
+            }
+            
+            print("Task failed")
+            self.handleReconnect()
         }
     }
     
-    func receive() async -> Bool {
+    func receive() async throws -> Bool {
         
-        guard let message = try? await task?.receive() else { return false }
+        guard let message = try await task?.receive() else { return false }
         
         switch message {
         case .string(let text):
@@ -102,9 +98,19 @@ class GatewayManager {
     }
     
     func handleReconnect() {
+        heartbeatTask?.cancel()
+        websocketTask?.cancel()
         task?.cancel()
         
-        Timer.scheduledTimer(withTimeInterval: 0.1, repeats: false) { _ in
+        task = nil
+        heartbeatTask = nil
+        websocketTask = nil
+        
+        Timer.scheduledTimer(withTimeInterval: 0.1, repeats: false) { [self] _ in
+            // reset
+            
+            print("Reset and teardown")
+            
             self.connect()
         }
         
