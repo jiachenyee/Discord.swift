@@ -79,10 +79,8 @@ class GatewayManager {
             case .heartbeat:
                 try? await sendHeartbeatMessage()
             case .reconnect:
-                handleReconnect()
                 print("Received reconnect req")
             case .invalidSession:
-                handleReconnect()
                 print("Invalid session")
             case .hello:
                 await handleHello(jsonObject: jsonObject)
@@ -102,19 +100,15 @@ class GatewayManager {
         websocketTask?.cancel()
         task?.cancel()
         
+        isHeartbeatLoopRunning = false
+        
         task = nil
         heartbeatTask = nil
         websocketTask = nil
         
         print("plan to attempt reconnect")
         
-        Timer.scheduledTimer(withTimeInterval: 0.1, repeats: false) { [self] _ in
-            // reset
-            
-            print("Reset and teardown")
-            
-//            self.connect()
-        }
+        self.connect()
         
 //        guard let ready else { return }
 //        
