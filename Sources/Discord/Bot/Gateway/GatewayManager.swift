@@ -106,12 +106,14 @@ class GatewayManager {
         heartbeatTask = nil
         websocketTask = nil
         
+        print("plan to attempt reconnect")
+        
         Timer.scheduledTimer(withTimeInterval: 0.1, repeats: false) { [self] _ in
             // reset
             
             print("Reset and teardown")
             
-            self.connect()
+//            self.connect()
         }
         
 //        guard let ready else { return }
