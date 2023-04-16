@@ -19,6 +19,8 @@ extension GatewayManager {
             
             if !(task?.progress.isCancelled ?? true) {
                 startHeartbeatLoop(heartbeatInterval: heartbeatInterval)
+            } else {
+                print("Task prematurely cancelled")
             }
         }
     }
